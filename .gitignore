@@ -89,3 +89,7 @@ dist
 
 # Service worker
 sw.*
+
+# Videos
+/assets/v/*
+!/assets/v/0.png

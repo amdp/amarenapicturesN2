@@ -8,20 +8,16 @@ module.exports = {
   build: {},
   serverMiddleware: ['./api'],
   css: ['@assets/amarena.css'],
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/toast',
-    '@nuxtjs/pwa',
-    'bootstrap-vue/nuxt'
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt'],
   loading: {
-    color: '#FF8800', //change this
+    color: '#FF0033',
     failedColor: 'black',
     height: '3px',
     continuous: true
   },
   env: {
-    DBURL: process.env.DBURL
+    DBURL: process.env.DBURL,
+    RECAPTCHA: process.env.RECAPTCHA
   },
   axios: {
     https: process.env.HTTPS ? true : false,

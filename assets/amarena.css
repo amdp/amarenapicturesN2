@@ -12,3 +12,21 @@ body {
   font-size: 14px;
   overflow-x: hidden;
 }
+
+a {
+  color: #777;
+}
+
+.amarenared {
+  color: #ff0033;
+}
+
+.t18 {
+  font-size: 20px;
+}
+.amarenabrand {
+  max-width: 200px;
+}
+.amarenalogo {
+  max-width: 200px;
+}

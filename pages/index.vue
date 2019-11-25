@@ -1,15 +1,19 @@
 <template>
   <div class="m-0 p-0">
-    <home />
+    <brands />
     <videolist />
   </div>
 </template>
 
 <script>
-import home from '@/components/home'
+import brands from '@/components/brands'
 import videolist from '@/components/videolist'
 
 export default {
-  components: { home: home, videolist: videolist },
+  components: { brands: brands, videolist: videolist },
+  async fetch({ store, params }) {
+    await store.dispatch('getBrandsAction')
+    await store.dispatch('getVideosAction')
+  }
 }
 </script>

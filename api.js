@@ -4,16 +4,8 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 const nodemailer = require('nodemailer')
-// const jimp = require('jimp')
+//const jimp = require('jimp')
 const mysql = require('mysql2')
-// const mydb = mysql.createConnection({
-//   connectionLimit: 200,
-//   host: 'localhost',
-//   user: process.env.MYSQLUSER,
-//   password: process.env.DBPASSWORD,
-//   database: process.env.DBDB,
-//   multipleStatements: true
-// })
 
 const pool = mysql.createPool({
   host: 'localhost',
@@ -30,17 +22,17 @@ const myPool = pool.promise()
 
 app.get('/videos', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `project`'
-    const [rows] = await myPool.query(query, param)
+    let query = 'SELECT * FROM `amareel`'
+    const [rows] = await myPool.query(query)
     res.send(rows)
   } catch (err) {
     next(err)
   }
 })
-app.get('/images', async (req, res, next) => {
+app.get('/brands', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `project`'
-    const [rows] = await myPool.query(query, param)
+    let query = 'SELECT * FROM `brands`'
+    const [rows] = await myPool.query(query)
     res.send(rows)
   } catch (err) {
     next(err)
