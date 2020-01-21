@@ -15,11 +15,11 @@ export const mutations = {
 }
 
 export const actions = {
-  getBrandsAction: async function(context) {
+  getBrandsAction: async function (context) {
     let { data } = await this.$axios.get(process.env.DBURL + '/brands')
     context.commit('setBrands', data)
   },
-  getVideosAction: async function(context) {
+  getVideosAction: async function (context) {
     let { data } = await this.$axios.get(process.env.DBURL + '/videos')
     context.commit('setVideos', data)
   }

@@ -5,6 +5,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 const nodemailer = require('nodemailer')
 //const jimp = require('jimp')
+
+
 const mysql = require('mysql2')
 
 const pool = mysql.createPool({
@@ -17,13 +19,14 @@ const pool = mysql.createPool({
   queueLimit: 0
 })
 
-const myPool = pool.promise()
+const mypool = pool.promise()
+
 /////// GET ///////
 
 app.get('/videos', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `amareel`'
-    const [rows] = await myPool.query(query)
+    let query = 'SELECT * FROM `amareel` ORDER BY `id` DESC'
+    const [rows] = await mypool.execute(query)
     res.send(rows)
   } catch (err) {
     next(err)
@@ -31,8 +34,8 @@ app.get('/videos', async (req, res, next) => {
 })
 app.get('/brands', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `brands`'
-    const [rows] = await myPool.query(query)
+    let query = 'SELECT * FROM `brands` ORDER BY `priority`'
+    const [rows] = await mypool.execute(query)
     res.send(rows)
   } catch (err) {
     next(err)
@@ -58,7 +61,7 @@ app.get('/brands', async (req, res, next) => {
 //   return response.status;
 // };
 
-app.post('/contactemail', function(req, res) {
+app.post('/contactemail', function (req, res) {
   // if (!isValidRecaptchaToken(req.body.recaptchaToken)) {
   //   res.status(500).json({
   //     message: 'Invalid Captcha! Please try again.'

@@ -1,24 +1,5 @@
 <template>
-  <b-container fluid>
-    <b-row>
-      <navbar />
-    </b-row>
-    <b-row class="main d-flex justify-content-center">
-      <b-col cols="11" lg="8">
-        <nuxt />
-      </b-col>
-    </b-row>
-    <b-row>
-      <foot />
-    </b-row>
+  <b-container fluid class="p-0 m-0">
+    <nuxt class="m-0 p-0" />
   </b-container>
 </template>
-
-<script>
-import navbar from '@/components/navbar'
-import foot from '@/components/foot'
-
-export default {
-  components: { navbar, foot }
-}
-</script>
