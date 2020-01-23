@@ -22,5 +22,9 @@ export const actions = {
   getVideosAction: async function (context) {
     let { data } = await this.$axios.get(process.env.DBURL + '/videos')
     context.commit('setVideos', data)
+  },
+  contactEmailAction: async function (context, payload) {
+    let { data } = await this.$axios.post(process.env.DBURL + '/contactemail', payload)
+    return data
   }
 }

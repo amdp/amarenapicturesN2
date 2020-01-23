@@ -33,7 +33,7 @@
       <b-col cols="12">
         <b-card
           no-body
-          v-for="video in this.$store.state.videos"
+          v-for="video in brandFilter()"
           :key="video.id"
           class="text-center"
         >
@@ -44,8 +44,8 @@
               </b-embed>
             </b-col>
             <b-col md="4">
-              <b-card-body :title="video.title">
-                <b-card-text>
+              <b-card-body class="up amarenared" :title="video.title">
+                <b-card-text class="black">
                   {{ video.abstract }}
                 </b-card-text>
               </b-card-body>
@@ -54,29 +54,45 @@
         </b-card>
       </b-col>
     </b-row>
-
+    <b-row class="m-5">
+      <b-col cols="12" class="m-5">
+        &nbsp;
+      </b-col>
+    </b-row>
     <b-container class="footcontainer p-0 m-0" fluid>
       <b-row class="m-0 p-0">
         <b-col cols="12" class="d-flex brandrow">
           <span>&nbsp;&nbsp;&nbsp;</span>
           <div v-for="brand in this.$store.state.brands" :key="brand.id">
-            <img :src="brandImage(brand.image)" class="imgbrand" />
+            <a @click="brandFilter(brand.brand)"
+              ><img :src="brandImage(brand.image)" class="imgbrand"
+            /></a>
           </div>
           <span>&nbsp;&nbsp;&nbsp;</span>
         </b-col>
       </b-row>
       <b-row class="endline">
-        <b-col cols="12" class="text-center up mb-3">
-          <span class="amarenared">Amarena</span> Pictures S.r.l. ~ Via Pistelli
-          16, 00135 Roma - Via Moscova 39, 20121 Milano ~ P.I. 11100831004
+        <b-col cols="1" class="amarenared">
+          <b-link v-b-modal.contactmodal class="amarenared">CONTACT</b-link>
         </b-col>
+        <b-col cols="10" class="text-center up mb-3">
+          <span class="amarenared">Amarena</span> Pictures S.r.l. ~ Via Pistelli
+          16, 00135 Roma - Via Moscova 39, 20121 Milano ~ P.I. 11100831004 ~ W E
+          <span class="amarenared"> &hearts; </span> D I V E R S I T Y
+        </b-col>
+        <b-col cols="1" class="amarenared text-right">LOGIN</b-col>
       </b-row>
     </b-container>
+    <contactmodal />
   </b-container>
 </template>
 
 <script>
+import contactmodal from '@/components/contactmodal'
 export default {
+  components: {
+    contactmodal: contactmodal,
+  },
   async fetch({ store }) {
     await store.dispatch('getBrandsAction')
     await store.dispatch('getVideosAction')
@@ -101,6 +117,13 @@ export default {
         return require('../assets/b/' + filename)
       } catch (e) {
         return require('../assets/amarenasquare.png')
+      }
+    },
+    brandFilter(brand) {
+      if (!brand) {
+        return this.$store.state.videos
+      } else {
+        return this.$store.state.videos.filter(video => video.brand == brand)
       }
     }
   }

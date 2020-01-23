@@ -34,7 +34,7 @@ app.get('/videos', async (req, res, next) => {
 })
 app.get('/brands', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `brands` ORDER BY `priority`'
+    let query = 'SELECT * FROM `brands` ORDER BY `id`'
     const [rows] = await mypool.execute(query)
     res.send(rows)
   } catch (err) {
@@ -62,11 +62,6 @@ app.get('/brands', async (req, res, next) => {
 // };
 
 app.post('/contactemail', function (req, res) {
-  // if (!isValidRecaptchaToken(req.body.recaptchaToken)) {
-  //   res.status(500).json({
-  //     message: 'Invalid Captcha! Please try again.'
-  //   });
-  // }
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -78,23 +73,21 @@ app.post('/contactemail', function (req, res) {
   }) /* to add html in mailOptions use " html: '<b>test</b>' " */
   const mailOptions = {
     from: req.body.formEmail,
-    to: '"Cooperacy" <cooperacy@cooperacy.org>',
-    // conveniently replies to the submitter of the form's email
+    to: '"Amarena Pictures" <amarena@amarenapictures.com>',
     replyTo: `"${req.body.formName}" <${req.body.formEmail}>`,
-    subject: req.body.formSubject,
+    subject: 'From Amarena Pictures Website - ' + req.body.formSubject,
     text:
       `Name: ${req.body.formName}\n` +
       `Email: ${req.body.formEmail}\n\n` +
       `Message: \n\n${req.body.formBody}`
   }
-  // console.log(mailOptions);
   transporter
     .sendMail(mailOptions)
     .then(info => {
       console.log('Message %s sent: %s', info.messageId, info.response)
       res.status(200).json({
         message:
-          `Thank you ${req.body.formName} for your message!<br/>` +
+          `Thank you, ${req.body.formName}, for your message!<br/>` +
           `We'll get in touch as soon as possible.<br />`
       })
     })
