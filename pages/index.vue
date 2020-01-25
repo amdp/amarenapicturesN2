@@ -1,101 +1,107 @@
 <template>
   <b-container fluid p-0 m-0>
-    <b-row class="d-flex justify-content-center majestic mx-3 my-2">
-      <b-col cols="12" class="text-center">
-        <nuxt-link class="majestic" to="/">
-          <span class="amarenared">AMARENA</span
-          ><span>&nbsp;PICTURES</span></nuxt-link
-        ></b-col
-      >
-    </b-row>
-    <b-row class="d-flex justify-content-center mx-3">
-      <b-col cols="12" class="quotedline text-center base">
-        <em>
-          We founded <span class="amarenared">Amarena</span> Pictures, the
-          "<span class="amarenared">sour cherry</span>" production service for
-          our directions, in 2010. Today it has become a full production company
-          leveraging on our diection style and its unique
-          <span class="amarenared">flavour</span>.
-        </em>
-      </b-col>
-    </b-row>
-    <b-row class="d-flex justify-content-center mx-3">
-      <b-col cols="12" class="text-right signature base">
-        Giovanni Caloro - Alessandro Merletti De Palo
-      </b-col>
-    </b-row>
-    <b-row class="mb-5">
-      <b-col cols="12 d-flex justify-content-center my-5">
-        <img :src="brandImage('none')" class="logo" />
-      </b-col>
-    </b-row>
-
-    <b-row>
-      <b-col cols="12">
-        <b-card
-          no-body
-          v-for="video in brandFilter()"
-          :key="video.id"
-          class="text-center"
+    <b-container fluid p-0 m-0>
+      <b-row class="d-flex justify-content-center majestic mx-3 my-2">
+        <b-col cols="12" class="text-center">
+          <nuxt-link class="majestic" to="/">
+            <span class="amarenared">AMARENA</span
+            ><span>&nbsp;PICTURES</span></nuxt-link
+          ></b-col
         >
-          <b-row no-gutters>
-            <b-col md="8">
-              <b-embed type="video" :poster="videoImage(video.video)" controls>
-                <source :src="amareel(video.video)" type="video/mp4" />
-              </b-embed>
-            </b-col>
-            <b-col md="4">
-              <b-card-body>
-                <b-card-text>
-                  <b-row>
-                    <b-col cols="12" class="mb-2 p-1">
-                      <span class="up amarenared videotitle">{{
-                        video.title
-                      }}</span>
-                    </b-col>
-                    <b-col cols="12" class="mb-5 videoabstract">
-                      {{ video.abstract }}
-                    </b-col>
-                    <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
-                      <span class="up amarenared">Client</span>
-                    </b-col>
-                    <b-col cols="9" class="mb-2 p-0 videospecs">
-                      {{ video.brand }}
-                    </b-col>
-                    <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
-                      <span class="up amarenared">Agency</span>
-                    </b-col>
-                    <b-col cols="9" class="mb-2 p-0 videospecs">
-                      {{ video.agency }}
-                    </b-col>
-                    <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
-                      <span class="up amarenared">Production</span>
-                    </b-col>
-                    <b-col cols="9" class="mb-2 p-0 videospecs">
-                      {{ video.production }}
-                    </b-col>
-                    <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
-                      <span class="up amarenared">Direction</span>
-                    </b-col>
-                    <b-col cols="9" class="mb-2 p-0 videospecs">
-                      {{ video.direction }}
-                    </b-col>
-                  </b-row>
-                </b-card-text>
-              </b-card-body>
-            </b-col>
-          </b-row>
-        </b-card>
-      </b-col>
-    </b-row>
-    <b-row class="m-5">
-      <b-col cols="12" class="m-5">
-        &nbsp;
-      </b-col>
-    </b-row>
+      </b-row>
+      <b-row class="d-flex justify-content-center mx-3">
+        <b-col cols="12" class="quotedline text-center base">
+          <em>
+            We founded <span class="amarenared">Amarena</span> Pictures, the
+            "<span class="amarenared">sour cherry</span>" production service for
+            our directions, in 2010. Today it has become a full production
+            company leveraging on our diection style and its unique
+            <span class="amarenared">flavour</span>.
+          </em>
+        </b-col>
+      </b-row>
+      <b-row class="d-flex justify-content-center mx-3">
+        <b-col cols="12" class="text-right signature base">
+          Giovanni Caloro - Alessandro Merletti De Palo
+        </b-col>
+      </b-row>
+      <b-row class="m-0 p-0 mb-5">
+        <b-col cols="12" class="d-flex justify-content-center my-5">
+          <img :src="brandImage('none')" class="logo" />
+        </b-col>
+      </b-row>
+
+      <b-row no-gutters>
+        <b-col cols="12">
+          <b-card
+            no-body
+            v-for="video in brandFilter()"
+            :key="video.id"
+            class="text-center"
+          >
+            <b-row no-gutters>
+              <b-col md="8">
+                <b-embed
+                  type="video"
+                  :poster="videoImage(video.video)"
+                  controls
+                >
+                  <source :src="amareel(video.video)" type="video/mp4" />
+                </b-embed>
+              </b-col>
+              <b-col md="4">
+                <b-card-body>
+                  <b-card-text>
+                    <b-row>
+                      <b-col cols="12" class="mb-2 p-1">
+                        <span class="up amarenared videotitle">{{
+                          video.title
+                        }}</span>
+                      </b-col>
+                      <b-col cols="12" class="mb-5 videoabstract">
+                        {{ video.abstract }}
+                      </b-col>
+                      <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                        <span class="up amarenared">Client</span>
+                      </b-col>
+                      <b-col cols="9" class="mb-2 p-0 videospecs">
+                        {{ video.brand }}
+                      </b-col>
+                      <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                        <span class="up amarenared">Agency</span>
+                      </b-col>
+                      <b-col cols="9" class="mb-2 p-0 videospecs">
+                        {{ video.agency }}
+                      </b-col>
+                      <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                        <span class="up amarenared">Production</span>
+                      </b-col>
+                      <b-col cols="9" class="mb-2 p-0 videospecs">
+                        {{ video.production }}
+                      </b-col>
+                      <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                        <span class="up amarenared">Direction</span>
+                      </b-col>
+                      <b-col cols="9" class="mb-2 p-0 videospecs">
+                        {{ video.direction }}
+                      </b-col>
+                    </b-row>
+                  </b-card-text>
+                </b-card-body>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row class="m-5">
+        <b-col cols="12" class="m-5">
+          &nbsp;
+        </b-col>
+      </b-row>
+    </b-container>
     <b-container class="footcontainer p-0 m-0" fluid>
-      <b-row class="m-0 p-0">
-        <b-col cols="12" class="d-flex brandrow">
+      <b-row no-gutters class="brandrow">
+        <b-col cols="12" class="d-flex">
           <span>&nbsp;&nbsp;&nbsp;</span>
           <div v-for="brand in this.$store.state.brands" :key="brand.id">
             <a @click="brandFilter(brand.brand)"
@@ -105,8 +111,8 @@
           <span>&nbsp;&nbsp;&nbsp;</span>
         </b-col>
       </b-row>
-      <b-row class="endline">
-        <b-col cols="2" class="amarenared">
+      <b-row no-gutters>
+        <b-col cols="2" class="amarenared pl-2">
           <b-link v-b-modal.contactmodal class="amarenared">CONTACT</b-link>
         </b-col>
         <b-col cols="8" class="text-center up mb-3">
@@ -115,7 +121,7 @@
           00135 <span class="amarenared">Roma</span> ~ P.I. 11100831004 ~ W E
           <span class="amarenared"> &hearts; </span> D I V E R S I T Y
         </b-col>
-        <b-col cols="2" class="amarenared text-right">LOGIN</b-col>
+        <b-col cols="2" class="amarenared text-right pr-2">LOGIN</b-col>
       </b-row>
     </b-container>
     <contactmodal />
