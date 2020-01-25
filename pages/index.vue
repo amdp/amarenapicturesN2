@@ -106,16 +106,16 @@
         </b-col>
       </b-row>
       <b-row class="endline">
-        <b-col cols="1" class="amarenared">
+        <b-col cols="2" class="amarenared">
           <b-link v-b-modal.contactmodal class="amarenared">CONTACT</b-link>
         </b-col>
-        <b-col cols="10" class="text-center up mb-3">
+        <b-col cols="8" class="text-center up mb-3">
           <span class="amarenared">Amarena</span> Pictures S.r.l. ~ Via Moscova
           39, 20121 <span class="amarenared">Milano</span> ~ Via Pistelli 16,
           00135 <span class="amarenared">Roma</span> ~ P.I. 11100831004 ~ W E
           <span class="amarenared"> &hearts; </span> D I V E R S I T Y
         </b-col>
-        <b-col cols="1" class="amarenared text-right">LOGIN</b-col>
+        <b-col cols="2" class="amarenared text-right">LOGIN</b-col>
       </b-row>
     </b-container>
     <contactmodal />
