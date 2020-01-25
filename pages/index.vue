@@ -1,5 +1,5 @@
 <template>
-  <b-container class="p-0 m-0">
+  <b-container class="p-0 m-0" fluid>
     <b-container fluid class="m-0 p-0">
       <b-row class="d-flex justify-content-center majestic mx-3 my-2">
         <b-col cols="12" class="text-center">
@@ -16,8 +16,8 @@
             "<span class="amarenared">sour cherry</span>" production service for
             our directions, in 2010. Today it has become a full production
             company leveraging on our diection style and its unique
-            <span class="amarenared">flavour</span>: more than directors, that's
-            <span class="amarenared">Amarena</span>!
+            <span class="amarenared">flavour</span>: more than directors,<br />
+            that's <span class="amarenared">Amarena</span>!
           </em>
         </b-col>
       </b-row>
@@ -36,7 +36,7 @@
         <b-col cols="12">
           <b-card
             no-body
-            v-for="video in brandFilter()"
+            v-for="video in brandshere"
             :key="video.id"
             class="text-center"
           >
@@ -139,6 +139,14 @@ export default {
     await store.dispatch('getBrandsAction')
     await store.dispatch('getVideosAction')
   },
+  data() {
+    return {
+      brandshere: [],
+    }
+  },
+  mounted() {
+    this.brandshere = this.$store.state.videos
+  },
   methods: {
     videoImage(filename) {
       try {
@@ -162,14 +170,11 @@ export default {
       }
     },
     brandFilter(brand) {
-      if (!brand) {
-        return this.$store.state.videos
-      } else {
-        return this.$store.state.videos.filter(video => video.brand == brand)
-      }
+      this.brandshere = this.$store.state.videos.filter(video => video.brand == brand)
     }
   }
 }
+
 </script>
 
 <!--
