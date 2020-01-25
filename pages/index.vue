@@ -15,9 +15,9 @@
           "<span class="amarenared">sour cherry</span>" production service for
           our directions, in 2010. Today it has become a full production company
           leveraging on our diection style and its unique
-          <span class="amarenared">flavour</span>. We're just two simple
+          <span class="amarenared">flavour</span>: more than directors, that's
+          <span class="amarenared">Amarena</span>!
         </em>
-        <span class="amarenared">videogardeners</span>.
       </b-col>
     </b-row>
     <b-row class="d-flex justify-content-center mx-3">
