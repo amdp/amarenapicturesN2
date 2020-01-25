@@ -91,5 +91,5 @@ dist
 sw.*
 
 # Videos
-/assets/v/*
-!/assets/v/0.png
+/static/v/*
+!/static/v/0.png

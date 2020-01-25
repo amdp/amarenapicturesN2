@@ -142,9 +142,9 @@ export default {
     },
     amareel(filename) {
       try {
-        return require('../assets/v/' + filename + '.mp4')
+        return '../static/v/' + filename + '.mp4'
       } catch (e) {
-        return require('../assets/v/thatsamarena.mp4')
+        return '../static/v/thatsamarena.mp4'
       }
     },
     brandImage(filename) {
