@@ -1,12 +1,43 @@
 <template>
   <b-container fluid p-0 m-0>
-    <b-container fluid p-0 m-0>
-      <b-row class="d-flex justify-content-center majestic mx-3 my-2">
-        <b-col cols="12" class="text-center">
-          <nuxt-link class="majestic" to="/">
-            <span class="amarenared">AMARENA</span
-            ><span>&nbsp;PICTURES</span></nuxt-link
-          ></b-col
+    <b-row class="d-flex justify-content-center majestic mx-3 my-2">
+      <b-col cols="12" class="text-center">
+        <nuxt-link class="majestic" to="/">
+          <span class="amarenared">AMARENA</span
+          ><span>&nbsp;PICTURES</span></nuxt-link
+        ></b-col
+      >
+    </b-row>
+    <b-row class="d-flex justify-content-center mx-3">
+      <b-col cols="12" class="quotedline text-center base">
+        <em>
+          We founded <span class="amarenared">Amarena</span> Pictures, the
+          "<span class="amarenared">sour cherry</span>" production service for
+          our directions, in 2010. Today it has become a full production company
+          leveraging on our diection style and its unique
+          <span class="amarenared">flavour</span>: more than directors, that's
+          <span class="amarenared">Amarena</span>!
+        </em>
+      </b-col>
+    </b-row>
+    <b-row class="d-flex justify-content-center mx-3">
+      <b-col cols="12" class="text-right signature base">
+        Giovanni Caloro - Alessandro Merletti De Palo
+      </b-col>
+    </b-row>
+    <b-row class="mb-5">
+      <b-col cols="12 d-flex justify-content-center my-5">
+        <img :src="brandImage('none')" class="logo" />
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col cols="12">
+        <b-card
+          no-body
+          v-for="video in brandFilter()"
+          :key="video.id"
+          class="text-center"
         >
       </b-row>
       <b-row class="d-flex justify-content-center mx-3">
