@@ -15,9 +15,6 @@ a, a:hover {
 .whiteback {
   background-color: #ffffff;
 }
-.black {
-  color: #000;
-}
 body {
   margin: 0px;
   padding: 0px;
@@ -46,7 +43,7 @@ body {
   font-size: 3vh;
 }
 .logo {
-  max-width: 30vh;
+  max-width: 28vh;
 }
 .videotitle{
   font-size: 7vh;
@@ -54,8 +51,19 @@ body {
   color: #ff0033;
 }
 .videoabstract{
-  font-size: 5vh;
+  font-size: 3vh;
   font-weight: 200;
+  text-align: justify;
+}
+.videospecstype{
+  font-size: 2.2vh;
+  font-weight: 200;
+  text-align: right;
+}
+.videospecs{
+  font-size: 2.2vh;
+  font-weight: 200;
+  text-align: left;
 }
 .brands {
   overflow: scroll;

@@ -14,7 +14,8 @@
           We founded <span class="amarenared">Amarena</span> Pictures, the
           "<span class="amarenared">sour cherry</span>" production service for
           our directions, in 2010. Today it has become a full production company
-          leveraging on our diection style and its unique flavour.
+          leveraging on our diection style and its unique
+          <span class="amarenared">flavour</span>.
         </em>
       </b-col>
     </b-row>
@@ -44,9 +45,42 @@
               </b-embed>
             </b-col>
             <b-col md="4">
-              <b-card-body class="up amarenared" :title="video.title">
-                <b-card-text class="black">
-                  {{ video.abstract }}
+              <b-card-body>
+                <b-card-text>
+                  <b-row>
+                    <b-col cols="12" class="mb-2 p-1">
+                      <span class="up amarenared videotitle">{{
+                        video.title
+                      }}</span>
+                    </b-col>
+                    <b-col cols="12" class="mb-5 videoabstract">
+                      {{ video.abstract }}
+                    </b-col>
+                    <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                      <span class="up amarenared">Client</span>
+                    </b-col>
+                    <b-col cols="9" class="mb-2 p-0 videospecs">
+                      {{ video.brand }}
+                    </b-col>
+                    <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                      <span class="up amarenared">Agency</span>
+                    </b-col>
+                    <b-col cols="9" class="mb-2 p-0 videospecs">
+                      {{ video.agency }}
+                    </b-col>
+                    <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                      <span class="up amarenared">Production</span>
+                    </b-col>
+                    <b-col cols="9" class="mb-2 p-0 videospecs">
+                      {{ video.production }}
+                    </b-col>
+                    <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                      <span class="up amarenared">Direction</span>
+                    </b-col>
+                    <b-col cols="9" class="mb-2 p-0 videospecs">
+                      {{ video.direction }}
+                    </b-col>
+                  </b-row>
                 </b-card-text>
               </b-card-body>
             </b-col>
@@ -76,8 +110,9 @@
           <b-link v-b-modal.contactmodal class="amarenared">CONTACT</b-link>
         </b-col>
         <b-col cols="10" class="text-center up mb-3">
-          <span class="amarenared">Amarena</span> Pictures S.r.l. ~ Via Pistelli
-          16, 00135 Roma - Via Moscova 39, 20121 Milano ~ P.I. 11100831004 ~ W E
+          <span class="amarenared">Amarena</span> Pictures S.r.l. ~ Via Moscova
+          39, 20121 <span class="amarenared">Milano</span> ~ Via Pistelli 16,
+          00135 <span class="amarenared">Roma</span> ~ P.I. 11100831004 ~ W E
           <span class="amarenared"> &hearts; </span> D I V E R S I T Y
         </b-col>
         <b-col cols="1" class="amarenared text-right">LOGIN</b-col>
