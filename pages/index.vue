@@ -4,26 +4,26 @@
       <b-row class="d-flex justify-content-center majestic mx-3 my-2">
         <b-col cols="12" class="text-center">
           <nuxt-link class="majestic" to="/">
-            <span class="amarenared">AMARENA</span
-            ><span>&nbsp;PICTURES</span></nuxt-link
-          ></b-col
-        >
+            <span class="amarenared">AMARENA</span><span>&nbsp;PICTURES</span>
+          </nuxt-link>
+        </b-col>
       </b-row>
       <b-row class="d-flex justify-content-center mx-3">
         <b-col cols="12" class="quotedline text-center base">
           <em>
+            That's <span class="amarenared">Amarena</span>!<br />
             We founded <span class="amarenared">Amarena</span> Pictures, the
             "<span class="amarenared">sour cherry</span>" production service for
             our directions, in 2010. Today it has become a full production
-            company leveraging on our diection style and its unique
-            <span class="amarenared">flavour</span>: more than directors,<br />
-            that's <span class="amarenared">Amarena</span>!
+            company leveraging on our direction style and.. its unique
+            <span class="amarenared">flavour</span>.
           </em>
         </b-col>
       </b-row>
       <b-row class="d-flex justify-content-center mx-3">
         <b-col cols="12" class="text-right signature base">
-          Giovanni Caloro - Alessandro Merletti De Palo
+          Giovanni Caloro <span class="amarenared">~</span> Alessandro Merletti
+          De Palo
         </b-col>
       </b-row>
       <b-row class="mb-5">
@@ -144,7 +144,7 @@ export default {
       brandshere: [],
     }
   },
-  mounted() {
+  created() {
     this.brandshere = this.$store.state.videos
   },
   methods: {

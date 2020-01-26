@@ -25,7 +25,7 @@ const mypool = pool.promise()
 
 app.get('/videos', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `amareel` ORDER BY `id` DESC'
+    let query = 'SELECT * FROM `amareel` WHERE `on-the-reel` = 1 ORDER BY `id` DESC'
     const [rows] = await mypool.execute(query)
     res.send(rows)
   } catch (err) {
