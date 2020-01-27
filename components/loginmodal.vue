@@ -82,6 +82,7 @@ export default {
             password: this.loginPassword
           }
         })
+        this.logging = false
       } catch (err) {
         alert('Sorry, there seems to be something wrong: ' + err.response.data + console.log(' ' + JSON.stringify(err.response)))
         this.logging = false

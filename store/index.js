@@ -28,7 +28,6 @@ export const actions = {
     return data
   },
   recoverPasswordAction: async function (context, payload) {
-    console.log('payload ' + JSON.stringify(payload))
     let { data } = await this.$axios.post(
       process.env.DBURL + '/recoverpassword',
       payload
