@@ -18,8 +18,8 @@ export default {
       token: this.$route.query.jws
     })
     if (change == 'updated') {
-      setTimeout(function() {
-        location.href = '/login'
+      setTimeout(function () {
+        location.href = '/'
       }, 1200)
     }
   }
