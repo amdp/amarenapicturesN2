@@ -8,7 +8,7 @@ module.exports = {
   build: {},
   serverMiddleware: ['./api'],
   css: ['@assets/amarena.css'],
-  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth'],
   loading: {
     color: '#FF0033',
     failedColor: 'black',
@@ -37,7 +37,6 @@ module.exports = {
       }
     }
     : { host: process.env.HOST, port: process.env.PORT },
-
   head: {
     title: 'Amarena Pictures',
     meta: [
@@ -56,5 +55,26 @@ module.exports = {
           'https://fonts.googleapis.com/css?family=Oswald:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap'
       }
     ]
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/login',
+            method: 'post',
+            propertyName: 'token.accessToken'
+          },
+          logout: { url: '/logout', method: 'post' },
+          user: { url: '/user', method: 'get', propertyName: 'user' }
+        }
+      }
+    },
+    redirect: {
+      home: '/',
+      login: '/',
+      user: '/',
+      logout: '/'
+    }
   }
 }
