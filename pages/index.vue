@@ -1,7 +1,7 @@
 <template>
-  <b-container fluid>
-    <b-container fluid>
-      <b-row class="d-flex justify-content-center majestic mb-0 px-3 mt-2">
+  <b-container class="m-0 mx-auto">
+    <b-container class="mx-auto">
+      <b-row class="d-flex justify-content-center mb-0 px-3 mt-2">
         <b-col cols="12" class="text-center">
           <nuxt-link class="majestic" to="/">
             <span class="amarenared">AMARENA</span><span>&nbsp;PICTURES</span>
@@ -31,15 +31,6 @@
           De Palo
         </b-col>
       </b-row>
-
-      <b-row class="m-0 p-0" v-if="$auth.user">
-        <b-col cols="12 d-flex justify-content-center">
-          <p>
-            Welcome {{ this.$auth.user.name }} {{ this.$auth.user.surname }}
-          </p>
-        </b-col>
-      </b-row>
-
       <b-row class="p-0 m-0">
         <b-col cols="12">
           <b-card
@@ -108,7 +99,7 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="footcontainer" fluid>
+    <b-container class="footcontainer">
       <b-row class="p-0 m-0 brandrow">
         <b-col cols="12" class="d-flex">
           <span>&nbsp;&nbsp;&nbsp;</span>
