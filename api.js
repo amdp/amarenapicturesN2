@@ -29,7 +29,7 @@ const mypool = pool.promise()
 
 app.get('/videos', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `amareel` WHERE `on-the-reel` = 1 ORDER BY `id` DESC'
+    let query = 'SELECT * FROM `amareel` WHERE `visible` = 1 ORDER BY `id` DESC'
     const [rows] = await mypool.execute(query)
     res.send(rows)
   } catch (err) {
@@ -38,7 +38,7 @@ app.get('/videos', async (req, res, next) => {
 })
 app.get('/brands', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `brands` ORDER BY `id`'
+    let query = 'SELECT * FROM `brands` WHERE `visible` = 1 ORDER BY `id`'
     const [rows] = await mypool.execute(query)
     res.send(rows)
   } catch (err) {

@@ -68,6 +68,7 @@ body {
   background-color: #ffffff;
   position: fixed;
   bottom: 0px;
+  z-index: 3;
 }
 .brandrow {
   overflow-x: scroll;

@@ -1,11 +1,16 @@
 <template>
   <b-container class="p-0 m-0" fluid>
     <b-container fluid class="m-0 p-0">
-      <b-row class="d-flex justify-content-center majestic mx-3 my-2">
+      <b-row class="d-flex justify-content-center majestic mb-0 mx-3 mt-2">
         <b-col cols="12" class="text-center">
           <nuxt-link class="majestic" to="/">
             <span class="amarenared">AMARENA</span><span>&nbsp;PICTURES</span>
           </nuxt-link>
+        </b-col>
+      </b-row>
+      <b-row class="m-0 p-0">
+        <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n3">
+          <img :src="brandImage('none')" class="logo" />
         </b-col>
       </b-row>
       <b-row class="d-flex justify-content-center mx-3">
@@ -20,15 +25,10 @@
           </em>
         </b-col>
       </b-row>
-      <b-row class="d-flex justify-content-center mx-3">
-        <b-col cols="12" class="text-right signature base">
+      <b-row class="d-flex justify-content-center mx-3 mb-5">
+        <b-col cols="12" class="text-right signature base mb-5">
           Giovanni Caloro <span class="amarenared">~</span> Alessandro Merletti
           De Palo
-        </b-col>
-      </b-row>
-      <b-row class="mb-5">
-        <b-col cols="12 d-flex justify-content-center my-5">
-          <img :src="brandImage('none')" class="logo" />
         </b-col>
       </b-row>
 
@@ -40,7 +40,7 @@
         </b-col>
       </b-row>
 
-      <b-row no-gutters>
+      <b-row class="p-0 m-0">
         <b-col cols="12">
           <b-card
             no-body
@@ -48,7 +48,7 @@
             :key="video.id"
             class="text-center"
           >
-            <b-row no-gutters>
+            <b-row class="p-0 m-0">
               <b-col md="8">
                 <b-embed
                   type="video"
@@ -108,8 +108,8 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="footcontainer p-0 m-0" fluid>
-      <b-row no-gutters class="brandrow">
+    <b-container class="footcontainer p-0 m-0">
+      <b-row class="p-0 m-0 w-100 brandrow">
         <b-col cols="12" class="d-flex">
           <span>&nbsp;&nbsp;&nbsp;</span>
           <div v-for="brand in this.$store.state.brands" :key="brand.id">
@@ -120,7 +120,7 @@
           <span>&nbsp;&nbsp;&nbsp;</span>
         </b-col>
       </b-row>
-      <b-row no-gutters>
+      <b-row class="p-0 m-0">
         <b-col cols="2" class="amarenared pl-2">
           <b-link v-b-modal.contactmodal class="amarenared">CONTACT</b-link>
         </b-col>
