@@ -1,7 +1,7 @@
 <template>
-  <b-container class="p-0 m-0" fluid>
-    <b-container fluid class="m-0 p-0">
-      <b-row class="d-flex justify-content-center majestic mb-0 mx-3 mt-2">
+  <b-container fluid>
+    <b-container fluid>
+      <b-row class="d-flex justify-content-center majestic mb-0 px-3 mt-2">
         <b-col cols="12" class="text-center">
           <nuxt-link class="majestic" to="/">
             <span class="amarenared">AMARENA</span><span>&nbsp;PICTURES</span>
@@ -13,7 +13,7 @@
           <img :src="brandImage('none')" class="logo" />
         </b-col>
       </b-row>
-      <b-row class="d-flex justify-content-center mx-3">
+      <b-row class="d-flex justify-content-center px-3">
         <b-col cols="12" class="quotedline text-center base">
           <em>
             That's <span class="amarenared">Amarena</span>!<br />
@@ -25,7 +25,7 @@
           </em>
         </b-col>
       </b-row>
-      <b-row class="d-flex justify-content-center mx-3 mb-5">
+      <b-row class="d-flex justify-content-center px-3 mb-5">
         <b-col cols="12" class="text-right signature base mb-5">
           Giovanni Caloro <span class="amarenared">~</span> Alessandro Merletti
           De Palo
@@ -102,13 +102,13 @@
           </b-card>
         </b-col>
       </b-row>
-      <b-row class="m-5">
-        <b-col cols="12" class="m-5">
+      <b-row class="my-5">
+        <b-col cols="12" class="my-5">
           &nbsp;
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="footcontainer p-0 m-0" fluid>
+    <b-container class="footcontainer" fluid>
       <b-row class="p-0 m-0 brandrow">
         <b-col cols="12" class="d-flex">
           <span>&nbsp;&nbsp;&nbsp;</span>
