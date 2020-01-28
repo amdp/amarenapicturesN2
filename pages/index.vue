@@ -108,8 +108,8 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="footcontainer p-0 m-0">
-      <b-row class="p-0 m-0 w-100 brandrow">
+    <b-container class="footcontainer p-0 m-0" fluid>
+      <b-row class="p-0 m-0 brandrow">
         <b-col cols="12" class="d-flex">
           <span>&nbsp;&nbsp;&nbsp;</span>
           <div v-for="brand in this.$store.state.brands" :key="brand.id">
