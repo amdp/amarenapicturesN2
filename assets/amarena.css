@@ -45,6 +45,8 @@ body {
 }
 .logo {
   max-width: 28vh;
+  height: auto;
+  max-height: 28vh;
 }
 .videotitle{
   font-size: 7vh;

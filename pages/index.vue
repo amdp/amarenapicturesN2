@@ -2,7 +2,7 @@
   <b-container class="m-0 p-0" fluid>
     <b-container class="m-0 p-0" fluid>
       <b-row class="p-0 m-0">
-        <b-col cols="12" class="text-center m-0 p-0 mt-3">
+        <b-col cols="12" class="text-center m-0 p-0 mt-2">
           <nuxt-link class="majestic" to="/">
             <span class="amarenared">AMARENA</span><span>&nbsp;PICTURES</span>
           </nuxt-link>
