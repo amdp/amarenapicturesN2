@@ -1,8 +1,8 @@
 <template>
-  <b-container class="m-0 mx-auto">
-    <b-container class="mx-auto">
-      <b-row class="d-flex justify-content-center mb-0 px-3 mt-2">
-        <b-col cols="12" class="text-center">
+  <b-container class="m-0 p-0" fluid>
+    <b-container class="m-0 p-0" fluid>
+      <b-row class="p-0 m-0">
+        <b-col cols="12" class="text-center m-0 p-0 mt-3">
           <nuxt-link class="majestic" to="/">
             <span class="amarenared">AMARENA</span><span>&nbsp;PICTURES</span>
           </nuxt-link>
@@ -10,10 +10,10 @@
       </b-row>
       <b-row class="m-0 p-0">
         <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n3">
-          <img :src="brandImage('none')" class="logo" />
+          <img :src="require('../assets/amarenasquare.png')" class="logo" />
         </b-col>
       </b-row>
-      <b-row class="d-flex justify-content-center px-3">
+      <b-row class="d-flex justify-content-center px-3 m-0">
         <b-col cols="12" class="quotedline text-center base">
           <em>
             That's <span class="amarenared">Amarena</span>!<br />
@@ -25,14 +25,14 @@
           </em>
         </b-col>
       </b-row>
-      <b-row class="d-flex justify-content-center px-3 mb-5">
+      <b-row class="d-flex justify-content-center m-0 px-3 mb-5">
         <b-col cols="12" class="text-right signature base mb-5">
           Giovanni Caloro <span class="amarenared">~</span> Alessandro Merletti
           De Palo
         </b-col>
       </b-row>
       <b-row class="p-0 m-0">
-        <b-col cols="12">
+        <b-col cols="12" class="p-0 m-0">
           <b-card
             no-body
             v-for="video in brandshere"
@@ -93,22 +93,20 @@
           </b-card>
         </b-col>
       </b-row>
-      <b-row class="my-5">
+      <b-row class="m-0 my-5 p-0">
         <b-col cols="12" class="my-5">
           &nbsp;
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="footcontainer">
+    <b-container class="footcontainer m-0 p-0" fluid>
       <b-row class="p-0 m-0 brandrow">
         <b-col cols="12" class="d-flex">
-          <span>&nbsp;&nbsp;&nbsp;</span>
           <div v-for="brand in this.$store.state.brands" :key="brand.id">
             <a @click="brandFilter(brand.brand)"
               ><img :src="brandImage(brand.image)" class="imgbrand"
             /></a>
           </div>
-          <span>&nbsp;&nbsp;&nbsp;</span>
         </b-col>
       </b-row>
       <b-row class="p-0 m-0">
