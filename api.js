@@ -4,14 +4,11 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 const nodemailer = require('nodemailer')
-//var fs = require('fs')
-//const jimp = require('jimp')
+const jimp = require('jimp')
 const fileUpload = require('express-fileupload')
 app.use(fileUpload())
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-
-
 
 const mysql = require('mysql2')
 
@@ -58,7 +55,16 @@ app.get('/brand', async (req, res, next) => {
 
 app.post('/video', async (req, res, next) => {
   try {
-    let query = 'insert into amareel values (?,?,?,?,?,?,?,?,?,?,?,?,?)'
+    let query = 'SELECT * FROM `amareel` WHERE `video`=? LIMIT 1'
+    let param = [req.body.video]
+    const [rows] = await mypool.execute(query, param)
+    if (rows.length > 0) { return res.status(200).send('exists') }
+  } catch (err) {
+    next(err)
+  }
+  if (!req.body.id) { req.body.id = false }
+  try {
+    let query = 'insert into amareel values (?,?,?,?,?,?,?,?,?,?,?,DEFAULT,DEFAULT)'
     let params = [
       req.body.id,
       req.body.video,
@@ -70,7 +76,7 @@ app.post('/video', async (req, res, next) => {
       req.body.visible,
       req.body.abstract,
       req.body.abstractit,
-      req.body.direction,
+      req.body.direction
     ]
     const [rows] = await mypool.execute(query, params)
     res.status(200).send(rows)
@@ -81,36 +87,30 @@ app.post('/video', async (req, res, next) => {
 
 
 
-app.post('/imagevideo', async function (req, res, next) {
-  let uploadPath =
-    './static/assets/image/' + req.body.proptype + '/' + req.body.id + '.png'
+app.post('/imagevideofiles', async function (req, res, next) {
   if (req.files) {
+    let uploadPath = './static/v/' + req.files.video.name
     try {
-      await req.files.video.mv('./static/v/' + req.files.video.name)
+      await req.files.video.mv(uploadPath)
+    } catch (err) {
+      return next(err)
+    }
+    uploadPath = './assets/i/' + req.files.image.name
+    try {
+      await req.files.image.mv(uploadPath)
+    } catch (err) {
+      return next(err)
+    }
+    try {
+      const imgfile = await jimp.read(uploadPath)
+      await imgfile
+        .resize(1000, 562)
+        .quality(60)
+        .write(uploadPath)
     } catch (err) {
       return next(err)
     }
   }
-  //   try {
-  //     await req.files.file.mv(uploadPath)
-  //   } catch (err) {
-  //     return next(err)
-  //   }
-  //   try {
-  //     const imgfile = await jimp.read(uploadPath)
-  //     await imgfile
-  //       .resize(256, jimp.AUTO)
-  //       .resize(jimp.AUTO, 256)
-  //       .quality(60)
-  //       .write(uploadPath)
-  //   } catch (err) {
-  //     return next(err)
-  //   }
-  // } else {
-  //   fs.symlink('./0.png', uploadPath, function (err) {
-  //     return next(err)
-  //   })
-  // }
   res.send({ status: 'OK', id: req.body.id })
 })
 
@@ -197,7 +197,7 @@ app.get('/user', async function (req, res, next) {
     try {
       jwt.verify(req.headers.authorization, process.env.JWTSECRET)
     } catch (err) {
-      res.status(401).send(err + ': Auth Token Wrong or Expired')
+      return res.status(401).send(err + ': Auth Token Wrong or Expired')
       // return axios({
       //   method: 'post',
       //   url: process.env.DBURL + '/logout'
@@ -297,6 +297,18 @@ app.post('/recoverpassword', async function (req, res, next) {
     }
   }
 })
+
+//error function triggered by next
+app.use(function (err, req, res, next) {
+  console.log('body: ' + JSON.stringify(req.body))
+  console.log('query: ' + JSON.stringify(req.body))
+  console.log('nexterr: ' + JSON.stringify(err) + err.stack)
+  if (res.headersSent) {
+    return next(err) //check  this out
+  }
+  res.status(500).send(err.stack)
+})
+
 
 module.exports = {
   path: '/api',

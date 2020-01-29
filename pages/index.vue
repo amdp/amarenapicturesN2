@@ -30,16 +30,18 @@
         </b-col>
       </b-row>
     </b-container>
+
     <b-container class="m-0 p-0" fluid>
       <b-row class="p-0 m-0">
         <b-col cols="12" class="text-center m-0 p-0 mt-2">
           <nuxt-link class="majestic" to="/">
-            <span class="amarenared">AMARENA</span><span>&nbsp;PICTURES</span>
+            <span class="amarenared">AMARENA</span>
+            <span>PICTURES</span>
           </nuxt-link>
         </b-col>
       </b-row>
       <b-row class="m-0 p-0">
-        <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n3">
+        <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n4">
           <img :src="require('../assets/amarenasquare.png')" class="logo" />
         </b-col>
       </b-row>
@@ -55,7 +57,7 @@
           </em>
         </b-col>
       </b-row>
-      <b-row class="d-flex justify-content-center m-0 mt-2 mb-5">
+      <b-row class="d-flex justify-content-center m-0 mt-2 mb-3">
         <b-col cols="12" class="text-right signature base m-0 mb-5">
           Giovanni Caloro <span class="amarenared">~</span> Alessandro Merletti
           De Palo
@@ -67,7 +69,7 @@
             no-body
             v-for="video in brandhere"
             :key="video.id"
-            class="text-center"
+            class="text-center videocard"
           >
             <b-row class="p-0 m-0">
               <b-col md="4">

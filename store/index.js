@@ -44,9 +44,12 @@ export const actions = {
     return data
   },
   imageVideoUploadAction: async function (context, payload) {
+    for (var key of payload.formImageVideoData.entries()) {
+      console.log(key[0] + ', in payload, ' + key[1])
+    }
     let { data } = await this.$axios.post(
-      process.env.DBURL + '/imagevideo',
-      payload.formImageData,
+      process.env.DBURL + '/imagevideofiles',
+      payload.formImageVideoData,
       payload.headers
     )
     if (data.id) return data.id

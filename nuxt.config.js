@@ -17,7 +17,8 @@ module.exports = {
   },
   env: {
     DBURL: process.env.DBURL,
-    RECAPTCHA: process.env.RECAPTCHA
+    RECAPTCHA: process.env.RECAPTCHA,
+    URLHOME: process.env.URLHOME
   },
   axios: {
     https: process.env.HTTPS ? true : false,

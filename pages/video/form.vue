@@ -4,7 +4,6 @@
     <div class="col-8">
       <h2 class="text-center mb-4 diversity">VIDEO EDIT/UPLOAD</h2>
       <b-form @submit.prevent="videoForm()" class="mt-3 was-validated">
-        <span @click="daje()"> test </span>
         <b-form-group
           label-for="videoFileInput"
           label="Video file upload:"
@@ -212,15 +211,14 @@ export default {
       }
     },
     async videoForm() {
+      if (this.formVideoFile.name.slice(0, -4) != this.formImageFile.name.slice(0, -4)) {
+        return alert('The video filename and image filename differ, please upload the two files with the same name and of course .mp4 for the video and .jpg for the image, thanks.')
+      }
       this.editing = true
       // This function creates and sends database request body both for video creation and updating
       //'new' is set for a new video, if not the param.id is taken from url to update or copy old ones
-      let videoid = 'new'
-      if (this.$store.state.edit.id) {
-        videoid = this.$store.state.edit.id
-      }
       var formBodyRequest = {
-        id: videoid,
+        id: this.formid,
         video: this.formVideoFile.name.slice(0, -4),
         title: this.formtitle,
         year: this.formyear,
@@ -257,9 +255,10 @@ export default {
       let formImageVideoData = new FormData()
       formImageVideoData.append('video', this.formVideoFile)
       formImageVideoData.append('image', this.formImageFile)
-      // for (var key of formImageVideoData.entries()) {
-      //   console.log(key[0] + ', ' + key[1])
-      // }
+
+      for (var key of formImageVideoData.entries()) {
+        console.log(key[0] + ', ' + key[1])
+      }
       let res
       try {
         res = await this.$store.dispatch('imageVideoUploadAction', {
@@ -270,6 +269,7 @@ export default {
         console.log(err)
         alert(err)
       }
+
       if (res) {
         this.doneToast(res)
       }
@@ -277,13 +277,13 @@ export default {
     doneToast(res) {
       this.$toast.success('Done!', { duration: 1000, className: 'toast' })
       this.$store.dispatch('editSwitchAction', false)
-      // setTimeout(function () {
-      //   if (res == 'OK') {
-      //     location.href = process.env.URLHOME
-      //   } else {
-      //     location.href = process.env.URLHOME + '/video/form'
-      //   }
-      // }, 1200)
+      setTimeout(function () {
+        if (res == 'OK') {
+          location.href = process.env.URLHOME
+        } else {
+          location.href = process.env.URLHOME + '/video/form'
+        }
+      }, 1200)
     }
   }
 }
