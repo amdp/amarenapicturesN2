@@ -1,27 +1,28 @@
 export const state = () => ({
-  videos: [],
-  brands: []
+  video: [],
+  brand: [],
+  edit: false
 })
 
 export const getters = {}
 
 export const mutations = {
-  setVideos: (state, payload) => {
-    state.videos = payload
+  setVideo: (state, payload) => {
+    state.video = payload
   },
-  setBrands: (state, payload) => {
-    state.brands = payload
+  setBrand: (state, payload) => {
+    state.brand = payload
   }
 }
 
 export const actions = {
-  getBrandsAction: async function (context) {
-    let { data } = await this.$axios.get(process.env.DBURL + '/brands')
-    context.commit('setBrands', data)
+  getBrandAction: async function (context) {
+    let { data } = await this.$axios.get(process.env.DBURL + '/brand')
+    context.commit('setBrand', data)
   },
-  getVideosAction: async function (context) {
-    let { data } = await this.$axios.get(process.env.DBURL + '/videos')
-    context.commit('setVideos', data)
+  getVideoAction: async function (context) {
+    let { data } = await this.$axios.get(process.env.DBURL + '/video')
+    context.commit('setVideo', data)
   },
   contactEmailAction: async function (context, payload) {
     let { data } = await this.$axios.post(process.env.DBURL + '/contactemail', payload)

@@ -93,3 +93,4 @@ sw.*
 # Videos
 /static/v/*
 !/static/v/0.png
+/etc/

@@ -27,18 +27,30 @@ const pool = mysql.createPool({
 
 const mypool = pool.promise()
 
-app.get('/videos', async (req, res, next) => {
+app.get('/video', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `amareel` WHERE `visible` = 1 ORDER BY `id` DESC'
-    const [rows] = await mypool.execute(query)
+    let query = 'SELECT * FROM `amareel`'
+    let param = []
+
+    if (req.query.videoid) {
+      query += ' WHERE `id`=? LIMIT 1'
+      param = [req.query.videoid]
+    } else {
+      query += ' WHERE `visible` = ? ORDER BY `id` DESC'
+      param = [1]
+    }
+    const [rows] = await mypool.execute(query, param)
     res.send(rows)
   } catch (err) {
     next(err)
   }
 })
-app.get('/brands', async (req, res, next) => {
+
+// 
+
+app.get('/brand', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `brands` WHERE `visible` = 1 ORDER BY `id`'
+    let query = 'SELECT * FROM `brand` WHERE `visible` = 1 ORDER BY `id`'
     const [rows] = await mypool.execute(query)
     res.send(rows)
   } catch (err) {

@@ -25,8 +25,8 @@
           </em>
         </b-col>
       </b-row>
-      <b-row class="d-flex justify-content-center m-0 px-3 mb-5">
-        <b-col cols="12" class="text-right signature base mb-5">
+      <b-row class="d-flex justify-content-center m-0 mt-2 mb-5">
+        <b-col cols="12" class="text-right signature base m-0 mb-5">
           Giovanni Caloro <span class="amarenared">~</span> Alessandro Merletti
           De Palo
         </b-col>
@@ -35,20 +35,11 @@
         <b-col cols="12" class="p-0 m-0">
           <b-card
             no-body
-            v-for="video in brandshere"
+            v-for="video in brandhere"
             :key="video.id"
             class="text-center"
           >
             <b-row class="p-0 m-0">
-              <b-col md="8">
-                <b-embed
-                  type="video"
-                  :poster="videoImage(video.video)"
-                  controls
-                >
-                  <source :src="amareel(video.video)" type="video/mp4" />
-                </b-embed>
-              </b-col>
               <b-col md="4">
                 <b-card-body>
                   <b-card-text>
@@ -89,6 +80,15 @@
                   </b-card-text>
                 </b-card-body>
               </b-col>
+              <b-col md="8">
+                <b-embed
+                  type="video"
+                  :poster="videoImage(video.video)"
+                  controls
+                >
+                  <source :src="amareel(video.video)" type="video/mp4" />
+                </b-embed>
+              </b-col>
             </b-row>
           </b-card>
         </b-col>
@@ -102,7 +102,7 @@
     <b-container class="footcontainer m-0 p-0" fluid>
       <b-row class="p-0 m-0 brandrow">
         <b-col cols="12" class="d-flex">
-          <div v-for="brand in this.$store.state.brands" :key="brand.id">
+          <div v-for="brand in this.$store.state.brand" :key="brand.id">
             <a @click="brandFilter(brand.brand)"
               ><img :src="brandImage(brand.image)" class="imgbrand"
             /></a>
@@ -143,16 +143,16 @@ export default {
     loginmodal: loginmodal,
   },
   async fetch({ store }) {
-    await store.dispatch('getBrandsAction')
-    await store.dispatch('getVideosAction')
+    await store.dispatch('getBrandAction')
+    await store.dispatch('getVideoAction')
   },
   data() {
     return {
-      brandshere: [],
+      brandhere: [],
     }
   },
   created() {
-    this.brandshere = this.$store.state.videos
+    this.brandhere = this.$store.state.video
   },
   methods: {
     videoImage(filename) {
@@ -177,7 +177,7 @@ export default {
       }
     },
     brandFilter(brand) {
-      this.brandshere = this.$store.state.videos.filter(video => video.brand == brand)
+      this.brandhere = this.$store.state.video.filter(video => video.brand == brand)
     }
   }
 }
