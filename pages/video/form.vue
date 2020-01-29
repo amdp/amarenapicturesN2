@@ -4,24 +4,38 @@
     <div class="col-8">
       <h2 class="text-center mb-4 diversity">VIDEO EDIT/UPLOAD</h2>
       <b-form @submit.prevent="videoForm()" class="mt-3 was-validated">
+        <span @click="daje()"> test </span>
+        <b-form-group
+          label-for="videoFileInput"
+          label="Video file upload:"
+          description="The video file"
+        >
+          <b-form-file
+            id="videoFileInput"
+            v-model="formVideoFile"
+            ref="formVideoFile"
+            size="sm"
+          ></b-form-file>
+        </b-form-group>
+        <b-form-group
+          label-for="imageFileInput"
+          label="Image upload:"
+          description="The video image"
+        >
+          <b-form-file
+            id="imageFileInput"
+            v-model="formImageFile"
+            ref="formImageFile"
+            size="sm"
+          ></b-form-file>
+        </b-form-group>
+
         <b-form-group
           label-for="idInput"
           label="Id:"
           description="The video id, if inserting a new video leave blank for automated id assignment"
         >
           <b-form-input id="idInput" v-model="formid" size="sm"></b-form-input>
-        </b-form-group>
-        <b-form-group
-          label-for="nameInput"
-          label="Filename:"
-          description="The video file name"
-        >
-          <b-form-input
-            id="filenameInput"
-            v-model="formfilename"
-            size="sm"
-            required
-          ></b-form-input>
         </b-form-group>
         <b-form-group
           label-for="titleInput"
@@ -47,10 +61,11 @@
         >
           <b-form-select id="brandInput" v-model="formbrand" required>
             <option
-              v-for="brand in $store.brand"
+              v-for="brand in $store.state.brand"
               :key="brand.id"
-              :value="brand.name"
-            ></option>
+              :value="brand.brand"
+              >{{ brand.brand }}</option
+            >
           </b-form-select>
         </b-form-group>
         <b-form-group
@@ -112,31 +127,6 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group
-          label-for="imageFileInput"
-          label="Image upload:"
-          description="The video image"
-        >
-          <b-form-file
-            id="imageFileInput"
-            v-model="formImageFile"
-            ref="formImageFile"
-            size="sm"
-          ></b-form-file>
-        </b-form-group>
-
-        <b-form-group
-          label-for="videoFileInput"
-          label="Video file upload:"
-          description="The video file"
-        >
-          <b-form-input
-            id="videoFileInput"
-            v-model="formVideoFile"
-            ref="formVideoFile"
-            size="sm"
-          ></b-form-input>
-        </b-form-group>
         <b-button
           type="submit"
           class="btn bhtrust btn-block mt-3 mb-3 gray border-0"
@@ -159,6 +149,7 @@ export default {
     }
   },
   async fetch({ store, params }) {
+    await store.dispatch('getBrandAction')
     if (store.state.edit.id) {
       await store.dispatch('getVideoAction', {
         videoid: store.state.edit.id,
@@ -230,7 +221,7 @@ export default {
       }
       var formBodyRequest = {
         id: videoid,
-        filename: this.formfilename,
+        video: this.formVideoFile.name.slice(0, -4),
         title: this.formtitle,
         year: this.formyear,
         brand: this.formbrand,
@@ -263,19 +254,17 @@ export default {
       }
     },
     async imagevideoUpload(id) {
-      let formImageData = new FormData()
-      formImageData.append('file', this.formImageFile)
-      formImageData.append('id', id)
-      formImageData.append('proptype', 'video')
-      // for (var key of formImageData.entries()) {
+      let formImageVideoData = new FormData()
+      formImageVideoData.append('video', this.formVideoFile)
+      formImageVideoData.append('image', this.formImageFile)
+      // for (var key of formImageVideoData.entries()) {
       //   console.log(key[0] + ', ' + key[1])
       // }
       let res
       try {
-        res = await this.$store.dispatch('imageUploadAction', {
-          formImageData: formImageData,
-          headers: { headers: { 'Content-Type': 'multipart/form-data' } },
-          proptype: 'video'
+        res = await this.$store.dispatch('imageVideoUploadAction', {
+          formImageVideoData: formImageVideoData,
+          headers: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
       } catch (err) {
         console.log(err)
@@ -288,13 +277,13 @@ export default {
     doneToast(res) {
       this.$toast.success('Done!', { duration: 1000, className: 'toast' })
       this.$store.dispatch('editSwitchAction', false)
-      setTimeout(function () {
-        if (res == 'OK') {
-          location.href = process.env.URLHOME + '/video/' + res.id
-        } else {
-          location.href = process.env.URLHOME + '/video/' + res
-        }
-      }, 1200)
+      // setTimeout(function () {
+      //   if (res == 'OK') {
+      //     location.href = process.env.URLHOME
+      //   } else {
+      //     location.href = process.env.URLHOME + '/video/form'
+      //   }
+      // }, 1200)
     }
   }
 }

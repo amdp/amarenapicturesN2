@@ -40,22 +40,78 @@ app.get('/video', async (req, res, next) => {
       param = [1]
     }
     const [rows] = await mypool.execute(query, param)
-    res.send(rows)
+    res.status(200).send(rows)
   } catch (err) {
     next(err)
   }
 })
 
-// 
-
 app.get('/brand', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `brand` WHERE `visible` = 1 ORDER BY `id`'
+    let query = 'SELECT * FROM `brand` WHERE `visible` = 1 ORDER BY `id` DESC'
     const [rows] = await mypool.execute(query)
-    res.send(rows)
+    res.status(200).send(rows)
   } catch (err) {
     next(err)
   }
+})
+
+app.post('/video', async (req, res, next) => {
+  try {
+    let query = 'insert into amareel values (?,?,?,?,?,?,?,?,?,?,?,?,?)'
+    let params = [
+      req.body.id,
+      req.body.video,
+      req.body.title,
+      req.body.year,
+      req.body.brand,
+      req.body.agency,
+      req.body.production,
+      req.body.visible,
+      req.body.abstract,
+      req.body.abstractit,
+      req.body.direction,
+    ]
+    const [rows] = await mypool.execute(query, params)
+    res.status(200).send(rows)
+  } catch (err) {
+    next(err)
+  }
+})
+
+
+
+app.post('/imagevideo', async function (req, res, next) {
+  let uploadPath =
+    './static/assets/image/' + req.body.proptype + '/' + req.body.id + '.png'
+  if (req.files) {
+    try {
+      await req.files.video.mv('./static/v/' + req.files.video.name)
+    } catch (err) {
+      return next(err)
+    }
+  }
+  //   try {
+  //     await req.files.file.mv(uploadPath)
+  //   } catch (err) {
+  //     return next(err)
+  //   }
+  //   try {
+  //     const imgfile = await jimp.read(uploadPath)
+  //     await imgfile
+  //       .resize(256, jimp.AUTO)
+  //       .resize(jimp.AUTO, 256)
+  //       .quality(60)
+  //       .write(uploadPath)
+  //   } catch (err) {
+  //     return next(err)
+  //   }
+  // } else {
+  //   fs.symlink('./0.png', uploadPath, function (err) {
+  //     return next(err)
+  //   })
+  // }
+  res.send({ status: 'OK', id: req.body.id })
 })
 
 app.post('/contactemail', function (req, res) {
@@ -97,35 +153,6 @@ app.post('/contactemail', function (req, res) {
       })
     })
 })
-
-app.post('/image', async function (req, res, next) {
-  let uploadPath =
-    './static/assets/image/' + req.body.proptype + '/' + req.body.id + '.png'
-  if (req.files) {
-    try {
-      await req.files.file.mv(uploadPath)
-    } catch (err) {
-      return next(err)
-    }
-    try {
-      const imgfile = await jimp.read(uploadPath)
-      await imgfile
-        .resize(256, jimp.AUTO)
-        .resize(jimp.AUTO, 256)
-        .quality(60)
-        .write(uploadPath)
-    } catch (err) {
-      return next(err)
-    }
-  } else {
-    fs.symlink('./0.png', uploadPath, function (err) {
-      return next(err)
-    })
-  }
-  res.send({ status: 'OK', id: req.body.id })
-})
-
-
 
 /////////////////// USERS //////////////////////
 
