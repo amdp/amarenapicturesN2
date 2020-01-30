@@ -95,7 +95,7 @@ app.post('/imagevideofiles', async function (req, res, next) {
     } catch (err) {
       return next(err)
     }
-    uploadPath = './assets/i/' + req.files.image.name
+    uploadPath = './static/i/' + req.files.image.name
     try {
       await req.files.image.mv(uploadPath)
     } catch (err) {
