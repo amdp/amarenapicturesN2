@@ -97,8 +97,8 @@
           description="Choose whether the video should be visible or not"
         >
           <b-form-select id="visibleInput" v-model="formvisible" required>
-            <option value="1">1</option>
-            <option value="0">0</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </b-form-select>
         </b-form-group>
         <b-form-group
@@ -184,7 +184,7 @@ export default {
         : null,
       formvisible: this.$store.state.edit
         ? this.$store.state.edit.visible
-        : 1,
+        : 'Yes',
       formabstract: this.$store.state.edit
         ? this.$store.state.edit.production
         : null,

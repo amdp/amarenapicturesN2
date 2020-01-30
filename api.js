@@ -34,7 +34,7 @@ app.get('/video', async (req, res, next) => {
       param = [req.query.videoid]
     } else {
       query += ' WHERE `visible` = ? ORDER BY `id` DESC'
-      param = [1]
+      param = ['yes']
     }
     const [rows] = await mypool.execute(query, param)
     res.status(200).send(rows)
@@ -45,8 +45,9 @@ app.get('/video', async (req, res, next) => {
 
 app.get('/brand', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `brand` WHERE `visible` = 1 ORDER BY `id` DESC'
-    const [rows] = await mypool.execute(query)
+    let query = 'SELECT * FROM `brand` WHERE `visible` = ? ORDER BY `id` DESC'
+    let param = ['no']
+    const [rows] = await mypool.execute(query, param)
     res.status(200).send(rows)
   } catch (err) {
     next(err)
