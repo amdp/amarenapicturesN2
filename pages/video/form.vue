@@ -97,8 +97,8 @@
           description="Choose whether the video should be visible or not"
         >
           <b-form-select id="visibleInput" v-model="formvisible" required>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
+            <option value="1">1</option>
+            <option value="0">0</option>
           </b-form-select>
         </b-form-group>
         <b-form-group

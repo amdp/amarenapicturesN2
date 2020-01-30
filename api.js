@@ -34,7 +34,7 @@ app.get('/video', async (req, res, next) => {
       param = [req.query.videoid]
     } else {
       query += ' WHERE `visible` = ? ORDER BY `id` DESC'
-      param = ['Yes']
+      param = ['1']
     }
     const [rows] = await mypool.execute(query, param)
     res.status(200).send(rows)
@@ -46,7 +46,7 @@ app.get('/video', async (req, res, next) => {
 app.get('/brand', async (req, res, next) => {
   try {
     let query = 'SELECT * FROM `brand` WHERE `visible` = ? ORDER BY `id` DESC'
-    let param = ['Yes']
+    let param = ['1']
     const [rows] = await mypool.execute(query, param)
     res.status(200).send(rows)
   } catch (err) {
@@ -68,16 +68,16 @@ app.post('/video', async (req, res, next) => {
     let query = 'insert into amareel values (?,?,?,?,?,?,?,?,?,?,?,DEFAULT,DEFAULT)'
     let params = [
       req.body.id,
+      req.body.visible,
       req.body.video,
       req.body.title,
       req.body.year,
-      req.body.brand,
       req.body.agency,
       req.body.production,
-      req.body.visible,
+      req.body.direction,
+      req.body.brand,
       req.body.abstract,
       req.body.abstractit,
-      req.body.direction
     ]
     const [rows] = await mypool.execute(query, params)
     res.status(200).send(rows)
