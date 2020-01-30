@@ -54,8 +54,5 @@ export const actions = {
     )
     if (data.id) return data.id
     else return data.status
-  },
-  editSwitchAction: async function (context, payload) {
-    context.commit('setEdit', payload)
-  },
+  }
 }

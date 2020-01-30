@@ -124,7 +124,7 @@
                       </b-col>
                       <b-col
                         cols="12"
-                        class="mb-2 p-0"
+                        class="mb-2 mt-4 p-0 amarenared"
                         @click="editvideo(video)"
                       >
                         EDIT THIS VIDEO
@@ -208,7 +208,7 @@ export default {
 
     },
     editvideo(video) {
-      this.$store.state.edit = video
+      this.$store.commit('setEdit', video)
       location.href = '/video/form'
     }
   }

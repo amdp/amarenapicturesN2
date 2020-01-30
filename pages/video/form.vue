@@ -97,8 +97,8 @@
           description="Choose whether the video should be visible or not"
         >
           <b-form-select id="visibleInput" v-model="formvisible" required>
-            <option>1</option>
-            <option>0</option>
+            <option value="1">1</option>
+            <option value="0">0</option>
           </b-form-select>
         </b-form-group>
         <b-form-group
@@ -155,38 +155,41 @@ export default {
       })
     }
   },
+  mounted() {
+    console.log('edit: ' + JSON.stringify(this.$store.state.edit))
+  },
   data() {
     return {
       editing: false,
-      formid: this.$store.state.edit.id
-        ? this.$store.state.video[0].id
+      formid: this.$store.state.edit
+        ? this.$store.state.edit.id
         : null,
-      formfilename: this.$store.state.edit.id
-        ? this.$store.state.video[0].name
+      formfilename: this.$store.state.edit
+        ? this.$store.state.edit.name
         : null,
-      formtitle: this.$store.state.edit.id
-        ? this.$store.state.video[0].title
+      formtitle: this.$store.state.edit
+        ? this.$store.state.edit.title
         : null,
-      formyear: this.$store.state.edit.id
-        ? this.$store.state.video[0].year
+      formyear: this.$store.state.edit
+        ? this.$store.state.edit.year
         : null,
-      formbrand: this.$store.state.edit.id
-        ? this.$store.state.video[0].year
+      formbrand: this.$store.state.edit
+        ? this.$store.state.edit.year
         : null,
-      formagency: this.$store.state.edit.id
-        ? this.$store.state.video[0].agency
+      formagency: this.$store.state.edit
+        ? this.$store.state.edit.agency
         : null,
-      formproduction: this.$store.state.edit.id
-        ? this.$store.state.video[0].production
+      formproduction: this.$store.state.edit
+        ? this.$store.state.edit.production
         : null,
-      formvisible: this.$store.state.edit.id
-        ? this.$store.state.video[0].visible
+      formvisible: this.$store.state.edit
+        ? this.$store.state.edit.visible
         : 1,
-      formabstract: this.$store.state.edit.id
-        ? this.$store.state.video[0].production
+      formabstract: this.$store.state.edit
+        ? this.$store.state.edit.production
         : null,
-      formabstractit: this.$store.state.edit.id
-        ? this.$store.state.video[0].production
+      formabstractit: this.$store.state.edit
+        ? this.$store.state.edit.production
         : null,
       formImageFile: null,
       formVideoFile: null,
@@ -256,9 +259,6 @@ export default {
       formImageVideoData.append('video', this.formVideoFile)
       formImageVideoData.append('image', this.formImageFile)
 
-      for (var key of formImageVideoData.entries()) {
-        console.log(key[0] + ', ' + key[1])
-      }
       let res
       try {
         res = await this.$store.dispatch('imageVideoUploadAction', {
