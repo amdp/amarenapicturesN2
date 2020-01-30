@@ -239,7 +239,7 @@ export default {
       }
       if (res == 'exists') {
         return this.$toast.show('video filename already exists!', {
-          duration: 1000,
+          duration: 1500,
           className: 'toast'
         })
       } else {

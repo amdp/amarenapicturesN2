@@ -34,13 +34,13 @@
     <b-container class="m-0 p-0" fluid>
       <b-row class="p-0 m-0">
         <b-col cols="12" class="text-center m-0 p-0 mt-2">
-          <nuxt-link class="majestic" to="/">
+          <b-link class="majestic" @click="brandFilter()">
             <span class="amarenared">AMARENA</span>
             <span>PICTURES</span>
-          </nuxt-link>
+          </b-link>
         </b-col>
       </b-row>
-      <b-row class="m-0 p-0">
+      <b-row class="m-0 p-0" @click="brandFilter()">
         <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n4">
           <img :src="require('../assets/amarenasquare.png')" class="logo" />
         </b-col>
@@ -62,6 +62,20 @@
           Giovanni Caloro <span class="amarenared">~</span> Alessandro Merletti
           De Palo
         </b-col>
+      </b-row>
+      <b-row v-if="$auth.user">
+        <b-col cols="12" class="text-center">
+          <p class="up">
+            WELCOME {{ $auth.user.name }} {{ $auth.user.surname }} <br />
+            <b-link class="amarenared">
+              ADD A NEW BRAND (SOON AVAILABLE)
+            </b-link>
+            <br />
+            <nuxt-link class="amarenared" to="/video/form">
+              ADD A NEW VIDEO
+            </nuxt-link>
+          </p></b-col
+        >
       </b-row>
       <b-row class="p-0 m-0">
         <b-col cols="12" class="p-0 m-0">
@@ -107,6 +121,13 @@
                       </b-col>
                       <b-col cols="9" class="mb-2 p-0 videospecs">
                         {{ video.direction }}
+                      </b-col>
+                      <b-col
+                        cols="12"
+                        class="mb-2 p-0"
+                        @click="editvideo(video)"
+                      >
+                        EDIT THIS VIDEO
                       </b-col>
                     </b-row>
                   </b-card-text>
@@ -157,29 +178,38 @@ export default {
     this.brandhere = this.$store.state.video
   },
   methods: {
-    videoImage(filename) {
+    videoImage(imagename) {
       try {
-        return require('../assets/i/' + filename + '.jpg')
+        return '/i/' + imagename + '.jpg'
       } catch (e) {
         return require('../assets/amarenasquare.png')
       }
     },
-    amareel(filename) {
+    amareel(videoname) {
       try {
-        return '/v/' + filename + '.mp4'
+        return '/v/' + videoname + '.mp4'
       } catch (e) {
         return '/v/thatsamarena.mp4'
       }
     },
-    brandImage(filename) {
+    brandImage(brandname) {
       try {
-        return require('../assets/b/' + filename)
+        return '/b/' + brandname
       } catch (e) {
         return require('../assets/amarenasquare.png')
       }
     },
     brandFilter(brand) {
-      this.brandhere = this.$store.state.video.filter(video => video.brand == brand)
+      if (brand) {
+        this.brandhere = this.$store.state.video.filter(video => video.brand == brand)
+      } else {
+        this.brandhere = this.$store.state.video
+      }
+
+    },
+    editvideo(video) {
+      this.$store.state.edit = video
+      location.href = '/video/form'
     }
   }
 }
