@@ -1,8 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap');
 * {
   font-family: 'Oswald', sans-serif;
   font-weight: 300;
   max-width: 100vw;
+}
+body {
+  font-family: 'Oswald', sans-serif;
+  color: black;
+  background-color: #ffffff;
+  font-size: 14px;
+  overflow-x: hidden;
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
 }
 a, a:hover {
   text-decoration: none;
@@ -14,14 +23,6 @@ a, a:hover {
 }
 .whiteback {
   background-color: #ffffff;
-}
-body {
-  margin: 0px;
-  padding: 0px;
-  background-color: #ffffff;
-  font-size: 14px;
-  overflow-x: hidden;
-  width: 100vw;
 }
 
 .base{
