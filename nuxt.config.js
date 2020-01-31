@@ -8,7 +8,7 @@ module.exports = {
   build: {},
   serverMiddleware: ['./api'],
   css: ['@assets/amarena.css'],
-  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-webfontloader'],
   loading: {
     color: '#FF0033',
     failedColor: 'black',

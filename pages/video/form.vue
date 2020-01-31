@@ -1,142 +1,197 @@
 <template>
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <h2 class="text-center mb-4 diversity">VIDEO EDIT/UPLOAD</h2>
-      <b-form @submit.prevent="videoForm()" class="mt-3 was-validated">
+  <b-container>
+    <h2 class="text-center my-4 amarenared">VIDEO OR BRAND EDIT/UPLOAD</h2>
+    <p class="d-flex justify-content-center">
+      <b-button @click="brandswitcher()" v-if="!brandswitch">
+        PUSH TO ADD A NEW BRAND INSTEAD
+      </b-button>
+      <b-button @click="brandswitcher()" v-if="brandswitch">
+        PUSH TO ADD A NEW VIDEO INSTEAD
+      </b-button>
+    </p>
+    <!-- BRAND UPLOAD -->
+    <b-row v-if="brandswitch">
+      <b-col cols="2"></b-col>
+      <b-col cols="8">
+        <p class="amarenared">STILL NOT WORKING DO NOT USE!!!</p>
         <b-form-group
-          label-for="videoFileInput"
-          label="Video file upload:"
-          description="The video file"
+          label-for="newBrandInput"
+          label="New Brand:"
+          description="Insert a new video brand"
+          v-if="brandswitch"
+        >
+          <b-form-input
+            id="newBrandInput"
+            v-model="formbrand"
+            size="sm"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          label-for="brandFileInput"
+          label="Brand image upload:"
+          description="The brand image"
         >
           <b-form-file
-            id="videoFileInput"
-            v-model="formVideoFile"
-            ref="formVideoFile"
+            id="brandFileInput"
+            v-model="formBrandFile"
+            ref="formBrandFile"
             size="sm"
           ></b-form-file>
         </b-form-group>
-        <b-form-group
-          label-for="imageFileInput"
-          label="Image upload:"
-          description="The video image"
-        >
-          <b-form-file
-            id="imageFileInput"
-            v-model="formImageFile"
-            ref="formImageFile"
-            size="sm"
-          ></b-form-file>
-        </b-form-group>
+      </b-col>
+      <b-col cols="2"></b-col>
+    </b-row>
 
-        <b-form-group
-          label-for="idInput"
-          label="Id:"
-          description="The video id, if inserting a new video leave blank for automated id assignment"
-        >
-          <b-form-input id="idInput" v-model="formid" size="sm"></b-form-input>
-        </b-form-group>
-        <b-form-group
-          label-for="titleInput"
-          label="Title:"
-          description="Insert the video title"
-        >
-          <b-form-input id="titleInput" v-model="formtitle" size="sm" required>
-          </b-form-input>
-        </b-form-group>
-        <b-form-group
-          label-for="yearInput"
-          label="Year:"
-          description="Insert the video year"
-        >
-          <b-form-select id="yearInput" v-model="formyear" required>
-            <option v-for="year in 100" :key="year">{{ 2010 + year }}</option>
-          </b-form-select>
-        </b-form-group>
-        <b-form-group
-          label-for="brandInput"
-          label="Brand:"
-          description="Insert the video brand"
-        >
-          <b-form-select id="brandInput" v-model="formbrand" required>
-            <option
-              v-for="brand in $store.state.brand"
-              :key="brand.id"
-              :value="brand.brand"
-              >{{ brand.brand }}</option
+    <!-- VIDEO UPLOAD -->
+    <b-row v-if="!brandswitch">
+      <b-col cols="2"></b-col>
+      <b-col cols="8">
+        <b-form @submit.prevent="videoForm()" class="mt-3 was-validated">
+          <b-form-group
+            label-for="videoFileInput"
+            label="Video file upload:"
+            description="The video file"
+          >
+            <b-form-file
+              id="videoFileInput"
+              v-model="formVideoFile"
+              ref="formVideoFile"
+              size="sm"
+            ></b-form-file>
+          </b-form-group>
+          <b-form-group
+            label-for="imageFileInput"
+            label="Image upload:"
+            description="The video image"
+          >
+            <b-form-file
+              id="imageFileInput"
+              v-model="formImageFile"
+              ref="formImageFile"
+              size="sm"
+            ></b-form-file>
+          </b-form-group>
+
+          <b-form-group
+            label-for="idInput"
+            label="Id:"
+            description="The video id, if inserting a new video leave blank for automated id assignment"
+          >
+            <b-form-input
+              id="idInput"
+              v-model="formid"
+              size="sm"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            label-for="titleInput"
+            label="Title:"
+            description="Insert the video title"
+          >
+            <b-form-input
+              id="titleInput"
+              v-model="formtitle"
+              size="sm"
+              required
             >
-          </b-form-select>
-        </b-form-group>
-        <b-form-group
-          label-for="agencyInput"
-          label="Agency:"
-          description="Insert the video agency"
-        >
-          <b-form-input
-            id="agencyInput"
-            v-model="formagency"
-            size="sm"
-            required
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group
-          label-for="productionInput"
-          label="Production:"
-          description="Insert the video production"
-        >
-          <b-form-input
-            id="productionInput"
-            v-model="formproduction"
-            size="sm"
-            required
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group
-          label-for="visibleInput"
-          label="Visible?"
-          description="Choose whether the video should be visible or not"
-        >
-          <b-form-select id="visibleInput" v-model="formvisible" required>
-            <option value="1">1</option>
-            <option value="0">0</option>
-          </b-form-select>
-        </b-form-group>
-        <b-form-group
-          label-for="abstractInput"
-          label="Abstract:"
-          description="Insert the video abstract"
-        >
-          <b-form-input
-            id="abstractInput"
-            v-model="formabstract"
-            size="sm"
-            required
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group
-          label-for="abstractitInput"
-          label="Abstract in italian:"
-          description="Insert the video abstract in Italian"
-        >
-          <b-form-input
-            id="abstractitInput"
-            v-model="formabstractit"
-            size="sm"
-            required
-          ></b-form-input>
-        </b-form-group>
+            </b-form-input>
+          </b-form-group>
+          <b-form-group
+            label-for="yearInput"
+            label="Year:"
+            description="Insert the video year"
+          >
+            <b-form-select id="yearInput" v-model="formyear" required>
+              <option v-for="year in 100" :key="year">{{ 2010 + year }}</option>
+            </b-form-select>
+          </b-form-group>
+          <b-form-group
+            label-for="brandInput"
+            label="Brand:"
+            description="Insert the video brand"
+          >
+            <b-form-select id="brandInput" v-model="formbrand" required>
+              <option
+                v-for="brand in $store.state.brand"
+                :key="brand.id"
+                :value="brand.brand"
+                >{{ brand.brand }}</option
+              >
+            </b-form-select>
+          </b-form-group>
+          <b-form-group
+            label-for="agencyInput"
+            label="Agency:"
+            description="Insert the video agency"
+          >
+            <b-form-input
+              id="agencyInput"
+              v-model="formagency"
+              size="sm"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            label-for="productionInput"
+            label="Production:"
+            description="Insert the video production"
+          >
+            <b-form-input
+              id="productionInput"
+              v-model="formproduction"
+              size="sm"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            label-for="visibleInput"
+            label="Visible?"
+            description="Choose whether the video should be visible or not"
+          >
+            <b-form-select id="visibleInput" v-model="formvisible" required>
+              <option value="1">1</option>
+              <option value="0">0</option>
+            </b-form-select>
+          </b-form-group>
+          <b-form-group
+            label-for="abstractInput"
+            label="Abstract:"
+            description="Insert the video abstract"
+          >
+            <b-form-input
+              id="abstractInput"
+              v-model="formabstract"
+              size="sm"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            label-for="abstractitInput"
+            label="Abstract in italian:"
+            description="Insert the video abstract in Italian"
+          >
+            <b-form-input
+              id="abstractitInput"
+              v-model="formabstractit"
+              size="sm"
+              required
+            ></b-form-input>
+          </b-form-group>
 
-        <b-button
-          type="submit"
-          class="btn bhtrust btn-block mt-3 mb-3 gray border-0"
-        >
-          <span v-if="!editing">GO!</span>
-          <b-spinner small v-if="editing" class="m-1"></b-spinner>
-          <span v-if="editing">Reloading the video..</span>
-        </b-button>
-      </b-form>
-    </div>
-  </div>
+          <b-button
+            type="submit"
+            class="btn bhtrust btn-block mt-3 mb-3 gray border-0"
+          >
+            <span v-if="!editing">GO!</span>
+            <b-spinner small v-if="editing" class="m-1"></b-spinner>
+            <span v-if="editing">Reloading the video..</span>
+          </b-button>
+        </b-form>
+      </b-col>
+      <b-col cols="2"></b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -161,6 +216,7 @@ export default {
   data() {
     return {
       editing: false,
+      brandswitch: false,
       formid: this.$store.state.edit
         ? this.$store.state.edit.id
         : null,
@@ -197,6 +253,9 @@ export default {
     }
   },
   methods: {
+    brandswitcher() {
+      this.brandswitch ? this.brandswitch = false : this.brandswitch = true
+    },
     async addbrand() {
       let result = await this.$store.dispatch('brandFormAction', {
         brand: this.formnewbrand,
@@ -258,7 +317,7 @@ export default {
       let formImageVideoData = new FormData()
       formImageVideoData.append('video', this.formVideoFile)
       formImageVideoData.append('image', this.formImageFile)
-
+      if (formBrandFile) formImageVideoData.append('brand', this.formBrandFile)
       let res
       try {
         res = await this.$store.dispatch('imageVideoUploadAction', {

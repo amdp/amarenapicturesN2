@@ -67,12 +67,9 @@
         <b-col cols="12" class="text-center">
           <p class="up">
             WELCOME {{ $auth.user.name }} {{ $auth.user.surname }} <br />
-            <b-link class="amarenared">
-              ADD A NEW BRAND (SOON AVAILABLE)
-            </b-link>
             <br />
             <nuxt-link class="amarenared" to="/video/form">
-              ADD A NEW VIDEO
+              ADD A NEW VIDEO OR BRAND
             </nuxt-link>
           </p></b-col
         >
