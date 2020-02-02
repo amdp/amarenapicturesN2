@@ -90,7 +90,6 @@ dist
 # Service worker
 sw.*
 
-# Videos
-/static/v/*
-!/static/v/0.png
+# Images and videos
+/static/
 /etc/

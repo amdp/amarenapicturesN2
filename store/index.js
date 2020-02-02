@@ -31,6 +31,10 @@ export const actions = {
     let { data } = await this.$axios.post(process.env.DBURL + '/video', payload)
     return data
   },
+  brandFormAction: async function (context, payload) {
+    let { data } = await this.$axios.post(process.env.DBURL + '/brand', payload)
+    return data
+  },
   contactEmailAction: async function (context, payload) {
     let { data } = await this.$axios.post(process.env.DBURL + '/contactemail', payload)
     return data
@@ -44,12 +48,18 @@ export const actions = {
     return data
   },
   imageVideoUploadAction: async function (context, payload) {
-    for (var key of payload.formImageVideoData.entries()) {
-      console.log(key[0] + ', in payload, ' + key[1])
-    }
     let { data } = await this.$axios.post(
-      process.env.DBURL + '/imagevideofiles',
+      process.env.DBURL + '/imagevideofile',
       payload.formImageVideoData,
+      payload.headers
+    )
+    if (data.id) return data.id
+    else return data.status
+  },
+  brandUploadAction: async function (context, payload) {
+    let { data } = await this.$axios.post(
+      process.env.DBURL + '/brandfile',
+      payload.formBrandData,
       payload.headers
     )
     if (data.id) return data.id

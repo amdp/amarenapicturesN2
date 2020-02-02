@@ -1,50 +1,12 @@
 <template>
   <b-container>
-    <h2 class="text-center my-4 amarenared">VIDEO OR BRAND EDIT/UPLOAD</h2>
+    <h2 class="text-center my-4">VIDEO EDIT/UPLOAD</h2>
     <p class="d-flex justify-content-center">
-      <b-button @click="brandswitcher()" v-if="!brandswitch">
-        PUSH TO ADD A NEW BRAND INSTEAD
-      </b-button>
-      <b-button @click="brandswitcher()" v-if="brandswitch">
-        PUSH TO ADD A NEW VIDEO INSTEAD
-      </b-button>
+      <nuxt-link to="/brand" class="amarenared">
+        ADD A NEW BRAND INSTEAD
+      </nuxt-link>
     </p>
-    <!-- BRAND UPLOAD -->
-    <b-row v-if="brandswitch">
-      <b-col cols="2"></b-col>
-      <b-col cols="8">
-        <p class="amarenared">STILL NOT WORKING DO NOT USE!!!</p>
-        <b-form-group
-          label-for="newBrandInput"
-          label="New Brand:"
-          description="Insert a new video brand"
-          v-if="brandswitch"
-        >
-          <b-form-input
-            id="newBrandInput"
-            v-model="formbrand"
-            size="sm"
-            required
-          ></b-form-input>
-        </b-form-group>
-        <b-form-group
-          label-for="brandFileInput"
-          label="Brand image upload:"
-          description="The brand image"
-        >
-          <b-form-file
-            id="brandFileInput"
-            v-model="formBrandFile"
-            ref="formBrandFile"
-            size="sm"
-          ></b-form-file>
-        </b-form-group>
-      </b-col>
-      <b-col cols="2"></b-col>
-    </b-row>
-
-    <!-- VIDEO UPLOAD -->
-    <b-row v-if="!brandswitch">
+    <b-row>
       <b-col cols="2"></b-col>
       <b-col cols="8">
         <b-form @submit.prevent="videoForm()" class="mt-3 was-validated">
@@ -191,6 +153,23 @@
       </b-col>
       <b-col cols="2"></b-col>
     </b-row>
+    <b-container class="my-4">
+      <b-row v-for="video in $store.state.video" :key="video.id">
+        <b-col cols="1">{{ video.id }}</b-col>
+        <b-col cols="2">{{ video.video }}</b-col>
+        <b-col cols="2">{{ video.title }}</b-col>
+        <b-col cols="1">{{ video.year }}</b-col>
+        <b-col cols="2">{{ video.brand }}</b-col>
+        <b-col cols="2">{{ video.agency }}</b-col>
+        <b-col cols="2">{{ video.production }}</b-col>
+        <b-col cols="1" class="amarenared">Visible: {{ video.visible }}</b-col>
+        <b-col cols="5" class="amarenared">{{ video.abstract }}</b-col>
+        <b-col cols="5" class="amarenared">{{ video.abstractit }}</b-col>
+        <b-col cols="1" @click="videoedit(video)" class="amarenared">
+          EDIT
+        </b-col>
+      </b-row>
+    </b-container>
   </b-container>
 </template>
 
@@ -204,11 +183,7 @@ export default {
   },
   async fetch({ store, params }) {
     await store.dispatch('getBrandAction')
-    if (store.state.edit.id) {
-      await store.dispatch('getVideoAction', {
-        videoid: store.state.edit.id,
-      })
-    }
+    await store.dispatch('getVideoAction')
   },
   mounted() {
     console.log('edit: ' + JSON.stringify(this.$store.state.edit))
@@ -216,7 +191,6 @@ export default {
   data() {
     return {
       editing: false,
-      brandswitch: false,
       formid: this.$store.state.edit
         ? this.$store.state.edit.id
         : null,
@@ -240,7 +214,7 @@ export default {
         : null,
       formvisible: this.$store.state.edit
         ? this.$store.state.edit.visible
-        : 'Yes',
+        : '1',
       formabstract: this.$store.state.edit
         ? this.$store.state.edit.production
         : null,
@@ -249,13 +223,11 @@ export default {
         : null,
       formImageFile: null,
       formVideoFile: null,
+      formBrandFile: null,
       formnewbrand: null,
     }
   },
   methods: {
-    brandswitcher() {
-      this.brandswitch ? this.brandswitch = false : this.brandswitch = true
-    },
     async addbrand() {
       let result = await this.$store.dispatch('brandFormAction', {
         brand: this.formnewbrand,
@@ -277,8 +249,8 @@ export default {
         return alert('The video filename and image filename differ, please upload the two files with the same name and of course .mp4 for the video and .jpg for the image, thanks.')
       }
       this.editing = true
-      // This function creates and sends database request body both for video creation and updating
-      //'new' is set for a new video, if not the param.id is taken from url to update or copy old ones
+      // This function creates and sends database request body both for video creation and update
+      //'new' is set for a new video, if not the edit.id is taken from url to update or copy old ones
       var formBodyRequest = {
         id: this.formid,
         video: this.formVideoFile.name.slice(0, -4),
@@ -306,18 +278,17 @@ export default {
         })
       } else {
         try {
-          this.imagevideoUpload(res)
+          this.imagevideoUpload()
         } catch (err) {
           console.log(' ' + JSON.stringify(err))
           alert(err)
         }
       }
     },
-    async imagevideoUpload(id) {
+    async imagevideoUpload() {
       let formImageVideoData = new FormData()
       formImageVideoData.append('video', this.formVideoFile)
       formImageVideoData.append('image', this.formImageFile)
-      if (formBrandFile) formImageVideoData.append('brand', this.formBrandFile)
       let res
       try {
         res = await this.$store.dispatch('imageVideoUploadAction', {
@@ -343,7 +314,11 @@ export default {
           location.href = process.env.URLHOME + '/video/form'
         }
       }, 1200)
-    }
+    },
+    editvideo(video) {
+      this.$store.commit('setEdit', video)
+      location.href = '/video'
+    },
   }
 }
 </script>

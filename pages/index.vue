@@ -4,9 +4,16 @@
       <b-row class="p-0 m-0 brandrow">
         <b-col cols="12" class="d-flex">
           <div v-for="brand in this.$store.state.brand" :key="brand.id">
-            <a @click="brandFilter(brand.brand)"
-              ><img :src="brandImage(brand.image)" class="imgbrand"
-            /></a>
+            <b-link @click="brandFilter(brand.brand)">
+              <img :src="brandImage(brand.image)" class="imgbrand" />
+            </b-link>
+            <b-link
+              class="amarenared"
+              @click="editbrand(brand)"
+              v-if="$auth.user"
+            >
+              EDIT
+            </b-link>
           </div>
         </b-col>
       </b-row>
@@ -68,11 +75,16 @@
           <p class="up">
             WELCOME {{ $auth.user.name }} {{ $auth.user.surname }} <br />
             <br />
-            <nuxt-link class="amarenared" to="/video/form">
-              ADD A NEW VIDEO OR BRAND
+            <nuxt-link class="amarenared" to="/video">
+              ADD A NEW VIDEO
             </nuxt-link>
-          </p></b-col
-        >
+            <br />
+            <nuxt-link class="amarenared" to="/brand">
+              ADD A NEW BRAND
+            </nuxt-link>
+            <br />
+          </p>
+        </b-col>
       </b-row>
       <b-row class="p-0 m-0">
         <b-col cols="12" class="p-0 m-0">
@@ -206,7 +218,11 @@ export default {
     },
     editvideo(video) {
       this.$store.commit('setEdit', video)
-      location.href = '/video/form'
+      location.href = '/video'
+    },
+    editbrand(brand) {
+      this.$store.commit('setEdit', brand)
+      location.href = '/brand'
     }
   }
 }

@@ -86,9 +86,27 @@ app.post('/video', async (req, res, next) => {
   }
 })
 
+app.post('/brand', async (req, res, next) => {
+  try {
+    let query = 'SELECT * FROM `brand` WHERE `brand`=? LIMIT 1'
+    let param = [req.body.brand]
+    const [rows] = await mypool.execute(query, param)
+    if (rows.length > 0) { return res.status(200).send('exists') }
+  } catch (err) {
+    next(err)
+  }
+  if (!req.body.id) { req.body.id = false }
+  try {
+    let query = 'insert into brand values (?,?,?,?,DEFAULT,DEFAULT)'
+    let params = [req.body.id, req.body.brand, req.body.image, req.body.visible]
+    const [rows] = await mypool.execute(query, params)
+    res.status(200).send(rows)
+  } catch (err) {
+    next(err)
+  }
+})
 
-
-app.post('/imagevideofiles', async function (req, res, next) {
+app.post('/imagevideofile', async function (req, res, next) {
   if (req.files) {
     let uploadPath = './static/v/' + req.files.video.name
     try {
@@ -106,6 +124,28 @@ app.post('/imagevideofiles', async function (req, res, next) {
       const imgfile = await jimp.read(uploadPath)
       await imgfile
         .resize(1000, 562)
+        .quality(60)
+        .write(uploadPath)
+    } catch (err) {
+      return next(err)
+    }
+  }
+  res.send({ status: 'OK', id: req.body.id })
+})
+
+app.post('/brandfile', async function (req, res, next) {
+  if (req.files) {
+    let uploadPath = './static/b/' + req.files.brand.name
+    try {
+      await req.files.brand.mv(uploadPath)
+    } catch (err) {
+      return next(err)
+    }
+    try {
+      const imgfile = await jimp.read(uploadPath)
+      await imgfile
+        .resize(256, jimp.AUTO)
+        .resize(jimp.AUTO, 256)
         .quality(60)
         .write(uploadPath)
     } catch (err) {
