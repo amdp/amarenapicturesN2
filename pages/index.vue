@@ -76,11 +76,11 @@
             WELCOME {{ $auth.user.name }} {{ $auth.user.surname }} <br />
             <br />
             <nuxt-link class="amarenared" to="/video">
-              ADD A NEW VIDEO
+              ADD/EDIT VIDEO
             </nuxt-link>
             <br />
             <nuxt-link class="amarenared" to="/brand">
-              ADD A NEW BRAND
+              ADD/EDIT BRAND
             </nuxt-link>
             <br />
           </p>
@@ -218,11 +218,11 @@ export default {
     },
     editvideo(video) {
       this.$store.commit('setEdit', video)
-      location.href = '/video'
+      return this.$router.push({ path: '/video' })
     },
     editbrand(brand) {
       this.$store.commit('setEdit', brand)
-      location.href = '/brand'
+      return this.$router.push({ path: '/brand' })
     }
   }
 }

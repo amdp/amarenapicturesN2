@@ -44,7 +44,6 @@ export const actions = {
       process.env.DBURL + '/recoverpassword',
       payload
     )
-    console.log('data ' + JSON.stringify(data))
     return data
   },
   imageVideoUploadAction: async function (context, payload) {
@@ -64,5 +63,13 @@ export const actions = {
     )
     if (data.id) return data.id
     else return data.status
-  }
+  },
+  deleteBrandAction: async function (context, payload) {
+    let { data } = await this.$axios.post(process.env.DBURL + '/deletebrand', payload)
+    return data
+  },
+  deleteVideoAction: async function (context, payload) {
+    let { data } = await this.$axios.post(process.env.DBURL + '/deletevideo', payload)
+    return data
+  },
 }

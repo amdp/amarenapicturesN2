@@ -5,6 +5,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 const nodemailer = require('nodemailer')
 const jimp = require('jimp')
+const fs = require('fs')
 const fileUpload = require('express-fileupload')
 app.use(fileUpload())
 const jwt = require('jsonwebtoken')
@@ -55,54 +56,76 @@ app.get('/brand', async (req, res, next) => {
 })
 
 app.post('/video', async (req, res, next) => {
-  try {
-    let query = 'SELECT * FROM `amareel` WHERE `video`=? LIMIT 1'
-    let param = [req.body.video]
-    const [rows] = await mypool.execute(query, param)
-    if (rows.length > 0) { return res.status(200).send('exists') }
-  } catch (err) {
-    next(err)
-  }
-  if (!req.body.id) { req.body.id = false }
-  try {
-    let query = 'insert into amareel values (?,?,?,?,?,?,?,?,?,?,?,DEFAULT,DEFAULT)'
-    let params = [
-      req.body.id,
-      req.body.visible,
-      req.body.video,
-      req.body.title,
-      req.body.year,
-      req.body.agency,
-      req.body.production,
-      req.body.direction,
-      req.body.brand,
-      req.body.abstract,
-      req.body.abstractit,
-    ]
-    const [rows] = await mypool.execute(query, params)
-    res.status(200).send(rows)
-  } catch (err) {
-    next(err)
+  if (!req.body.old) {
+    try {
+      let query = 'SELECT * FROM `amareel` WHERE `video`=? LIMIT 1'
+      let param = [req.body.video]
+      const [rows] = await mypool.execute(query, param)
+      if (rows.length > 0) { return res.status(200).send('exists') }
+    } catch (err) {
+      next(err)
+    }
+    if (!req.body.id) { req.body.id = false }
+    try {
+      let query = 'insert into amareel values (?,?,?,?,?,?,?,?,?,?,?,DEFAULT,DEFAULT)'
+      let params = [
+        req.body.id,
+        req.body.visible,
+        req.body.video,
+        req.body.title,
+        req.body.year,
+        req.body.brand,
+        req.body.agency,
+        req.body.production,
+        req.body.direction,
+        req.body.abstract,
+        req.body.abstractit,
+      ]
+      const [rows] = await mypool.execute(query, params)
+      res.status(200).send(rows)
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    try {
+      let query = 'UPDATE amareel set `visible` = ?, `video` = ?, `title` = ?, `year` = ?, `brand` = ?, `agency` = ?, `production` = ?, `direction` = ?, `abstract` = ?, `abstractit` = ? where `id` = ?'
+      let param = [req.body.visible, req.body.video, req.body.title, req.body.year, req.body.brand, req.body.agency, req.body.production, req.body.direction, req.body.abstract, req.body.abstractit, req.body.id]
+      const [rows] = await mypool.execute(query, param)
+      res.status(200).send(rows)
+    } catch (err) {
+      next(err)
+    }
   }
 })
 
 app.post('/brand', async (req, res, next) => {
-  try {
-    let query = 'SELECT * FROM `brand` WHERE `brand`=? LIMIT 1'
-    let param = [req.body.brand]
-    const [rows] = await mypool.execute(query, param)
-    if (rows.length > 0) { return res.status(200).send('exists') }
-  } catch (err) {
-    next(err)
-  }
-  if (!req.body.id) { req.body.id = false }
-  try {
-    let query = 'insert into brand values (?,?,?,?,DEFAULT,DEFAULT)'
-    let params = [req.body.id, req.body.brand, req.body.image, req.body.visible]
-    const [rows] = await mypool.execute(query, params)
-    res.status(200).send(rows)
-  } catch (err) {
-    next(err)
+  if (!req.body.old) {
+    try {
+      let query = 'SELECT * FROM `brand` WHERE `brand`=? LIMIT 1'
+      let param = [req.body.brand]
+      const [rows] = await mypool.execute(query, param)
+      if (rows.length > 0) { return res.status(200).send('exists') }
+    } catch (err) {
+      next(err)
+    }
+    if (!req.body.id) { req.body.id = false }
+    try {
+      let query = 'insert into brand values (?,?,?,?,DEFAULT,DEFAULT)'
+      let params = [req.body.id, req.body.brand, req.body.image, req.body.visible]
+      const [rows] = await mypool.execute(query, params)
+      res.status(200).send(rows)
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    try {
+      let query = 'UPDATE brand set `id` = ?, `image` = ?, `visible` = ? where `brand` = ?'
+      let param = [req.body.id, req.body.image, req.body.visible, req.body.brand]
+      const [rows] = await mypool.execute(query, param)
+      res.status(200).send(rows)
+    } catch (err) {
+      next(err)
+    }
   }
 })
 
@@ -154,6 +177,48 @@ app.post('/brandfile', async function (req, res, next) {
   }
   res.send({ status: 'OK', id: req.body.id })
 })
+
+app.post('/deletevideo', async function (req, res, next) {
+  let uploadPath = './static/v/' + req.body.video + '.mp4'
+  try {
+    fs.unlinkSync(uploadPath)
+  } catch (err) {
+    return next(err)
+  }
+  uploadPath = './static/i/' + req.body.video + '.jpg'
+  try {
+    fs.unlinkSync(uploadPath)
+  } catch (err) {
+    return next(err)
+  }
+  try {
+    let query = 'DELETE FROM `amareel` WHERE `id`=? LIMIT 1'
+    let param = [req.body.id]
+    await mypool.execute(query, param)
+  } catch (err) {
+    next(err)
+  }
+  res.status(200).send('OK')
+})
+
+app.post('/deletebrand', async function (req, res, next) {
+  let uploadPath = './static/b/' + req.body.image
+  try {
+    fs.unlinkSync(uploadPath)
+  } catch (err) {
+    return next(err)
+  }
+  try {
+    let query = 'DELETE FROM `brand` WHERE `brand`=? LIMIT 1'
+    let param = [req.body.brand]
+    await mypool.execute(query, param)
+  } catch (err) {
+    next(err)
+  }
+  res.status(200).send('OK')
+})
+
+
 
 app.post('/contactemail', function (req, res) {
   const transporter = nodemailer.createTransport({

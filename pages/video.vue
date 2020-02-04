@@ -14,6 +14,43 @@
             label-for="videoFileInput"
             label="Video file upload:"
             description="The video file"
+            v-if="!old"
+          >
+            <b-form-file
+              id="videoFileInput"
+              v-model="formVideoFile"
+              ref="formVideoFile"
+              size="sm"
+              required
+            ></b-form-file>
+          </b-form-group>
+
+          <p class="d-flex justify-content-center">
+            <b-link @click="newvideo()" class="amarenared" v-if="old">
+              CANCEL EDIT, ADD A NEW VIDEO
+            </b-link>
+          </p>
+
+          <b-form-group
+            label-for="imageFileInput"
+            label="Image upload:"
+            description="The video image"
+            v-if="!old"
+          >
+            <b-form-file
+              id="imageFileInput"
+              v-model="formImageFile"
+              ref="formImageFile"
+              size="sm"
+              required
+            ></b-form-file>
+          </b-form-group>
+
+          <b-form-group
+            label-for="videoFileInput"
+            label="Video file upload:"
+            description="The video file"
+            v-if="old"
           >
             <b-form-file
               id="videoFileInput"
@@ -26,6 +63,7 @@
             label-for="imageFileInput"
             label="Image upload:"
             description="The video image"
+            v-if="old"
           >
             <b-form-file
               id="imageFileInput"
@@ -34,16 +72,29 @@
               size="sm"
             ></b-form-file>
           </b-form-group>
-
           <b-form-group
             label-for="idInput"
             label="Id:"
             description="The video id, if inserting a new video leave blank for automated id assignment"
+            v-if="!old"
           >
             <b-form-input
               id="idInput"
               v-model="formid"
               size="sm"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            label-for="idInput"
+            label="Id:"
+            description="The video id, if inserting a new video leave blank for automated id assignment"
+            v-if="old"
+          >
+            <b-form-input
+              id="idInput"
+              v-model="formid"
+              size="sm"
+              readonly
             ></b-form-input>
           </b-form-group>
           <b-form-group
@@ -64,7 +115,7 @@
             label="Year:"
             description="Insert the video year"
           >
-            <b-form-select id="yearInput" v-model="formyear" required>
+            <b-form-select id="yearInput" v-model="formyear" size="sm" required>
               <option v-for="year in 100" :key="year">{{ 2010 + year }}</option>
             </b-form-select>
           </b-form-group>
@@ -73,7 +124,12 @@
             label="Brand:"
             description="Insert the video brand"
           >
-            <b-form-select id="brandInput" v-model="formbrand" required>
+            <b-form-select
+              id="brandInput"
+              v-model="formbrand"
+              size="sm"
+              required
+            >
               <option
                 v-for="brand in $store.state.brand"
                 :key="brand.id"
@@ -111,7 +167,12 @@
             label="Visible?"
             description="Choose whether the video should be visible or not"
           >
-            <b-form-select id="visibleInput" v-model="formvisible" required>
+            <b-form-select
+              id="visibleInput"
+              v-model="formvisible"
+              size="sm"
+              required
+            >
               <option value="1">1</option>
               <option value="0">0</option>
             </b-form-select>
@@ -162,11 +223,14 @@
         <b-col cols="2">{{ video.brand }}</b-col>
         <b-col cols="2">{{ video.agency }}</b-col>
         <b-col cols="2">{{ video.production }}</b-col>
-        <b-col cols="1" class="amarenared">Visible: {{ video.visible }}</b-col>
-        <b-col cols="5" class="amarenared">{{ video.abstract }}</b-col>
-        <b-col cols="5" class="amarenared">{{ video.abstractit }}</b-col>
-        <b-col cols="1" @click="videoedit(video)" class="amarenared">
+        <b-col cols="2" class="amarenared">Visible: {{ video.visible }}</b-col>
+        <b-col cols="4" class="amarenared">{{ video.abstract }}</b-col>
+        <b-col cols="4" class="amarenared">{{ video.abstractit }}</b-col>
+        <b-col cols="1" @click="editvideo(video)" class="amarenared pointer">
           EDIT
+        </b-col>
+        <b-col cols="1" @click="deletevideo(video)" class="amarenared pointer">
+          DELETE
         </b-col>
       </b-row>
     </b-container>
@@ -191,11 +255,12 @@ export default {
   data() {
     return {
       editing: false,
+      old: this.$store.state.edit,
       formid: this.$store.state.edit
         ? this.$store.state.edit.id
         : null,
       formfilename: this.$store.state.edit
-        ? this.$store.state.edit.name
+        ? this.$store.state.edit.video
         : null,
       formtitle: this.$store.state.edit
         ? this.$store.state.edit.title
@@ -204,7 +269,7 @@ export default {
         ? this.$store.state.edit.year
         : null,
       formbrand: this.$store.state.edit
-        ? this.$store.state.edit.year
+        ? this.$store.state.edit.brand
         : null,
       formagency: this.$store.state.edit
         ? this.$store.state.edit.agency
@@ -216,44 +281,27 @@ export default {
         ? this.$store.state.edit.visible
         : '1',
       formabstract: this.$store.state.edit
-        ? this.$store.state.edit.production
+        ? this.$store.state.edit.abstract
         : null,
       formabstractit: this.$store.state.edit
-        ? this.$store.state.edit.production
+        ? this.$store.state.edit.abstractit
         : null,
-      formImageFile: null,
       formVideoFile: null,
-      formBrandFile: null,
-      formnewbrand: null,
+      formImageFile: null,
     }
   },
   methods: {
-    async addbrand() {
-      let result = await this.$store.dispatch('brandFormAction', {
-        brand: this.formnewbrand,
-      })
-      if (result == 'exists') {
-        this.$toast.success('This year already exists!', {
-          duration: 1000,
-          className: 'toastunderstanding'
-        })
-      } else {
-        this.$toast.success(this.formnewbrand + ' added!', {
-          duration: 1000,
-          className: 'toast'
-        })
-      }
-    },
     async videoForm() {
-      if (this.formVideoFile.name.slice(0, -4) != this.formImageFile.name.slice(0, -4)) {
-        return alert('The video filename and image filename differ, please upload the two files with the same name and of course .mp4 for the video and .jpg for the image, thanks.')
+      if (this.formVideoFile && this.formImageFile) {
+        if (this.formVideoFile.name.slice(0, -4) != this.formImageFile.name.slice(0, -4)) {
+          return alert('The video filename and image filename differ, please upload the two files with the same name and of course .mp4 for the video and .jpg for the image, thanks.')        }
       }
       this.editing = true
       // This function creates and sends database request body both for video creation and update
       //'new' is set for a new video, if not the edit.id is taken from url to update or copy old ones
       var formBodyRequest = {
         id: this.formid,
-        video: this.formVideoFile.name.slice(0, -4),
+        video: this.formVideoFile ? this.formVideoFile.name.slice(0, -4) : this.old.video,
         title: this.formtitle,
         year: this.formyear,
         brand: this.formbrand,
@@ -262,7 +310,8 @@ export default {
         visible: this.formvisible,
         abstract: this.formabstract,
         abstractit: this.formabstractit,
-        direction: 'Alessandro Merletti De Palo & Giovanni Caloro'
+        direction: 'Alessandro Merletti De Palo & Giovanni Caloro',
+        old: this.old
       }
       let res
       try {
@@ -306,17 +355,45 @@ export default {
     },
     doneToast(res) {
       this.$toast.success('Done!', { duration: 1000, className: 'toast' })
-      this.$store.dispatch('editSwitchAction', false)
+      this.$store.commit('setEdit', false)
       setTimeout(function () {
         if (res == 'OK') {
-          location.href = process.env.URLHOME
+          location.href = '/'
         } else {
-          location.href = process.env.URLHOME + '/video/form'
+          location.href = '/video'
         }
       }, 1200)
     },
     editvideo(video) {
-      this.$store.commit('setEdit', video)
+      this.formid = video.id
+      this.formvisible = video.visible
+      this.formfilename = video.video
+      this.formtitle = video.title
+      this.formyear = video.year
+      this.formbrand = video.brand
+      this.formagency = video.agency
+      this.formproduction = video.production
+      this.formvisible = video.visible
+      this.formabstract = video.abstract
+      this.formabstractit = video.abstractit
+      this.old = video
+    },
+    newvideo() {
+      this.formid = null
+      this.formvisible = null
+      this.formfilename = null
+      this.formtitle = null
+      this.formyear = null
+      this.formbrand = null
+      this.formagency = null
+      this.formproduction = null
+      this.formvisible = 1
+      this.formabstract = null
+      this.formabstractit = null
+      this.old = false
+    },
+    async deletevideo(video) {
+      await this.$store.dispatch('deleteVideoAction', video)
       location.href = '/video'
     },
   }

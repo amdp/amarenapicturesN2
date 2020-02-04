@@ -9,14 +9,12 @@
     <b-row>
       <b-col cols="2"></b-col>
       <b-col cols="8">
-        <p class="amarenared text-center">STILL NOT WORKING DO NOT USE!!!</p>
-        <p class="amarenared text-center">STILL NOT WORKING DO NOT USE!!!</p>
-        <p class="amarenared text-center">STILL NOT WORKING DO NOT USE!!!</p>
         <b-form @submit.prevent="brandForm()" class="mt-3 was-validated">
           <b-form-group
             label-for="brandInput"
             label="Brand:"
             description="Insert the name of the video brand"
+            v-if="!old"
           >
             <b-form-input
               id="brandInput"
@@ -25,6 +23,25 @@
               required
             ></b-form-input>
           </b-form-group>
+          <b-form-group
+            label-for="brandInput"
+            label="Brand:"
+            description="Insert the name of the video brand"
+            v-if="old"
+          >
+            <b-form-input
+              id="brandInput"
+              v-model="formbrand"
+              size="sm"
+              required
+              readonly
+            ></b-form-input>
+          </b-form-group>
+          <p class="d-flex justify-content-center">
+            <b-link @click="newbrand()" class="amarenared" v-if="old">
+              CANCEL EDIT, ADD A NEW BRAND
+            </b-link>
+          </p>
           <b-form-group
             label-for="idInput"
             label="Id:"
@@ -45,7 +62,20 @@
               id="brandFileInput"
               v-model="formBrandFile"
               ref="formBrandFile"
-              size="sm"
+              v-if="old"
+            ></b-form-file>
+          </b-form-group>
+          <b-form-group
+            label-for="brandFileInput"
+            label="Brand image upload:"
+            description="The brand image"
+          >
+            <b-form-file
+              id="brandFileInput"
+              v-model="formBrandFile"
+              ref="formBrandFile"
+              v-if="!old"
+              required
             ></b-form-file>
           </b-form-group>
           <b-form-group
@@ -53,7 +83,12 @@
             label="Visible?"
             description="Choose whether the video should be visible or not"
           >
-            <b-form-select id="visibleInput" v-model="formvisible" required>
+            <b-form-select
+              id="visibleInput"
+              v-model="formvisible"
+              size="sm"
+              required
+            >
               <option value="1">1</option>
               <option value="0">0</option>
             </b-form-select>
@@ -72,9 +107,12 @@
         <b-col cols="3">{{ brand.id }}</b-col>
         <b-col cols="3">{{ brand.brand }}</b-col>
         <b-col cols="3">{{ brand.image }}</b-col>
-        <b-col cols="2">{{ brand.visible }}</b-col>
-        <b-col cols="1" @click="brandedit(brand)" class="amarenared">
+        <b-col cols="1">{{ brand.visible }}</b-col>
+        <b-col cols="1" @click="editbrand(brand)" class="amarenared pointer">
           EDIT
+        </b-col>
+        <b-col cols="1" @click="deletebrand(brand)" class="amarenared pointer">
+          DELETE
         </b-col>
       </b-row>
     </b-container>
@@ -98,11 +136,12 @@ export default {
   data() {
     return {
       editing: false,
+      old: this.$store.state.edit,
       formid: this.$store.state.edit
         ? this.$store.state.edit.id
         : null,
       formbrand: this.$store.state.edit
-        ? this.$store.state.edit.year
+        ? this.$store.state.edit.brand
         : null,
       formvisible: this.$store.state.edit
         ? this.$store.state.edit.visible
@@ -117,9 +156,10 @@ export default {
       //'new' is set for a new brand, if not the edit.id is taken from url to update or copy old ones
       var formBodyRequest = {
         id: this.formid,
-        image: this.formBrandFile.name,
+        image: this.formBrandFile.name ? this.formBrandFile.name : this.old.image,
         brand: this.formbrand,
         visible: this.formvisible,
+        old: this.old
       }
       let res
       try {
@@ -134,22 +174,17 @@ export default {
           className: 'toast'
         })
       } else {
-        try {
-          this.brandUpload()
-        } catch (err) {
-          console.log(' ' + JSON.stringify(err))
-          alert(err)
-        }
+        if (this.old && !this.formBrandFile) { return this.doneToast(res) }
+        this.brandUpload()
       }
     },
     async brandUpload() {
-      if (this.$store.state.edit && !formBrandFile) { return }
-      let brandData = new FormData()
-      brandData.append('brand', this.formBrandFile)
+      let formBrandData = new FormData()
+      formBrandData.append('brand', this.formBrandFile)
       let res
       try {
         res = await this.$store.dispatch('brandUploadAction', {
-          brandData: brandData,
+          formBrandData: formBrandData,
           headers: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
       } catch (err) {
@@ -162,19 +197,31 @@ export default {
     },
     doneToast(res) {
       this.$toast.success('Done!', { duration: 1000, className: 'toast' })
-      this.$store.dispatch('editSwitchAction', false)
+      this.$store.commit('setEdit', false)
       setTimeout(function () {
         if (res == 'OK') {
-          location.href = process.env.URLHOME
+          location.href = '/'
         } else {
-          location.href = process.env.URLHOME + '/video/form'
+          location.href = '/brand'
         }
       }, 1200)
     },
     editbrand(brand) {
-      this.$store.commit('setEdit', brand)
+      this.formid = brand.id
+      this.formbrand = brand.brand
+      this.formvisible = brand.visible
+      this.old = brand
+    },
+    newbrand() {
+      this.formid = null
+      this.formbrand = null
+      this.formvisible = 1
+      this.old = false
+    },
+    async deletebrand(brand) {
+      await this.$store.dispatch('deleteBrandAction', brand)
       location.href = '/brand'
-    }
+    },
   }
 }
 </script>

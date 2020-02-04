@@ -91,5 +91,5 @@ dist
 sw.*
 
 # Images and videos
-/static/
-/etc/
+/static
+/etc

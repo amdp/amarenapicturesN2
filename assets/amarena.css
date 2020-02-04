@@ -28,7 +28,9 @@ a, a:hover {
 .base{
   letter-spacing: 0px;
 }
-
+.pointer {
+  cursor: pointer;
+}
 /************ body element boxes ************/
 
 .majestic{
