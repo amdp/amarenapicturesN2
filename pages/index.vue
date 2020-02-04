@@ -135,6 +135,7 @@
                         cols="12"
                         class="mb-2 mt-4 p-0 amarenared"
                         @click="editvideo(video)"
+                        v-if="$auth.user"
                       >
                         EDIT THIS VIDEO
                       </b-col>
