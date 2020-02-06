@@ -8,7 +8,7 @@
               <img :src="brandImage(brand.image)" class="imgbrand" />
             </b-link>
             <b-link
-              class="amarenared"
+              class="amarenared pointer"
               @click="editbrand(brand)"
               v-if="$auth.user"
             >
@@ -143,7 +143,7 @@
                       </b-col>
                       <b-col
                         cols="12"
-                        class="mb-2 mt-4 p-0 amarenared"
+                        class="mb-2 mt-4 p-0 amarenared pointer"
                         @click="editvideo(video)"
                         v-if="$auth.user"
                       >
