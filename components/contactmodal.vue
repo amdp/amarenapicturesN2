@@ -1,111 +1,98 @@
 <template>
   <b-container>
-    <b-modal id="contactmodal" title="Contact Us" hide-header>
+    <b-modal id="contactmodal" hide-header>
       <b-row>
         <b-col cols="12">
-          <p class="amarenared videotitle text-center">
-            CONTACT US
-          </p>
+          <p
+            class="amarenared videotitle text-center"
+            v-html="$t('contact.title')"
+          ></p>
         </b-col>
       </b-row>
       <b-row>
         <b-col cols="12">
-          <form class="form-horizontal" @submit.prevent="submit">
-            <fieldset>
-              <!-- Name input-->
-              <div class="form-group">
-                <label class="col-md-3 control-label" for="name">Name</label>
-                <div class="col-md-9">
-                  <input
-                    v-model="formName"
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="Your name"
-                    class="form-control"
-                    required
-                  />
-                </div>
-              </div>
+          <b-form @submit.prevent="submit" class="was-validated">
+            <b-form-group label-for="name" :label="$t('contact.name')">
+              <b-form-input
+                v-model="formName"
+                id="name"
+                name="name"
+                type="text"
+                class="form-control"
+                :placeholder="$t('contact.yourname')"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-              <!-- Email input-->
-              <div class="form-group">
-                <label class="col-md-3 control-label" for="email"
-                  >Your E-mail</label
-                >
-                <div class="col-md-9">
-                  <input
-                    v-model="formEmail"
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Your email"
-                    class="form-control"
-                    required
-                  />
-                </div>
-              </div>
+            <b-form-group label-for="email" :label="$t('contact.email')">
+              <b-form-input
+                v-model="formEmail"
+                id="email"
+                name="email"
+                type="email"
+                class="form-control"
+                :placeholder="$t('contact.youremail')"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-              <!-- Subject -->
-              <div class="form-group">
-                <label class="col-md-3 control-label" for="subject"
-                  >Subject</label
-                >
-                <div class="col-md-9">
-                  <input
-                    v-model="formSubject"
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    placeholder="Subject"
-                    class="form-control"
-                    required
-                  />
-                </div>
-              </div>
+            <b-form-group label-for="subject" :label="$t('contact.subject')">
+              <b-form-input
+                v-model="formSubject"
+                id="subject"
+                name="subject"
+                type="text"
+                class="form-control"
+                :placeholder="$t('contact.yoursubject')"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-              <!-- Message body -->
-              <div class="form-group">
-                <label class="col-md-3 control-label" for="message"
-                  >Your message</label
-                >
-                <div class="col-md-9">
-                  <textarea
-                    v-model="formBody"
-                    class="form-control"
-                    id="message"
-                    name="message"
-                    placeholder="Please enter your message here..."
-                    rows="5"
-                    required
-                  ></textarea>
-                </div>
-              </div>
+            <!-- Message body -->
+            <b-form-group
+              label-for="message"
+              :label="$t('contact.message')"
+              :description="$t('contact.yourmessage')"
+            >
+              <b-form-text
+                v-model="formBody"
+                class="form-control"
+                id="message"
+                name="message"
+                rows="5"
+                required
+              ></b-form-text>
+            </b-form-group>
 
-              <!-- Form actions -->
-              <div class="form-group">
-                <div class="col-md-3">
-                  <VueRecaptcha
-                    :sitekey="envrecaptcha"
-                    size="invisible"
-                    ref="recaptcha"
-                    @verify="onVerify"
-                    @expired="onExpired"
-                    loadRecaptchaScript
-                  ></VueRecaptcha>
-                </div>
-              </div>
-            </fieldset>
-          </form>
+            <!-- Form actions -->
+            <b-form-group>
+              <VueRecaptcha
+                :sitekey="envrecaptcha"
+                size="invisible"
+                ref="recaptcha"
+                @verify="onVerify"
+                @expired="onExpired"
+                loadRecaptchaScript
+              ></VueRecaptcha>
+            </b-form-group>
+          </b-form>
           <div v-if="response.length" v-html="response"></div>
         </b-col>
       </b-row>
       <template slot="modal-footer" slot-scope="{ ok, cancel }">
-        <b-button size="sm" class="amarenared whiteback" @click="sendMail()">
-          SEND
+        <b-button
+          size="sm"
+          class="amarenared whiteback"
+          @click="sendMail()"
+          v-html="$t('contact.send')"
+        >
         </b-button>
-        <b-button size="sm" class="amarenared whiteback" @click="cancel()">
-          CANCEL
+        <b-button
+          size="sm"
+          class="amarenared whiteback"
+          @click="cancel()"
+          v-html="$t('contact.cancel')"
+        >
         </b-button>
       </template>
     </b-modal>

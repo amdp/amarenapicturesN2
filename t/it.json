@@ -1,0 +1,18 @@
+{
+  "home": {
+    "desc": "Nel 2010 abbiamo fondato Amarena Pictures, una società-service dal nome \"amarena\" che facesse le produzioni delle nostre regie. Oggi è diventata una casa di produzione che si avvantaggia del nostro stile di regia con.. il suo unico sapore"
+  },
+  "contact": {
+    "title": "SCRIVICI",
+    "name": "Nome:",
+    "yourname": "Il tuo nome",
+    "email": "Mail:",
+    "youremail": "Il tuo indirizzo mail",
+    "subject": "Oggetto:",
+    "yoursubject": "L'oggetto della mail",
+    "message": "Messaggio:",
+    "yourmessage": "Scrivi pure il tuo messaggio qui...",
+    "send": "Invia",
+    "cancel": "Cancella"
+  }
+}

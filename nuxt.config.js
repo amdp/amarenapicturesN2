@@ -2,13 +2,15 @@ const pkg = require('./package')
 require('dotenv').config()
 import fs from 'fs'
 import path from 'path'
+import en from './t/en.json'
+import it from './t/it.json'
 module.exports = {
   mode: 'universal',
   plugins: [],
   build: {},
   serverMiddleware: ['./api'],
   css: ['@assets/amarena.css'],
-  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-webfontloader'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-i18n'],
   loading: {
     color: '#FF0033',
     failedColor: 'black',
@@ -50,11 +52,22 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css?family=Prompt:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap'
+      }
     ]
   },
-  webfontloader: {
-    google: {
-      families: ['Oswald:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap']
+  i18n: {
+    locales: ['en', 'it'],
+    defaultLocale: 'en',
+    vueI18n: {
+      fallbackLocale: 'en',
+      messages: {
+        en: en,
+        it: it,
+      }
     }
   },
   auth: {

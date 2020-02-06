@@ -27,7 +27,15 @@
           00135 <span class="amarenared">Roma</span> ~ P.I. 11100831004 ~ W E
           <span class="amarenared"> &hearts; </span> D I V E R S I T Y
         </b-col>
-        <b-col cols="2" class="amarenared text-right pr-2">
+        <b-col cols="1">
+          <nuxt-link :to="switchLocalePath('en')" v-if="$i18n.locale == 'it'">
+            <b-img src="../assets/uk.png" width="20px" />
+          </nuxt-link>
+          <nuxt-link :to="switchLocalePath('it')" v-if="$i18n.locale == 'en'">
+            <b-img src="../assets/it.png" width="20px" />
+          </nuxt-link>
+        </b-col>
+        <b-col cols="1" class="amarenared text-right pr-2">
           <b-link v-b-modal.loginmodal class="amarenared" v-if="!$auth.user">
             LOGIN
           </b-link>
@@ -56,11 +64,7 @@
         <b-col cols="12" class="quotedline text-center base">
           <em>
             That's <span class="amarenared">Amarena</span>!<br />
-            We founded <span class="amarenared">Amarena</span> Pictures, the
-            "<span class="amarenared">sour cherry</span>" production service for
-            our directions, in 2010. Today it has become a full production
-            company leveraging on our direction style and.. its unique
-            <span class="amarenared">flavour</span>.
+            <span v-html="$t('home.desc')"></span>
           </em>
         </b-col>
       </b-row>
@@ -104,8 +108,19 @@
                           video.title
                         }}</span>
                       </b-col>
-                      <b-col cols="12" class="mb-5 videoabstract">
+                      <b-col
+                        cols="12"
+                        class="mb-5 videoabstract"
+                        v-if="$i18n.locale == 'en'"
+                      >
                         {{ video.abstract }}
+                      </b-col>
+                      <b-col
+                        cols="12"
+                        class="mb-5 videoabstract"
+                        v-if="$i18n.locale == 'it'"
+                      >
+                        {{ video.abstractit }}
                       </b-col>
                       <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
                         <span class="up amarenared">Client</span>

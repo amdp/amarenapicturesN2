@@ -1,0 +1,18 @@
+{
+  "home": {
+    "desc": "We founded <span class=\"amarenared\">Amarena</span> Pictures, the \"<span class=\"amarenared\">sour cherry</span>\" production service for our directions, in 2010. Today it has become a full production company leveraging on our direction style and.. its unique <span class=\"amarenared\">flavour</span>."
+  },
+  "contact": {
+    "title": "CONTACT US",
+    "name": "Name:",
+    "yourname": "Your name",
+    "email": "Mail:",
+    "youremail": "Your mail",
+    "subject": "Subject:",
+    "yoursubject": "Your subject",
+    "message": "Message:",
+    "yourmessage": "Please enter your message here...",
+    "send": "Send",
+    "cancel": "Cancel"
+  }
+}
