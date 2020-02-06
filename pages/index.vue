@@ -22,20 +22,15 @@
           <b-link v-b-modal.contactmodal class="amarenared">CONTACT</b-link>
         </b-col>
         <b-col cols="8" class="text-center up mb-3">
-          <span class="amarenared">Amarena</span> Pictures S.r.l. ~ Via Moscova
-          39, 20121 <span class="amarenared">Milano</span> ~ Via Pistelli 16,
-          00135 <span class="amarenared">Roma</span> ~ P.I. 11100831004 ~ W E
-          <span class="amarenared"> &hearts; </span> D I V E R S I T Y
-        </b-col>
-        <b-col cols="1">
+          <span v-html="$t('footer.main')"></span>
           <nuxt-link :to="switchLocalePath('en')" v-if="$i18n.locale == 'it'">
-            <b-img src="../assets/uk.png" width="20px" />
+            <b-img src="../assets/it.png" width="15px" />
           </nuxt-link>
           <nuxt-link :to="switchLocalePath('it')" v-if="$i18n.locale == 'en'">
-            <b-img src="../assets/it.png" width="20px" />
+            <b-img src="../assets/uk.png" width="15px" />
           </nuxt-link>
         </b-col>
-        <b-col cols="1" class="amarenared text-right pr-2">
+        <b-col cols="2" class="amarenared text-right pr-2">
           <b-link v-b-modal.loginmodal class="amarenared" v-if="!$auth.user">
             LOGIN
           </b-link>

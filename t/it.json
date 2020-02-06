@@ -1,6 +1,6 @@
 {
   "home": {
-    "desc": "Nel 2010 abbiamo fondato Amarena Pictures, una società-service dal nome \"amarena\" che facesse le produzioni delle nostre regie. Oggi è diventata una casa di produzione che si avvantaggia del nostro stile di regia con.. il suo unico sapore"
+    "desc": "Nel 2010 abbiamo fondato <span class=\"amarenared\">Amarena</span> Pictures, un service di produzione per le nostre regie. Oggi è diventata una casa di produzione tout-court che si basa sulla nostra regia e... sul suo unico <span class=\"amarenared\">sapore</span>."
   },
   "contact": {
     "title": "SCRIVICI",
@@ -14,5 +14,8 @@
     "yourmessage": "Scrivi pure il tuo messaggio qui...",
     "send": "Invia",
     "cancel": "Cancella"
+  },
+  "footer": {
+    "main": "<span class=\"amarenared\">Amarena</span> Pictures S.r.l. ~ Via Moscova 39, 20121 <span class=\"amarenared\">Milano</span> ~ Via Pistelli 16, 00135 <span class=\"amarenared\">Roma</span> ~ P.I. 11100831004 ~ D I V E R S I T À <span class=\"amarenared\"> &hearts; </span> ~ Lingua: "
   }
 }
