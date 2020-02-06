@@ -84,10 +84,10 @@ a, a:hover {
 }
 .brandrow {
   overflow-x: scroll;
-  min-height: 14vh;
+  min-height: 9vh;
 }
 .imgbrand {
-  max-height: 14vh;
+  max-height: 9vh;
 }
 .up{
   text-transform: uppercase;
