@@ -92,6 +92,8 @@
             v-for="video in brandhere"
             :key="video.id"
             class="text-center videocard"
+            :id="video.video"
+            :name="video.video"
           >
             <b-row class="p-0 m-0">
               <b-col md="4">
