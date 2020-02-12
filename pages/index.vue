@@ -151,6 +151,14 @@
                       >
                         EDIT THIS VIDEO
                       </b-col>
+                      <b-col
+                        cols="12"
+                        class="m-0 p-0 amarenared pointer"
+                        @click="tag(video)"
+                        v-if="$auth.user"
+                      >
+                        VIDEO TAG
+                      </b-col>
                     </b-row>
                   </b-card-text>
                 </b-card-body>
@@ -236,6 +244,9 @@ export default {
     editbrand(brand) {
       this.$store.commit('setEdit', brand)
       return this.$router.push({ path: '/brand' })
+    },
+    tag(video) {
+      location.href = process.env.URLHOME + '#' + video.video
     }
   }
 }
