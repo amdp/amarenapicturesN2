@@ -254,38 +254,10 @@ export default {
 </script>
 
 <!--
-old website:
-$og_title= 'Amarena Pictures - '.$json_output_content['metavalue'][$pagina]['title'];
-$og_image= $abs. $json_output_content['metavalue'][$pagina]['image'];
-$og_desc= $json_output_content['metavalue'][$pagina]['description'];
-$og_key= $json_output_content['metavalue'][$pagina]['key'];
-if cat
-$og_title= 'Amarena Pictures - '.$json_output_content['metavalue'][$_GET['cat']]['title'];
-$og_image= $abs. $json_output_content['metavalue'][$_GET['cat']]['image'];
-$og_desc= $json_output_content['metavalue'][$_GET['cat']]['description'];
-if($_GET['name']!=''){
- $og_title= 'Amarena Pictures - '. $dati['title'];
- $og_image= $abs.'img/portfolio/'. $dati['video'].'.jpg';
- $og_desc= 'Amarena Pictures - ' .$dati['abstract'];
-if($og_image==''){$og_image='img/amarena-logo.svg';}
-
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?php echo $og_title;?></title>
-    <meta name="description" content="<?php echo $og_desc; ?>">
-	  <meta name="keywords" content="<?php echo $og_key; ?>">
-    
-	  <meta property="og:title" content="<?php echo $og_title; ?>" />
-	  <meta property="og:url" content="http://www.amarenapictures.com<?php echo $_SERVER['REQUEST_URI'];?>" />
-	  <meta property="og:description" content="<?php echo $og_desc; ?>" />
-	  <meta property="og:image" content="<?php echo $og_image; ?>" />
-  </head>
           <li class="facebook"><a href="https://www.facebook.com/amarenapictures" target="_blank"></a></li>
           <li class="twitter"><a href="https://twitter.com/AmarenaPictures" target="_blank"></a></li>
           <li class="instagram"><a href="https://instagram.com/amarenapictures/" target="_blank"></a></li>
-          <li class="flag"><a href="https://www.amarenapictures.com/it" target="_blank"></a></li>
-            <li class="flag"><a href="https://www.amarenapictures.com/it" >italiano</a></li>
-
-Founded by directors Alessandro Merletti De Palo and Giovanni Caloro, Amarena Pictures combines the art of film direction with solid, cutting-edge production. -->
+          <li class="flag"><a href="https://amarenapictures.com/it" target="_blank"></a></li>
+            <li class="flag"><a href="https://amarenapictures.com/it" >italiano</a></li>
+ -->
 

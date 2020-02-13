@@ -48,7 +48,10 @@ module.exports = {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1'
       },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
+      { property: 'og:desc', content: 'That\'s Amarena!' },
+      { property: 'og:title', content: 'Amarena Pictures' },
+      { property: 'og:image', content: '/amarenasquare.png' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
