@@ -54,14 +54,14 @@
               :label="$t('contact.message')"
               :description="$t('contact.yourmessage')"
             >
-              <b-form-text
+              <b-form-textarea
                 v-model="formBody"
                 class="form-control"
                 id="message"
                 name="message"
                 rows="5"
                 required
-              ></b-form-text>
+              ></b-form-textarea>
             </b-form-group>
 
             <!-- Form actions -->
