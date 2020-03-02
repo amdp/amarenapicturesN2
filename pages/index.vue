@@ -1,5 +1,6 @@
 <template>
   <b-container class="m-0 p-0" fluid>
+    <!-- WE START WITH FOOTER HERE -->
     <b-container class="footcontainer m-0 p-0" fluid>
       <b-row class="p-0 m-0 brandrow">
         <b-col cols="12" class="d-flex">
@@ -29,6 +30,13 @@
           <nuxt-link :to="switchLocalePath('it')" v-if="$i18n.locale == 'en'">
             <b-img src="../assets/uk.png" width="15px" />
           </nuxt-link>
+          -
+          <b-link href="https://www.facebook.com/amarenapictures">
+            <img src="~/assets/facebook.svg" width="15px" />
+          </b-link>
+          <b-link href="https://instagram.com/amarenapictures/">
+            <img src="~/assets/instagram.svg" width="15px" />
+          </b-link>
         </b-col>
         <b-col cols="2" class="amarenared text-right pr-2">
           <b-link v-b-modal.loginmodal class="amarenared" v-if="!$auth.user">
@@ -40,7 +48,7 @@
         </b-col>
       </b-row>
     </b-container>
-
+    <!-- MAIN -->
     <b-container class="m-0 p-0" fluid>
       <b-row class="p-0 m-0">
         <b-col cols="12" class="text-center m-0 p-0 mt-2">
@@ -252,12 +260,4 @@ export default {
 }
 
 </script>
-
-<!--
-          <li class="facebook"><a href="https://www.facebook.com/amarenapictures" target="_blank"></a></li>
-          <li class="twitter"><a href="https://twitter.com/AmarenaPictures" target="_blank"></a></li>
-          <li class="instagram"><a href="https://instagram.com/amarenapictures/" target="_blank"></a></li>
-          <li class="flag"><a href="https://amarenapictures.com/it" target="_blank"></a></li>
-            <li class="flag"><a href="https://amarenapictures.com/it" >italiano</a></li>
- -->
 
