@@ -48,7 +48,9 @@
         </b-col>
       </b-row>
     </b-container>
+
     <!-- MAIN -->
+
     <b-container class="m-0 p-0" fluid>
       <b-row class="p-0 m-0">
         <b-col cols="12" class="text-center m-0 p-0 mt-2">
@@ -117,15 +119,15 @@
                         cols="12"
                         class="mb-5 videoabstract"
                         v-if="$i18n.locale == 'en'"
+                        v-html="video.abstract"
                       >
-                        {{ video.abstract }}
                       </b-col>
                       <b-col
                         cols="12"
                         class="mb-5 videoabstract"
                         v-if="$i18n.locale == 'it'"
+                        v-html="video.abstractit"
                       >
-                        {{ video.abstractit }}
                       </b-col>
                       <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
                         <span class="up amarenared">Client</span>
