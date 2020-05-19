@@ -19,9 +19,7 @@
         </b-col>
       </b-row>
       <b-row class="p-0 m-0">
-        <b-col cols="2" class="amarenared pl-2">
-          <b-link v-b-modal.contactmodal class="amarenared">CONTACT</b-link>
-        </b-col>
+        <b-col cols="2" class="amarenared text-right pr-2"> </b-col>
         <b-col cols="8" class="text-center up mb-3">
           <span v-html="$t('footer.main')"></span>
           <nuxt-link :to="switchLocalePath('en')" v-if="$i18n.locale == 'it'">
@@ -39,9 +37,6 @@
           </b-link>
         </b-col>
         <b-col cols="2" class="amarenared text-right pr-2">
-          <b-link v-b-modal.loginmodal class="amarenared" v-if="!$auth.user">
-            LOGIN
-          </b-link>
           <b-link class="amarenared" @click="$auth.logout()" v-if="$auth.user">
             LOGOUT
           </b-link>
@@ -56,14 +51,15 @@
         <b-col cols="12" class="text-center m-0 p-0 mt-2">
           <b-link class="majestic" @click="brandFilter()">
             <span class="amarenared">AMARENA</span>
+            <span>
+              <img :src="require('../assets/amarenasquare.png')" class="logo" />
+            </span>
             <span>PICTURES</span>
           </b-link>
         </b-col>
       </b-row>
       <b-row class="m-0 p-0" @click="brandFilter()">
-        <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n4">
-          <img :src="require('../assets/amarenasquare.png')" class="logo" />
-        </b-col>
+        <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n4"> </b-col>
       </b-row>
       <b-row class="d-flex justify-content-center px-3 m-0">
         <b-col cols="12" class="quotedline text-center base">
@@ -74,9 +70,18 @@
         </b-col>
       </b-row>
       <b-row class="d-flex justify-content-center m-0 mt-2 mb-3">
-        <b-col cols="12" class="text-right signature base m-0 mb-5">
+        <b-col cols="12" class="text-right signature base m-0 mb-1">
           Giovanni Caloro <span class="amarenared">~</span> Alessandro Merletti
           De Palo
+        </b-col>
+      </b-row>
+      <b-row class="d-flex justify-content-center m-0 mb-5">
+        <b-col cols="12">
+          <b-link
+            v-b-modal.contactmodal
+            class="amarenared d-flex justify-content-center contact"
+            v-html="$t('home.contactus')"
+          ></b-link>
         </b-col>
       </b-row>
       <b-row v-if="$auth.user">
@@ -193,17 +198,14 @@
       </b-row>
     </b-container>
     <contactmodal />
-    <loginmodal />
   </b-container>
 </template>
 
 <script>
 import contactmodal from '@/components/contactmodal'
-import loginmodal from '@/components/loginmodal'
 export default {
   components: {
     contactmodal: contactmodal,
-    loginmodal: loginmodal,
   },
   async fetch({ store }) {
     await store.dispatch('getBrandAction')

@@ -1,9 +1,10 @@
 {
   "home": {
-    "desc": "Nel 2010 abbiamo fondato <span class=\"amarenared\">Amarena</span> Pictures, un service di produzione per le nostre regie. Oggi è diventata una casa di produzione tout-court che si basa sulla nostra regia e... sul suo unico <span class=\"amarenared\">sapore</span>."
+    "desc": "Nel 2010 abbiamo fondato <span class=\"amarenared\">Amarena</span> Pictures, un service di produzione per le nostre regie. Oggi è diventata una casa di produzione tout-court che si basa sulla nostra regia e... sul suo unico <span class=\"amarenared\">sapore</span>.",
+    "contactus": "Contattaci"
   },
   "contact": {
-    "title": "SCRIVICI",
+    "title": "CONTATTACI",
     "name": "Nome:",
     "yourname": "Il tuo nome",
     "email": "Mail:",

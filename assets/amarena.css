@@ -35,7 +35,7 @@ a, a:hover {
 /************ body element boxes ************/
 
 .majestic{
-  font-size: 9vw;
+  font-size: 8vw;
   letter-spacing: 0.5vh;
   font-weight: 300;
 }
@@ -51,6 +51,11 @@ a, a:hover {
   max-width: 24vh;
   height: auto;
   max-height: 24vh;
+  vertical-align: -10%;
+}
+.contact {
+  font-size:3vh;
+  text-transform: uppercase;
 }
 .videocard {
   border-color: #FF0033;
