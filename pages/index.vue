@@ -51,12 +51,12 @@
         <b-col cols="12" class="text-center m-0 p-0 mt-2">
           <b-link class="majestic" @click="brandFilter()">
             <span class="amarenared">AMARENA</span>
-            <span>
-              <img :src="require('../assets/amarenasquare.png')" class="logo" />
-            </span>
             <span>PICTURES</span>
           </b-link>
         </b-col>
+      </b-row>
+      <b-row class="m-0 p-0 d-flex justify-content-center">
+        <img :src="require('../assets/amarenasquare.png')" class="logo" />
       </b-row>
       <b-row class="m-0 p-0" @click="brandFilter()">
         <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n4"> </b-col>
