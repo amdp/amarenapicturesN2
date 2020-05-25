@@ -41,7 +41,7 @@
             v-html="$t('home.contactus')"
           ></b-link>
           <b-link class="amarenared" @click="$auth.logout()" v-if="$auth.user">
-            LOGOUT
+            ~ LOGOUT
           </b-link>
         </b-col>
       </b-row>
@@ -110,21 +110,21 @@
                 <b-card-body>
                   <b-card-text>
                     <b-row>
-                      <b-col cols="12" class="mb-2 p-1">
+                      <b-col cols="12" class="mb-1 p-1">
                         <span class="up amarenared videotitle">{{
                           video.title
                         }}</span>
                       </b-col>
                       <b-col
                         cols="12"
-                        class="mb-5 videoabstract"
+                        class="mb-4 videoabstract"
                         v-if="$i18n.locale == 'en'"
                         v-html="video.abstract"
                       >
                       </b-col>
                       <b-col
                         cols="12"
-                        class="mb-5 videoabstract"
+                        class="mb-4 videoabstract"
                         v-if="$i18n.locale == 'it'"
                         v-html="video.abstractit"
                       >

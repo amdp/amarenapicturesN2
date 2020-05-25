@@ -65,12 +65,12 @@ a, a:hover {
   border-width: 0px;
 }
 .videotitle{
-  font-size: 7vh;
+  font-size: 5vh;
   font-weight: 100;
   color: #ff0033;
 }
 .videoabstract{
-  font-size: 3vh;
+  font-size: 2.8vh;
   font-weight: 200;
   text-align: justify;
 }
