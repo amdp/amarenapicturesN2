@@ -35,7 +35,7 @@ a, a:hover {
 /************ body element boxes ************/
 
 .majestic{
-  font-size: 7vw;
+  font-size: 8vw;
   letter-spacing: 0.5vh;
   font-weight: 300;
   line-height: 100%;
@@ -65,7 +65,7 @@ a, a:hover {
   border-width: 0px;
 }
 .videotitle{
-  font-size: 5vh;
+  font-size: 4.5vh;
   font-weight: 100;
   color: #ff0033;
 }
