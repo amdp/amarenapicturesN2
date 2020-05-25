@@ -97,6 +97,15 @@
             :name="video.video"
           >
             <b-row class="p-0 m-0">
+              <b-col md="8">
+                <b-embed
+                  type="video"
+                  :poster="videoImage(video.video)"
+                  controls
+                >
+                  <source :src="amareel(video.video)" type="video/mp4" />
+                </b-embed>
+              </b-col>
               <b-col md="4">
                 <b-card-body>
                   <b-card-text>
@@ -163,15 +172,6 @@
                     </b-row>
                   </b-card-text>
                 </b-card-body>
-              </b-col>
-              <b-col md="8">
-                <b-embed
-                  type="video"
-                  :poster="videoImage(video.video)"
-                  controls
-                >
-                  <source :src="amareel(video.video)" type="video/mp4" />
-                </b-embed>
               </b-col>
             </b-row>
           </b-card>
