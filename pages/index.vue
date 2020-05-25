@@ -21,19 +21,25 @@
       <b-row class="p-0 m-0">
         <b-col cols="12" class="text-center up mb-3">
           <span v-html="$t('footer.main')"></span>
-          <nuxt-link :to="switchLocalePath('en')" v-if="$i18n.locale == 'it'">
+          <nuxt-link :to="switchLocalePath('it')">
             <b-img src="../assets/it.png" width="15px" />
           </nuxt-link>
-          <nuxt-link :to="switchLocalePath('it')" v-if="$i18n.locale == 'en'">
+          <nuxt-link :to="switchLocalePath('en')">
             <b-img src="../assets/uk.png" width="15px" />
           </nuxt-link>
-          -
+          <span>~</span>
           <b-link href="https://www.facebook.com/amarenapictures">
             <img src="~/assets/facebook.svg" width="15px" />
           </b-link>
           <b-link href="https://instagram.com/amarenapictures/">
             <img src="~/assets/instagram.svg" width="15px" />
           </b-link>
+          <span>~</span>
+          <b-link
+            v-b-modal.contactmodal
+            class="amarenared"
+            v-html="$t('home.contactus')"
+          ></b-link>
           <b-link class="amarenared" @click="$auth.logout()" v-if="$auth.user">
             LOGOUT
           </b-link>
@@ -45,15 +51,13 @@
 
     <b-container class="m-0 p-0" fluid>
       <b-row class="p-0 m-0">
-        <b-col cols="12" class="text-center m-0 p-0 mt-2">
+        <b-col cols="12" class="text-center m-0 p-0 mt-0 mb-0">
+          <img :src="require('../assets/amarenahor.png')" class="logo" /><br />
           <b-link class="majestic" @click="brandFilter()">
             <span class="amarenared">AMARENA</span>
-            <span>PICTURES</span>
+            <span>PICTURES</span><br />
           </b-link>
         </b-col>
-      </b-row>
-      <b-row class="m-0 p-0 d-flex justify-content-center">
-        <img :src="require('../assets/amarenasquare.png')" class="logo" />
       </b-row>
       <b-row class="m-0 p-0" @click="brandFilter()">
         <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n4"> </b-col>
@@ -61,24 +65,9 @@
       <b-row class="d-flex justify-content-center px-3 m-0">
         <b-col cols="12" class="quotedline text-center base">
           <em>
-            That's <span class="amarenared">Amarena</span>!<br />
-            <span v-html="$t('home.desc')"></span>
+            <span v-html="$t('home.desc')"></span><br />
+            That's <span class="amarenared">Amarena</span>!<br /><br />
           </em>
-        </b-col>
-      </b-row>
-      <b-row class="d-flex justify-content-center m-0 mt-2 mb-3">
-        <b-col cols="12" class="text-right signature base m-0 mb-1">
-          Giovanni Caloro <span class="amarenared">~</span> Alessandro Merletti
-          De Palo
-        </b-col>
-      </b-row>
-      <b-row class="d-flex justify-content-center m-0 mb-5">
-        <b-col cols="12">
-          <b-link
-            v-b-modal.contactmodal
-            class="amarenared d-flex justify-content-center contact"
-            v-html="$t('home.contactus')"
-          ></b-link>
         </b-col>
       </b-row>
       <b-row v-if="$auth.user">

@@ -35,23 +35,26 @@ a, a:hover {
 /************ body element boxes ************/
 
 .majestic{
-  font-size: 8vw;
+  font-size: 7vw;
   letter-spacing: 0.5vh;
   font-weight: 300;
+  line-height: 100%;
 }
 .quotedline {
   max-width: 40em;
-  font-size: 3vh;
+  font-size: 2.5vh;
+  margin-top: 20px;
 }
 .signature{
   max-width: 40em;
   font-size: 2.5vh;
 }
 .logo {
-  max-width: 24vh;
+  max-width: 30vh;
   height: auto;
-  max-height: 24vh;
-  vertical-align: -10%;
+  max-height: 30vh;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .contact {
   font-size:3vh;
