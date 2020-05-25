@@ -19,8 +19,7 @@
         </b-col>
       </b-row>
       <b-row class="p-0 m-0">
-        <b-col cols="2" class="amarenared text-right pr-2"> </b-col>
-        <b-col cols="8" class="text-center up mb-3">
+        <b-col cols="12" class="text-center up mb-3">
           <span v-html="$t('footer.main')"></span>
           <nuxt-link :to="switchLocalePath('en')" v-if="$i18n.locale == 'it'">
             <b-img src="../assets/it.png" width="15px" />
@@ -35,8 +34,6 @@
           <b-link href="https://instagram.com/amarenapictures/">
             <img src="~/assets/instagram.svg" width="15px" />
           </b-link>
-        </b-col>
-        <b-col cols="2" class="amarenared text-right pr-2">
           <b-link class="amarenared" @click="$auth.logout()" v-if="$auth.user">
             LOGOUT
           </b-link>
