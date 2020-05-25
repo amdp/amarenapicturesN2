@@ -156,7 +156,7 @@ export default {
       //'new' is set for a new brand, if not the edit.id is taken from url to update or copy old ones
       var formBodyRequest = {
         id: this.formid,
-        image: this.formBrandFile.name ? this.formBrandFile.name : this.old.image,
+        image: this.formBrandFile ? this.formBrandFile.name : this.old.image,
         brand: this.formbrand,
         visible: this.formvisible,
         old: this.old
