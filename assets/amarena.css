@@ -111,5 +111,5 @@ a, a:hover {
   animation-delay: 4s;
   animation-name: moveme;
   animation-duration: 15s;
-  animation-timing-function: linear;
+  animation-timing-function: ease-out;
 }
