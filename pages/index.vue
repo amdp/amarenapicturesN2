@@ -3,8 +3,12 @@
     <!-- WE START WITH FOOTER HERE -->
     <b-container class="footcontainer m-0 p-0" fluid>
       <b-row class="p-0 m-0 brandrow">
-        <b-col cols="12" class="d-flex">
-          <div v-for="brand in this.$store.state.brand" :key="brand.id">
+        <b-col cols="12" class="d-flex moveme">
+          <div
+            v-for="brand in this.$store.state.brand"
+            :key="brand.id"
+            style="overflow: visible"
+          >
             <b-link @click="brandFilter(brand.brand)">
               <img :src="brandImage(brand.image)" class="imgbrand" />
             </b-link>
@@ -248,6 +252,5 @@ export default {
     }
   }
 }
-
 </script>
 

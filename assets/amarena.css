@@ -100,3 +100,14 @@ a, a:hover {
 .up{
   text-transform: uppercase;
 }
+
+@keyframes moveme {
+  0%   {right: 0%;}
+  50% {right: 50%;}
+  100% {right: 0px}
+  }
+
+.moveme {
+  animation-name: moveme;
+  animation-duration: 40s;
+}
