@@ -102,11 +102,12 @@ a, a:hover {
 }
 
 @keyframes moveme {
-  0%   {right: 50%;}
+  0%   {right: 0%}
+  50% {right: 20%}
   100% {right: 0%}
   }
 
 .moveme {
   animation-name: moveme;
-  animation-duration: 40s;
+  animation-duration: 2˝0s;
 }
