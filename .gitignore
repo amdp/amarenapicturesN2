@@ -91,7 +91,7 @@ dist
 sw.*
 
 # Images and videos
-/static
-!/static/iubenda.js
-!/static/linkedin.js
+/static/b
+/static/i
+/static/v
 /etc
