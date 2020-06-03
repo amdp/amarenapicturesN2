@@ -1,2 +1,11 @@
-var _iub = _iub || [];
-_iub.csConfiguration = { "consentOnContinuedBrowsing": false, "whitelabel": false, "lang": "it", "siteId": 1907487, "cookiePolicyId": 29600831, "banner": { "acceptButtonDisplay": true, "customizeButtonDisplay": true, "position": "float-bottom-center", "acceptButtonColor": "#ff0033", "acceptButtonCaptionColor": "white", "customizeButtonColor": "#212121", "customizeButtonCaptionColor": "white", "rejectButtonColor": "#010101", "rejectButtonCaptionColor": "white", "textColor": "#010101", "backgroundColor": "#ffffff", "rejectButtonDisplay": true } }
+_linkedin_partner_id = "2225833";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+
+(function () {
+  var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript"; b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);
+})();

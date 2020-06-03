@@ -1,5 +1,12 @@
 <template>
   <b-container class="m-0 p-0" fluid>
+    <img
+      height="1"
+      width="1"
+      style="display:none;"
+      alt=""
+      src="https://px.ads.linkedin.com/collect/?pid=2225833&fmt=gif"
+    />
     <!-- WE START WITH FOOTER HERE -->
     <b-container class="footcontainer m-0 p-0" fluid>
       <b-row class="p-0 m-0 brandrow">
@@ -46,10 +53,10 @@
           ></b-link>
           <b-link
             href="https://www.iubenda.com/privacy-policy/29600831"
-            class="iubenda-white iubenda-embed"
+            class="iubenda-white iubenda-embed amarenared"
             title="Privacy Policy "
           >
-            Privacy Policy
+            ~ PRIVACY POLICY
           </b-link>
           <b-link class="amarenared" @click="$auth.logout()" v-if="$auth.user">
             ~ LOGOUT

@@ -42,10 +42,11 @@ module.exports = {
     : { host: process.env.HOST, port: process.env.PORT },
   head: {
     title: 'Amarena Pictures',
-    //script: [
-    //{ src: '@assets/iubenda.js' },
-    //{ src: 'https://cdn.iubenda.com/cs/iubenda_cs.js' }
-    //],
+    script: [
+      //{ src: '@assets/iubenda.js' },
+      //{ src: 'https://cdn.iubenda.com/cs/iubenda_cs.js' }
+      { src: '@assets/linkedin.js' },
+    ],
     meta: [
       { charset: 'utf-8' },
       {
