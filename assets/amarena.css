@@ -108,7 +108,7 @@ a, a:hover {
   }
 
 .moveme {
-  animation-delay: 4s;
+  animation-delay: 3s;
   animation-name: moveme;
   animation-duration: 15s;
   animation-timing-function: ease-out;

@@ -1,0 +1,2 @@
+var _iub = _iub || [];
+_iub.csConfiguration = { "consentOnContinuedBrowsing": false, "whitelabel": false, "lang": "it", "siteId": 1907487, "cookiePolicyId": 29600831, "banner": { "acceptButtonDisplay": true, "customizeButtonDisplay": true, "position": "float-bottom-center", "acceptButtonColor": "#ff0033", "acceptButtonCaptionColor": "white", "customizeButtonColor": "#212121", "customizeButtonCaptionColor": "white", "rejectButtonColor": "#010101", "rejectButtonCaptionColor": "white", "textColor": "#010101", "backgroundColor": "#ffffff", "rejectButtonDisplay": true } }

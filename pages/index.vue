@@ -44,6 +44,13 @@
             class="amarenared"
             v-html="$t('home.contactus')"
           ></b-link>
+          <b-link
+            href="https://www.iubenda.com/privacy-policy/29600831"
+            class="iubenda-white iubenda-embed"
+            title="Privacy Policy "
+          >
+            Privacy Policy
+          </b-link>
           <b-link class="amarenared" @click="$auth.logout()" v-if="$auth.user">
             ~ LOGOUT
           </b-link>
