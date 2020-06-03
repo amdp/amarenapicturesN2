@@ -92,4 +92,6 @@ sw.*
 
 # Images and videos
 /static
+!/static/iubenda.js
+!/static/linkedin.js
 /etc

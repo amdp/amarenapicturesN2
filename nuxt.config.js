@@ -10,7 +10,7 @@ module.exports = {
   build: {},
   serverMiddleware: ['./api'],
   css: ['@assets/amarena.css'],
-  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-i18n', ['@nuxtjs/google-analytics', { id: 'UA-53354338-1' }], ['nuxt-linkedin-pixel-module', { partnerId: 'LINKEDIN_PIXEL_ID', disabled: false }],],
+  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-i18n', ['@nuxtjs/google-analytics', { id: 'UA-53354338-1' }],],
   loading: {
     color: '#FF0033',
     failedColor: 'black',
@@ -43,9 +43,9 @@ module.exports = {
   head: {
     title: 'Amarena Pictures',
     script: [
-      //{ src: '@assets/iubenda.js' },
-      //{ src: 'https://cdn.iubenda.com/cs/iubenda_cs.js' }
-      { src: '@assets/linkedin.js' },
+      { src: 'iubenda.js' },
+      { src: 'https://cdn.iubenda.com/cs/iubenda_cs.js' },
+      { src: 'linkedin.js' },
     ],
     meta: [
       { charset: 'utf-8' },
