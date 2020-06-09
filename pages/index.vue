@@ -16,9 +16,13 @@
         <b-col cols="1"></b-col>
       </b-row>
     </b-container>
-    <b-container v-if="thatsamarena" class="p-0 m-0 thatsamarena" fluid>
+    <b-container class="p-0 m-0 thatsamarena" fluid>
       <video autoplay muted>
-        <source src="~/assets/thatsamarena.mp4" type="video/mp4" />
+        <source
+          v-if="thatsamarena"
+          src="~/assets/thatsamarena.mp4"
+          type="video/mp4"
+        />
       </video>
     </b-container>
 
