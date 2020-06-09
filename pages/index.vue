@@ -219,7 +219,6 @@ export default {
     }
   },
   created() {
-    console.log(' ' + JSON.stringify(this.$store.state.video))
     this.brandhere = this.$store.state.video.filter(video => video.visible == 1)
   },
   methods: {
