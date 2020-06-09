@@ -16,7 +16,7 @@
         <b-col cols="1"></b-col>
       </b-row>
     </b-container>
-    <b-container class="p-0 m-0 thatsamarena" fluid>
+    <b-container v-if="thatsamarena" class="p-0 m-0 thatsamarena" fluid>
       <video autoplay muted>
         <source src="~/assets/thatsamarena.mp4" type="video/mp4" />
       </video>
@@ -224,7 +224,11 @@ export default {
     return {
       brandhere: [],
       showvideo: null,
+      thatsamarena: false,
     }
+  },
+  mounted() {
+    this.thatsamarena = true
   },
   created() {
     this.brandhere = this.$store.state.video.filter(video => video.visible == 1)
