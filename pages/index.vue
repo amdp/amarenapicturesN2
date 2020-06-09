@@ -60,9 +60,16 @@
           >
             <b-row class="p-0 m-0">
               <b-col md="8">
+                <img
+                  v-if="showvideo != video.video"
+                  :src="videoImage(video.video)"
+                  @click="amareel(video.video)"
+                  class="pointer imgvideo"
+                />
                 <b-embed
+                  v-if="showvideo == video.video"
                   type="video"
-                  :poster="videoImage(video.video)"
+                  autoplay
                   controls
                 >
                   <source :src="amareel(video.video)" type="video/mp4" />
@@ -216,6 +223,7 @@ export default {
   data() {
     return {
       brandhere: [],
+      showvideo: null,
     }
   },
   created() {
@@ -231,6 +239,7 @@ export default {
     },
     amareel(videoname) {
       try {
+        this.showvideo = videoname
         return '/v/' + videoname + '.mp4'
       } catch (e) {
         return '../assets/thatsamarena.mp4'

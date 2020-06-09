@@ -86,13 +86,13 @@ a, a:hover {
 .desc{
   font-size: 200%;
 }
-.cardcard{
-  background-color: white;
-}
 .logo {
   max-width: 30%;
   max-height: 30%;
   height: auto;
+}
+.cardcard{
+  background-color: white;
 }
 .contact {
   font-size:3vh;
@@ -102,6 +102,9 @@ a, a:hover {
   border-color: #FF0033;
   border-width: 0px;
   opacity: 100%;
+}
+.imgvideo{
+  width: 64.5vw;
 }
 .videotitle{
   font-size: 7vh;
@@ -166,4 +169,5 @@ a, a:hover {
 @media only screen and (max-width: 600px) {
   .thatsamarena { top: 230px;}
   .main {height: 200vw;}
+  .imgvideo {width: 92vw}
 }

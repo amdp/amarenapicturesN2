@@ -16,6 +16,9 @@
         <b-link href="https://instagram.com/amarenapictures/">
           <img src="~/assets/instagram.svg" width="15px" />
         </b-link>
+        <b-link href="https://www.linkedin.com/company/amarena-pictures">
+          <img src="~/assets/linkedin.svg" width="15px" />
+        </b-link>
         <span>~</span>
         <nuxt-link
           to="/contact"
