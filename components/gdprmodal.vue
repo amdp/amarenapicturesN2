@@ -35,9 +35,11 @@ export default {
     }
   },
   created() {
+    console.log(' ' + JSON.stringify(this.$ga))
     if (this.$ga) {
       this.gdprgo = false
     }
+
   },
   methods: {
     accept() {
