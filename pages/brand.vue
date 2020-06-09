@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container class="p-0 m-0 mb-5">
     <h2 class="text-center my-4">BRAND EDIT/UPLOAD</h2>
     <p class="d-flex justify-content-center">
       <nuxt-link to="/video" class="amarenared">

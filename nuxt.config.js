@@ -43,8 +43,6 @@ module.exports = {
   head: {
     title: 'Amarena Pictures',
     script: [
-      { src: 'iubenda.js' },
-      { src: 'https://cdn.iubenda.com/cs/iubenda_cs.js' },
       //{ src: 'linkedin.js' },
     ],
     meta: [
@@ -78,6 +76,7 @@ module.exports = {
       }
     }
   },
+  plugins: [],
   auth: {
     strategies: {
       local: {

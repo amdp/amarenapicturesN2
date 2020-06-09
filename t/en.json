@@ -1,6 +1,7 @@
 {
   "home": {
-    "desc": "We provide an unique integrated blend of <span class=\"amarenared\">production</span> and film <span class=\"amarenared\">direction</span>.",
+    "head": "Production and Film Direction.<br><span class=\"amarenared\">Integrated.</span>",
+    "desc": "<span class=\"amarenared\">Amarena</span> Pictures merges <span class=\"amarenared\">film direction</span> and <span class=\"amarenared\">production</span> into a unique creative experience.",
     "contactus": "Contact us"
   },
   "contact": {

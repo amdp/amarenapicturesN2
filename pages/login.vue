@@ -46,7 +46,8 @@
               >CHANGE PASSWORD</b-button
             ><br />
             If you still have problems, please
-            <b-link v-b-modal.contactmodal class="amarenared">contact us</b-link
+            <nuxt-link to="./contact" class="amarenared">
+              contact us </nuxt-link
             >.
           </p>
         </b-form>

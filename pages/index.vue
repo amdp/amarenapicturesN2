@@ -1,95 +1,38 @@
-<template>
+  <template>
   <b-container class="m-0 p-0" fluid>
-    <img
-      height="1"
-      width="1"
-      style="display:none;"
-      alt=""
-      src="https://px.ads.linkedin.com/collect/?pid=2225833&fmt=gif"
-    />
-    <!-- WE START WITH FOOTER HERE -->
-    <b-container class="footcontainer m-0 p-0" fluid>
-      <b-row class="p-0 m-0 brandrow">
-        <b-col cols="12" class="d-flex moveme">
-          <div
-            v-for="brand in this.$store.state.brand"
-            :key="brand.id"
-            style="overflow: visible"
-          >
-            <b-link @click="brandFilter(brand.brand)">
-              <img :src="brandImage(brand.image)" class="imgbrand" />
-            </b-link>
-            <b-link
-              class="amarenared pointer"
-              @click="editbrand(brand)"
-              v-if="$auth.user"
-            >
-              EDIT
-            </b-link>
-          </div>
+    <b-container class="m-0 p-0 pt-3 main fademe" fluid>
+      <b-row class="p-0 m-0 mb-5">
+        <b-col cols="12" class="m-0 p-0 pt-3 majestic">
+          <nuxt-link to="/">
+            <span class="amarenared">AMARENA</span> PICTURES
+          </nuxt-link>
         </b-col>
       </b-row>
       <b-row class="p-0 m-0">
-        <b-col cols="12" class="text-center up mb-3">
-          <span v-html="$t('footer.main')"></span>
-          <nuxt-link :to="switchLocalePath('it')">
-            <b-img src="../assets/it.png" width="15px" />
-          </nuxt-link>
-          <nuxt-link :to="switchLocalePath('en')">
-            <b-img src="../assets/uk.png" width="15px" />
-          </nuxt-link>
-          <span>~</span>
-          <b-link href="https://www.facebook.com/amarenapictures">
-            <img src="~/assets/facebook.svg" width="15px" />
-          </b-link>
-          <b-link href="https://instagram.com/amarenapictures/">
-            <img src="~/assets/instagram.svg" width="15px" />
-          </b-link>
-          <span>~</span>
-          <b-link
-            v-b-modal.contactmodal
-            class="amarenared"
-            v-html="$t('home.contactus')"
-          ></b-link>
-          <b-link
-            href="https://www.iubenda.com/privacy-policy/29600831"
-            class="iubenda-white iubenda-embed amarenared"
-            title="Privacy Policy "
-          >
-            ~ PRIVACY POLICY
-          </b-link>
-          <b-link class="amarenared" @click="$auth.logout()" v-if="$auth.user">
-            ~ LOGOUT
-          </b-link>
+        <b-col cols="1"></b-col>
+        <b-col cols="10" class="text-center weprovide p-0 m-0 mt-5">
+          <span v-html="$t('home.head')"></span>
         </b-col>
+        <b-col cols="1"></b-col>
       </b-row>
     </b-container>
+    <b-container class="p-0 m-0 thatsamarena" fluid>
+      <video autoplay muted>
+        <source src="/v/thatsamarena.mp4" type="video/mp4" />
+      </video>
+    </b-container>
 
-    <!-- MAIN -->
-
-    <b-container class="m-0 p-0" fluid>
-      <b-row class="p-0 m-0">
-        <b-col cols="12" class="text-center m-0 p-0 mt-0 mb-0">
-          <img :src="require('../assets/amarenahor.png')" class="logo" /><br />
-          <b-link class="majestic" @click="brandFilter()">
-            <span class="amarenared">AMARENA</span>
-            <span>PICTURES</span><br />
-          </b-link>
+    <b-container class="m-0 p-0 videos" fluid>
+      <!-- INTRO -->
+      <b-row class="p-0 m-0 mb-2">
+        <b-col cols="12" class="p-2 m-0 text-center desc">
+          <span v-html="$t('home.desc')"></span><br />
+          <b-img src="/amarenasquare.png" class="logo m-0 p-0" />
         </b-col>
       </b-row>
-      <b-row class="m-0 p-0" @click="brandFilter()">
-        <b-col cols="12 d-flex justify-content-center m-0 p-0 mt-n4"> </b-col>
-      </b-row>
-      <b-row class="d-flex justify-content-center px-3 m-0">
-        <b-col cols="12" class="quotedline text-center base">
-          <em>
-            <span v-html="$t('home.desc')"></span><br />
-            That's <span class="amarenared">Amarena</span>!<br /><br />
-          </em>
-        </b-col>
-      </b-row>
-      <b-row v-if="$auth.user">
-        <b-col cols="12" class="text-center">
+      <!-- AUTH -->
+      <b-row class="p-0 m-0 mb-2" v-if="$auth.user">
+        <b-col cols="12" class="text-center videoabstract">
           <p class="up">
             WELCOME {{ $auth.user.name }} {{ $auth.user.surname }} <br />
             <br />
@@ -104,6 +47,7 @@
           </p>
         </b-col>
       </b-row>
+      <!-- VIDEOS -->
       <b-row class="p-0 m-0">
         <b-col cols="12" class="p-0 m-0">
           <b-card
@@ -147,28 +91,28 @@
                         v-html="video.abstractit"
                       >
                       </b-col>
-                      <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                      <b-col cols="4" class="mb-2 p-0 pr-1 videospecstype">
                         <span class="up amarenared">Client</span>
                       </b-col>
-                      <b-col cols="9" class="mb-2 p-0 videospecs">
+                      <b-col cols="8" class="mb-2 p-0 videospecs">
                         {{ video.brand }}
                       </b-col>
-                      <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                      <b-col cols="4" class="mb-2 p-0 pr-1 videospecstype">
                         <span class="up amarenared">Agency</span>
                       </b-col>
-                      <b-col cols="9" class="mb-2 p-0 videospecs">
+                      <b-col cols="8" class="mb-2 p-0 videospecs">
                         {{ video.agency }}
                       </b-col>
-                      <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                      <b-col cols="4" class="mb-2 p-0 pr-1 videospecstype">
                         <span class="up amarenared">Production</span>
                       </b-col>
-                      <b-col cols="9" class="mb-2 p-0 videospecs">
+                      <b-col cols="8" class="mb-2 p-0 videospecs">
                         {{ video.production }}
                       </b-col>
-                      <b-col cols="3" class="mb-2 p-0 pr-1 videospecstype">
+                      <b-col cols="4" class="mb-2 p-0 pr-1 videospecstype">
                         <span class="up amarenared">Direction</span>
                       </b-col>
-                      <b-col cols="9" class="mb-2 p-0 videospecs">
+                      <b-col cols="8" class="mb-2 p-0 videospecs">
                         {{ video.direction }}
                       </b-col>
                       <b-col
@@ -201,19 +145,73 @@
         </b-col>
       </b-row>
     </b-container>
-    <contactmodal />
+    <!-- BRAND ROW -->
+    <b-container class="footcontainer m-0 p-0" fluid>
+      <b-row class="p-0 m-0 brandrow">
+        <b-col cols="12" class="d-flex moveme">
+          <div
+            v-for="brand in this.$store.state.brand"
+            :key="brand.id"
+            style="overflow: visible"
+          >
+            <b-link
+              @click="brandFilter(brand.brand)"
+              :href="'#' + brandhere[0].video"
+            >
+              <img :src="brandImage(brand.image)" class="imgbrand" />
+            </b-link>
+            <b-link
+              class="amarenared pointer"
+              @click="editbrand(brand)"
+              v-if="$auth.user"
+            >
+              EDIT
+            </b-link>
+          </div>
+        </b-col>
+      </b-row>
+      <!-- KEEP THIS FOR NOW -->
+      <b-row class="p-0 m-0">
+        <b-col cols="12" class="text-center up mb-3">
+          <span v-html="$t('footer.main')"></span>
+          <nuxt-link :to="switchLocalePath('it')">
+            <b-img src="../assets/it.png" width="15px" />
+          </nuxt-link>
+          <nuxt-link :to="switchLocalePath('en')">
+            <b-img src="../assets/uk.png" width="15px" />
+          </nuxt-link>
+          <span>~</span>
+          <b-link href="https://www.facebook.com/amarenapictures">
+            <img src="~/assets/facebook.svg" width="15px" />
+          </b-link>
+          <b-link href="https://instagram.com/amarenapictures/">
+            <img src="~/assets/instagram.svg" width="15px" />
+          </b-link>
+          <span>~</span>
+          <nuxt-link
+            to="/contact"
+            class="amarenared"
+            v-html="$t('home.contactus')"
+          ></nuxt-link>
+          <nuxt-link to="/terms" class="amarenared">
+            ~ Cookie, Privacy and Terms
+          </nuxt-link>
+          <b-link class="amarenared" @click="$auth.logout()" v-if="$auth.user">
+            ~ LOGOUT
+          </b-link>
+        </b-col>
+      </b-row>
+    </b-container>
   </b-container>
 </template>
 
+<!-- https://bootstrap-vue.org/docs/components/pagination -->
+
 <script>
-import contactmodal from '@/components/contactmodal'
 export default {
-  components: {
-    contactmodal: contactmodal,
-  },
   async fetch({ store }) {
-    await store.dispatch('getBrandAction')
     await store.dispatch('getVideoAction')
+    await store.dispatch('getBrandAction')
   },
   data() {
     return {
@@ -221,7 +219,8 @@ export default {
     }
   },
   created() {
-    this.brandhere = this.$store.state.video
+    console.log(' ' + JSON.stringify(this.$store.state.video))
+    this.brandhere = this.$store.state.video.filter(video => video.visible == 1)
   },
   methods: {
     videoImage(imagename) {
@@ -238,6 +237,13 @@ export default {
         return '/v/thatsamarena.mp4'
       }
     },
+    editvideo(video) {
+      this.$store.commit('setEdit', video)
+      return this.$router.push({ path: '/video' })
+    },
+    tag(video) {
+      location.href = process.env.URLHOME + '#' + video.video
+    },
     brandImage(brandname) {
       try {
         return '/b/' + brandname
@@ -251,20 +257,11 @@ export default {
       } else {
         this.brandhere = this.$store.state.video
       }
-
-    },
-    editvideo(video) {
-      this.$store.commit('setEdit', video)
-      return this.$router.push({ path: '/video' })
     },
     editbrand(brand) {
       this.$store.commit('setEdit', brand)
       return this.$router.push({ path: '/brand' })
-    },
-    tag(video) {
-      location.href = process.env.URLHOME + '#' + video.video
     }
   }
 }
-</script>
-
+</script> 

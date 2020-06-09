@@ -1,12 +1,12 @@
 <template>
-  <b-container>
+  <b-container class="p-0 m-0 mb-5">
     <h2 class="text-center my-4">VIDEO EDIT/UPLOAD</h2>
     <p class="d-flex justify-content-center">
       <nuxt-link to="/brand" class="amarenared">
         ADD A NEW BRAND INSTEAD
       </nuxt-link>
     </p>
-    <b-row>
+    <b-row class="p-0 m-0 mb-5">
       <b-col cols="2"></b-col>
       <b-col cols="8">
         <b-form @submit.prevent="videoForm()" class="mt-3 was-validated">
@@ -214,8 +214,12 @@
       </b-col>
       <b-col cols="2"></b-col>
     </b-row>
-    <b-container class="my-4">
-      <b-row v-for="video in $store.state.video" :key="video.id">
+    <b-container class="p-0 m-0 mb-5">
+      <b-row
+        v-for="video in $store.state.video"
+        :key="video.id"
+        class="p-0 m-0 mb-5"
+      >
         <b-col cols="1">{{ video.id }}</b-col>
         <b-col cols="2">{{ video.video }}</b-col>
         <b-col cols="2">{{ video.title }}</b-col>

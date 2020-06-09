@@ -7,7 +7,7 @@
 body {
   font-family: 'Oswald', sans-serif;
   color: black;
-  background-color: #ffffff;
+  background-color: white;
   font-size: 14px;
   overflow-x: hidden;
   margin: 0px;
@@ -23,9 +23,11 @@ a, a:hover {
   color: #ff0033;
 }
 .whiteback {
-  background-color: #ffffff;
+  background-color: white;
 }
-
+.up{
+  text-transform: uppercase;
+}
 .base{
   letter-spacing: 0px;
 }
@@ -33,28 +35,62 @@ a, a:hover {
   cursor: pointer;
 }
 /************ body element boxes ************/
-
+.whitehead{
+  background-color: white;
+  padding-top: 50px !important;
+}
 .majestic{
-  font-size: 8vw;
-  letter-spacing: 0.5vh;
+  letter-spacing: 1.5vw;
+  font-size: 7vw;
   font-weight: 300;
   line-height: 100%;
+  text-align-last: justify;
 }
-.quotedline {
-  max-width: 40em;
-  font-size: 2.5vh;
-  margin-top: 20px;
+.main{
+  padding-left: 12vw !important;
+  padding-right: 12vw !important;
+  background-color: white;
+  backface-visibility: hidden;
+  height: 50vw;
+  top: 0px;
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
 }
-.signature{
-  max-width: 40em;
-  font-size: 2.5vh;
+.gdpr {
+  z-index: 99;
+  bottom: 0;
+  position: fixed;
+  background-color: white;
+}
+.videos {
+  position: relative;
+  z-index: 2;
+}
+.thatsamarena{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+.headerlinks{
+  max-width: 50em;
+  font-size: 150%;
+  vertical-align: middle;
+}
+.weprovide{
+  font-size: 4vw;
+}
+.desc{
+  font-size: 200%;
+}
+.cardcard{
+  background-color: white;
 }
 .logo {
-  max-width: 30vh;
+  max-width: 30%;
+  max-height: 30%;
   height: auto;
-  max-height: 30vh;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 .contact {
   font-size:3vh;
@@ -63,29 +99,30 @@ a, a:hover {
 .videocard {
   border-color: #FF0033;
   border-width: 0px;
+  opacity: 100%;
 }
 .videotitle{
-  font-size: 4.5vh;
+  font-size: 7vh;
   font-weight: 100;
   color: #ff0033;
 }
 .videoabstract{
-  font-size: 2.8vh;
+  font-size: 4vh;
   font-weight: 200;
   text-align: justify;
 }
 .videospecstype{
-  font-size: 2.2vh;
+  font-size: 2.5vh;
   font-weight: 200;
   text-align: right;
 }
 .videospecs{
-  font-size: 2.2vh;
+  font-size: 2.5vh;
   font-weight: 200;
   text-align: left;
 }
 .footcontainer {
-  background-color: #ffffff;
+  background-color: white;
   position: fixed;
   bottom: 0px;
   z-index: 30;
@@ -97,19 +134,29 @@ a, a:hover {
 .imgbrand {
   max-height: 9vh;
 }
-.up{
-  text-transform: uppercase;
-}
-
-@keyframes moveme {
-  0%   {right: 0%}
-  50% {right: 20%}
-  100% {right: 0%}
-  }
-
 .moveme {
   animation-delay: 3s;
   animation-name: moveme;
   animation-duration: 15s;
   animation-timing-function: ease-out;
+}
+@keyframes moveme {
+  0%   {right: 0%}
+  50% {right: 20%}
+  100% {right: 0%}
+}
+.fademe {
+  animation-name: fademe;
+  animation-delay: 2s;
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+}
+@keyframes fademe {
+  0%   {opacity: 100%;}
+  100% {opacity: 0%;}
+}
+
+@media only screen and (max-width: 600px) {
+  .thatsamarena { top: 230px;}
+  .main {height: 200vw;}
 }
