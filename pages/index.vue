@@ -18,7 +18,7 @@
     </b-container>
     <b-container class="p-0 m-0 thatsamarena" fluid>
       <video autoplay muted>
-        <source src="/v/thatsamarena.mp4" type="video/mp4" />
+        <source src="~/assets/thatsamarena.mp4" type="video/mp4" />
       </video>
     </b-container>
 
@@ -27,7 +27,7 @@
       <b-row class="p-0 m-0 mb-2">
         <b-col cols="12" class="p-2 m-0 text-center desc">
           <span v-html="$t('home.desc')"></span><br />
-          <b-img src="/amarenasquare.png" class="logo m-0 p-0" />
+          <b-img src="~/assets/amarenasquare.png" class="logo m-0 p-0" />
         </b-col>
       </b-row>
       <!-- AUTH -->
@@ -234,7 +234,7 @@ export default {
       try {
         return '/v/' + videoname + '.mp4'
       } catch (e) {
-        return '/v/thatsamarena.mp4'
+        return '../assets/thatsamarena.mp4'
       }
     },
     editvideo(video) {
