@@ -171,7 +171,7 @@ a, a:hover {
 }
 
 @media only screen and (max-width: 600px) {
-  .thatsamarena { top: 230px;}
+  .thatsamarena { top: 280px;}
   .main {height: 200vw;}
   .imgvideo {width: 92vw}
 }
