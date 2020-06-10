@@ -32,7 +32,7 @@
     <b-container class="m-0 p-0 videos" fluid>
       <!-- INTRO -->
       <b-row class="p-0 m-0 mb-2">
-        <b-col cols="12" class="p-2 m-0 text-center desc">
+        <b-col cols="12" class="p-4 m-4 text-center desc">
           <span v-html="$t('home.desc')"></span><br />
           <!-- <b-img src="~/assets/amarenasquare.png" class="logo m-0 p-0" /> -->
         </b-col>
