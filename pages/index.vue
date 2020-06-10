@@ -79,11 +79,7 @@
                   autoplay
                   controls
                 >
-                  <source
-                    v-if="showvideo == video.video"
-                    :src="amareel(video.video)"
-                    type="video/mp4"
-                  />
+                  <source :src="amareel(video.video)" type="video/mp4" />
                 </b-embed>
               </b-col>
               <b-col md="4">
