@@ -74,7 +74,7 @@ a, a:hover {
   z-index: 2;
 }
 .fademe-enter-active{
-  transition: all 3s 1s ease;
+  transition: all 5s ease;
 }
 .fademe-enter{
   opacity: 0;
@@ -107,7 +107,7 @@ a, a:hover {
   font-size: 4vw;
 }
 .desc{
-  font-size: 200%;
+  font-size: 180%;
 }
 .logo {
   max-width: 30%;
@@ -171,7 +171,7 @@ a, a:hover {
 }
 
 @media only screen and (max-width: 600px) {
-  .thatsamarena { top: 280px;}
+  .thatsamarena { top: 290px;}
   .main {height: 200vw;}
   .imgvideo {width: 92vw}
 }

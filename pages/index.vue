@@ -22,7 +22,7 @@
       </b-row>
       <b-row class="p-0 m-0">
         <b-col cols="1"></b-col>
-        <b-col cols="10" class="text-center weprovide p-0 m-0 mt-5">
+        <b-col cols="10" class="text-center weprovide p-0 m-0 mt-4">
           <span v-html="$t('home.head')"></span>
         </b-col>
         <b-col cols="1"></b-col>
