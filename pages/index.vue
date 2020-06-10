@@ -70,13 +70,12 @@
                 <!-- <img
                   v-if="showvideo != video.video"                  
                   class="pointer imgvideo"
+                  @click="amareel(video.video)"
                   v-if="showvideo == video.video"
                 /> -->
                 <b-embed
                   type="video"
                   :poster="videoImage(video.video)"
-                  @click="amareel(video.video)"
-                  autoplay
                   controls
                 >
                   <source :src="amareel(video.video)" type="video/mp4" />
