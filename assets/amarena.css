@@ -74,7 +74,7 @@ a, a:hover {
   z-index: 2;
 }
 .fademe-enter-active{
-  transition: all 3s 2s ease;
+  transition: all 3s 1s ease;
 }
 .fademe-enter{
   opacity: 0;
@@ -131,7 +131,7 @@ a, a:hover {
   color: #ff0033;
 }
 .videoabstract{
-  font-size: 4vh;
+  font-size: 3.5vh;
   font-weight: 200;
   text-align: justify;
 }
