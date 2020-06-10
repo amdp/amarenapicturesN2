@@ -216,7 +216,7 @@
     </b-row>
     <b-container class="p-0 m-0 mb-5">
       <b-row
-        v-for="video in $store.state.video"
+        v-for="video in $store.state.videoall"
         :key="video.id"
         class="p-0 m-0 mb-5"
       >
@@ -251,7 +251,7 @@ export default {
   },
   async fetch({ store, params }) {
     await store.dispatch('getBrandAction')
-    await store.dispatch('getVideoAction')
+    await store.dispatch('getVideoAllAction')
   },
   mounted() {
     console.log('edit: ' + JSON.stringify(this.$store.state.edit))

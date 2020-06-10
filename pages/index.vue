@@ -1,6 +1,18 @@
   <template>
   <b-container class="m-0 p-0" fluid>
-    <b-container class="m-0 p-0 pt-3 main fademe" fluid>
+    <b-container class="p-0 m-0 " fluid>
+      <transition name="fademe">
+        <video v-if="show" autoplay muted class="thatsamarena">
+          <source
+            v-if="thatsamarena"
+            src="~/assets/thatsamarena.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </transition>
+    </b-container>
+
+    <b-container class="m-0 p-0 pt-3 main" fluid>
       <b-row class="p-0 m-0 mb-5">
         <b-col cols="12" class="m-0 p-0 pt-3 majestic">
           <nuxt-link to="/">
@@ -15,15 +27,6 @@
         </b-col>
         <b-col cols="1"></b-col>
       </b-row>
-    </b-container>
-    <b-container class="p-0 m-0 thatsamarena" fluid>
-      <video autoplay muted>
-        <source
-          v-if="thatsamarena"
-          src="~/assets/thatsamarena.mp4"
-          type="video/mp4"
-        />
-      </video>
     </b-container>
 
     <b-container class="m-0 p-0 videos" fluid>
@@ -76,7 +79,11 @@
                   autoplay
                   controls
                 >
-                  <source :src="amareel(video.video)" type="video/mp4" />
+                  <source
+                    v-if="showvideo == video.video"
+                    :src="amareel(video.video)"
+                    type="video/mp4"
+                  />
                 </b-embed>
               </b-col>
               <b-col md="4">
@@ -229,13 +236,15 @@ export default {
       brandhere: [],
       showvideo: null,
       thatsamarena: false,
+      show: false,
     }
   },
   mounted() {
     this.thatsamarena = true
+    this.show = true
   },
   created() {
-    this.brandhere = this.$store.state.video.filter(video => video.visible == 1)
+    this.brandhere = this.$store.state.video
   },
   methods: {
     videoImage(imagename) {

@@ -30,13 +30,25 @@ app.get('/video', async (req, res, next) => {
     let query = 'SELECT * FROM `amareel`'
     let param = []
 
-    // if (req.query.videoid) {
-    //   query += ' WHERE `id`=? LIMIT 1'
-    //   param = [req.query.videoid]
-    // } else {
-    //   query += ' WHERE `visible` = ? ORDER BY `id` DESC'
-    //   param = ['1']
-    // }
+    if (req.query.videoid) {
+      query += ' WHERE `id`=? LIMIT 1'
+      param = [req.query.videoid]
+    } else {
+      query += ' WHERE `visible` = ? ORDER BY `id` DESC'
+      param = ['1']
+    }
+    const [rows] = await mypool.execute(query, param)
+    res.status(200).send(rows)
+  } catch (err) {
+    next(err)
+  }
+})
+
+app.get('/videoall', async (req, res, next) => {
+  try {
+    let query = 'SELECT * FROM `amareel`'
+    let param = []
+
     const [rows] = await mypool.execute(query, param)
     res.status(200).send(rows)
   } catch (err) {

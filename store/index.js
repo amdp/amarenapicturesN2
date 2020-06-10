@@ -1,5 +1,6 @@
 export const state = () => ({
   video: [],
+  videoall: [],
   brand: [],
   edit: false
 })
@@ -8,6 +9,9 @@ export const getters = {}
 
 export const mutations = {
   setVideo: (state, payload) => {
+    state.video = payload
+  },
+  setVideoAll: (state, payload) => {
     state.video = payload
   },
   setBrand: (state, payload) => {
@@ -26,6 +30,10 @@ export const actions = {
   getVideoAction: async function (context) {
     let { data } = await this.$axios.get(process.env.DBURL + '/video')
     context.commit('setVideo', data)
+  },
+  getVideoAllAction: async function (context) {
+    let { data } = await this.$axios.get(process.env.DBURL + '/videoall')
+    context.commit('setVideoAll', data)
   },
   videoFormAction: async function (context, payload) {
     let { data } = await this.$axios.post(process.env.DBURL + '/video', payload)
