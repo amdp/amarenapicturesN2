@@ -1,17 +1,5 @@
   <template>
   <b-container class="m-0 p-0" fluid>
-    <b-container class="p-0 m-0 " fluid>
-      <transition name="fademe">
-        <video v-if="show" autoplay muted class="thatsamarena">
-          <source
-            v-if="thatsamarena"
-            src="~/assets/thatsamarena.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </transition>
-    </b-container>
-
     <b-container class="m-0 p-0 pt-3 main" fluid>
       <b-row class="p-0 m-0 mb-5">
         <b-col cols="12" class="m-0 p-0 pt-3 majestic">
@@ -28,17 +16,22 @@
         <b-col cols="1"></b-col>
       </b-row>
     </b-container>
+    <b-container class="m-0 p-0 thatsamarena fadeinout" fluid>
+      <video autoplay muted>
+        <source src="~/assets/thatsamarena.mp4" type="video/mp4" />
+      </video>
+    </b-container>
 
     <b-container class="m-0 p-0 videos" fluid>
       <!-- INTRO -->
-      <b-row class="p-0 m-0 mb-2">
-        <b-col cols="12" class="p-4 m-0 mb-4 text-center desc">
+      <b-row class="p-0 m-0 mb-5">
+        <b-col cols="12" class="px-4 m-0 text-center desc">
           <span v-html="$t('home.desc')"></span><br />
           <!-- <b-img src="~/assets/amarenasquare.png" class="logo m-0 p-0" /> -->
         </b-col>
       </b-row>
       <!-- AUTH -->
-      <b-row class="p-0 m-0 mb-2" v-if="$auth.user">
+      <b-row class="p-0 m-0 mx-5" v-if="$auth.user">
         <b-col cols="12" class="text-center videoabstract">
           <p class="up">
             WELCOME {{ $auth.user.name }} {{ $auth.user.surname }} <br />
@@ -67,15 +60,16 @@
           >
             <b-row class="p-0 m-0">
               <b-col md="8">
-                <!-- <img
-                  v-if="showvideo != video.video"                  
+                <img
+                  v-if="showvideo != video.video"
                   class="pointer imgvideo"
                   @click="amareel(video.video)"
-                  v-if="showvideo == video.video"
-                /> -->
+                  :src="videoImage(video.video)"
+                />
                 <b-embed
+                  v-if="showvideo == video.video"
                   type="video"
-                  :poster="videoImage(video.video)"
+                  autoplay
                   controls
                 >
                   <source :src="amareel(video.video)" type="video/mp4" />

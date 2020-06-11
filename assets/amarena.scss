@@ -49,10 +49,9 @@ a, a:hover {
   padding-left: 12vw !important;
   padding-right: 12vw !important;
   background-color: white;
-  height: 50vw;
+  position: absolute;
   top: 0px;
-  position: relative;
-  z-index: 2;
+  height: 600px;
 }
 .gdpr {
   z-index: 99;
@@ -66,32 +65,19 @@ a, a:hover {
   0%   {opacity: 0;}
   100% {opacity: 100;}
 }
+.fadeinout{
+  animation: fadeinout 4s forwards;
+}
+@keyframes fadeinout {
+  0%   {opacity: 0;}
+  15% {opacity: 0;}
+  100% {opacity: 100;}
+}
 .thatsamarena{
   position: absolute;
   top: 0px;
-  left: 0px;
-  z-index: 1;
-}
-.fademe-enter-active{
-  transition: all 5s ease;
-}
-.fademe-enter{
   opacity: 0;
-}
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
-.videos {
-  position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 .headerlinks{
   max-width: 50em;
@@ -112,6 +98,10 @@ a, a:hover {
 .contact {
   font-size:3vh;
   text-transform: uppercase;
+}
+.videos{
+  position: absolute;
+  top: 650px;
 }
 .videocard {
   border-color: #FF0033;
@@ -166,7 +156,7 @@ a, a:hover {
 }
 
 @media only screen and (max-width: 600px) {
-  .thatsamarena { top: 290px;}
-  .main {height: 200vw;}
   .imgvideo {width: 92vw}
+  .thatsamarena {top: 240px}
+  .videos {top: 500px;}
 }
