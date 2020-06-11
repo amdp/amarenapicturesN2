@@ -15,7 +15,8 @@
     "message": "Message:",
     "yourmessage": "Please enter your message here...",
     "send": "Send",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "checkbox": "With this checkbox you authorize the treatment of your personal data. Please read our terms and privacy policy following the link on our footer."
   },
   "footer": {
     "main": "<span class=\"amarenared\">Amarena</span> Pictures S.r.l. ~ <span class=\"amarenared\">Milano</span> ~ <span class=\"amarenared\">Roma</span> ~ W E <span class=\"amarenared\"> &hearts; </span> D I V E R S I T Y ~ "

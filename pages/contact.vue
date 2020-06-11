@@ -92,7 +92,13 @@
               @click="cancel()"
               v-html="$t('contact.cancel')"
             >
-            </b-button>
+            </b-button
+            ><br /><br />
+            <b-check id="termscheckbox" name="termscheckbox" required>
+              <span class="diversity">
+                <i v-html="$t('contact.checkbox')"> </i>
+              </span>
+            </b-check>
             <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <div v-if="response.length" v-html="response"></div>
           </b-col>
