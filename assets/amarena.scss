@@ -6,6 +6,7 @@
 }
 body {
   color: black;
+  font-family: 'Oswald', sans-serif;
   background-color: white;
   font-size: 14px;
   overflow-x: hidden;
@@ -54,24 +55,19 @@ a, a:hover {
   height: 600px;
 }
 .gdpr {
-  z-index: 99;
-  bottom: 0;
-  position: fixed;
   background-color: white;
-  opacity: 0;
-  animation: 2s gdpr 2s;
 }
 @keyframes gdpr {
   0%   {opacity: 0;}
   100% {opacity: 100;}
 }
 .fadeinout{
-  animation: fadeinout 4s forwards;
+  animation: fadeinout 5s forwards;
 }
 @keyframes fadeinout {
   0%   {opacity: 0;}
   15% {opacity: 0;}
-  100% {opacity: 100;}
+  100% {opacity: 90;}
 }
 .thatsamarena{
   position: absolute;

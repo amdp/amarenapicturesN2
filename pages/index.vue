@@ -155,6 +155,7 @@
     <!-- BRAND ROW -->
     <b-container class="footcontainer m-0 p-0" fluid>
       <b-row class="p-0 m-0 brandrow">
+        <b-col cols="12" class="text-center up mb-3"> </b-col>
         <b-col cols="12" class="d-flex moveme">
           <div
             v-for="brand in this.$store.state.brand"
@@ -199,7 +200,8 @@
             to="/contact"
             class="amarenared"
             v-html="$t('home.contactus')"
-          ></nuxt-link>
+          >
+          </nuxt-link>
           <nuxt-link to="/terms" class="amarenared">
             ~ Cookie, Privacy and Terms
           </nuxt-link>
