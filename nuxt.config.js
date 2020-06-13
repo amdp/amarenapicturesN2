@@ -53,6 +53,19 @@ module.exports = {
   },
   plugins: [
   ],
+  head: {
+    meta: [
+      { charset: 'utf-8' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      { hid: 'description', name: 'description', content: pkg.description },
+      { property: 'og:desc', content: 'That\'s Amarena! Founded by directors Alessandro Merletti De Palo and Giovanni Caloro, Amarena Pictures combines the art of film direction with solid, cutting-edge production.' },
+      { property: 'og:title', content: 'Amarena Pictures' },
+      { property: 'og:image', content: '@assets/amarenasquare.png' },
+    ],
+  },
   auth: {
     strategies: {
       local: {
