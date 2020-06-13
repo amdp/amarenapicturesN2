@@ -4,7 +4,7 @@ var cookiesPolicy = {
   popupTitleFontSize: "18px",
   popupTextFontSize: "11px",
   colorOfButton: "#FF0033",
-  cookieGeneral: "blog.alessandrostella.it",
+  cookieGeneral: "amarenapictures.com",
   cookieCheckPref: "preferences",
   cookieCheckStat: "statistics",
   cookieCheckMark: "marketing",
