@@ -66,6 +66,13 @@ module.exports = {
       { property: 'og:image', content: '@assets/amarenasquare.png' },
     ],
   },
+  render: {
+    bundleRenderer: {
+      shouldPreload: (file, type) => {
+        return ['script', 'style', 'font'].includes(type)
+      }
+    }
+  },
   auth: {
     strategies: {
       local: {
