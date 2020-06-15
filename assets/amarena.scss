@@ -7,6 +7,7 @@
 body {
   color: black;
   font-family: 'Oswald', sans-serif;
+  font-weight: 300;
   background-color: white;
   font-size: 14px;
   overflow-x: hidden;
@@ -117,12 +118,12 @@ a, a:hover {
   text-align: justify;
 }
 .videospecstype{
-  font-size: 2.5vh;
+  font-size: 3vh;
   font-weight: 200;
   text-align: right;
 }
 .videospecs{
-  font-size: 2.5vh;
+  font-size: 3vh;
   font-weight: 200;
   text-align: left;
 }
@@ -155,4 +156,9 @@ a, a:hover {
   .imgvideo {width: 92vw}
   .thatsamarena {top: 240px}
   .videos {top: 500px;}
+  .videotitle{ font-size: 5vh; }
+  .videoabstract{ font-size: 4vh; }
+  .videospecstype{ font-size: 2.5vh; }
+  .videospecs{ font-size: 2.5vh;}
+  .majestic{ font-size: 5vh; letter-spacing: 0px; }
 }
