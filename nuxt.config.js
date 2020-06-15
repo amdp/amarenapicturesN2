@@ -66,31 +66,6 @@ module.exports = {
       { property: 'og:image', content: '@assets/amarenasquare.png' },
     ],
     title: 'Amarena Pictures',
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com/', crossorigin: 'anonymous', },
-      {
-        rel: 'preload',
-        href:
-          'https://fonts.gstatic.com/s/oswald/v31/TK3_WkUHHAIjg75cFRf3bXL8LICs13FvsUhiYySUhiCXABTV.woff',
-        as: 'font',
-        crossorigin: 'anonymous',
-      },
-      {
-        rel: 'preload',
-        href:
-          'https://fonts.gstatic.com/s/oswald/v31/TK3_WkUHHAIjg75cFRf3bXL8LICs169vsUhiYySUhiCXABTV.woff',
-        as: 'font',
-        crossorigin: 'anonymous',
-      },
-    ],
-  },
-  render: {
-    bundleRenderer: {
-      shouldPreload: (file, type) => {
-        return ['script', 'style', 'font'].includes(type)
-      }
-    }
   },
   auth: {
     strategies: {
