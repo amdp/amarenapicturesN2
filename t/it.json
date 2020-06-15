@@ -16,7 +16,7 @@
     "yourmessage": "Scrivi pure il tuo messaggio qui...",
     "send": "Invia",
     "cancel": "Cancella",
-    "checkox": "Con questo checkbox autorizzi il trattamento dei dati personali. Leggi l’informativa privacy sul nostro footer."
+    "checbox": "Con questo checkbox autorizzi il trattamento dei dati personali. Leggi l’informativa privacy sul nostro footer."
   },
   "footer": {
     "main": "<span class=\"amarenared\">Amarena</span> Pictures S.r.l. ~ <span class=\"amarenared\">Milano</span> ~ <span class=\"amarenared\">Roma</span> ~ WE <span class=\"amarenared\"> &hearts; </span> D I V E R S I T Y ~ "
