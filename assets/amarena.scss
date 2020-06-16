@@ -66,6 +66,7 @@ a, a:hover {
   opacity: 0;
   z-index: 2;
   animation: fadeinout 5s forwards;
+  max-width: 1500px;
 }
 @keyframes fadeinout {
   0%   {opacity: 0;}
@@ -153,7 +154,7 @@ a, a:hover {
 
 @media only screen and (max-width: 600px) {
   .imgvideo {width: 92vw}
-  .thatsamarena {top: 280px}
+  .thatsamarena {top: 240px}
   .videos {top: 500px;}
   .videotitle{ font-size: 5vh; }
   .videoabstract{ font-size: 4vh; }
