@@ -53,31 +53,34 @@
               size="sm"
             ></b-form-input>
           </b-form-group>
+
           <b-form-group
             label-for="brandFileInput"
             label="Brand image upload:"
             description="The brand image"
+            v-if="old"
           >
             <b-form-file
               id="brandFileInput"
               v-model="formBrandFile"
               ref="formBrandFile"
-              v-if="old"
             ></b-form-file>
           </b-form-group>
+
           <b-form-group
             label-for="brandFileInput"
             label="Brand image upload:"
             description="The brand image"
+            v-if="!old"
           >
             <b-form-file
               id="brandFileInput"
               v-model="formBrandFile"
               ref="formBrandFile"
-              v-if="!old"
               required
             ></b-form-file>
           </b-form-group>
+
           <b-form-group
             label-for="visibleInput"
             label="Visible?"
@@ -93,6 +96,7 @@
               <option value="0">0</option>
             </b-form-select>
           </b-form-group>
+
           <b-button type="submit" class="btn btn-block mt-3 mb-3 gray border-0">
             <span v-if="!editing">GO!</span>
             <b-spinner small v-if="editing" class="m-1"></b-spinner>

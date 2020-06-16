@@ -59,6 +59,7 @@
               size="sm"
             ></b-form-file>
           </b-form-group>
+
           <b-form-group
             label-for="imageFileInput"
             label="Image upload:"
@@ -254,6 +255,7 @@ export default {
     await store.dispatch('getVideoAllAction')
   },
   mounted() {
+    console.log('mounted ' + JSON.stringify(this.$store.state.videoall))
     console.log('edit: ' + JSON.stringify(this.$store.state.edit))
   },
   data() {

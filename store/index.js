@@ -12,7 +12,7 @@ export const mutations = {
     state.video = payload
   },
   setVideoAll: (state, payload) => {
-    state.video = payload
+    state.videoall = payload
   },
   setBrand: (state, payload) => {
     state.brand = payload
