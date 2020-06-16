@@ -1,11 +1,14 @@
   <template>
   <b-container class="m-0 p-0" fluid>
     <b-container class="m-0 p-0 pt-3 main" fluid>
-      <b-row class="p-0 m-0 mb-5">
-        <b-col cols="12" class="m-0 p-0 pt-3 majestic text-center">
+      <b-row class="p-0 m-0 pt-3 mb-5">
+        <b-col cols="12" class="m-0 p-0 majestic text-center">
           <nuxt-link to="/"
-            ><span class="amarenared">AMARENA</span> PICTURES
-          </nuxt-link>
+            ><span class="amarenared">AMARENA</span> PICTURE<span
+              class="noletterspacing"
+              >S</span
+            ></nuxt-link
+          >
         </b-col>
       </b-row>
       <b-row class="p-0 m-0">

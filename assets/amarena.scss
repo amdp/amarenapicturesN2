@@ -60,13 +60,6 @@ a, a:hover {
   top: 0px;
   height: 600px;
 }
-.gdpr {
-  background-color: white;
-}
-@keyframes gdpr {
-  0%   {opacity: 0;}
-  100% {opacity: 100;}
-}
 .thatsamarena{
   position: absolute;
   top: 0px;
@@ -78,6 +71,9 @@ a, a:hover {
   0%   {opacity: 0;}
   15% {opacity: 0;}
   100% {opacity: 90;}
+}
+.noletterspacing{
+  letter-spacing: 0vh;
 }
 .headerlinks{
   max-width: 50em;
@@ -111,7 +107,7 @@ a, a:hover {
   width: 64.5vw;
 }
 .videotitle{
-  font-size: 7vh;
+  font-size: 6.5vh;
   font-family: 'oswald200';
   color: #ff0033;
 }
