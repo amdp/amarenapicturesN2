@@ -10,7 +10,7 @@ module.exports = {
   build: {},
   serverMiddleware: ['./api'],
   css: ['@assets/amarena.scss'],
-  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-i18n'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-i18n', ['@nuxtjs/google-analytics', { id: 'UA-53354338-1' }],],
   loading: {
     color: '#FF0033',
     failedColor: 'black',
