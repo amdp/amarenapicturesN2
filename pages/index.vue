@@ -1,26 +1,8 @@
   <template>
   <b-container class="m-0 p-0" fluid>
-    <b-container class="m-0 p-0 pt-3 main" fluid>
-      <b-row class="p-0 m-0 pt-3 mb-5">
-        <b-col cols="12" class="m-0 p-0 majestic text-center">
-          <nuxt-link to="/"
-            ><span class="amarenared">AMARENA</span> PICTURE<span
-              class="noletterspacing"
-              >S</span
-            ></nuxt-link
-          >
-        </b-col>
-      </b-row>
-      <b-row class="p-0 m-0">
-        <b-col cols="12" class="text-center weprovide p-0 m-0 px-2 mt-3">
-          <span v-html="$t('home.head')"></span>
-        </b-col>
-      </b-row>
-    </b-container>
-
-    <b-container class="m-0 p-0 videos" fluid>
+    <b-container class="m-0 mt-3 p-0" fluid>
       <!-- INTRO -->
-      <b-row class="p-0 m-0 mb-5">
+      <b-row class="p-0 m-0 my-5">
         <b-col cols="12" class="px-4 m-0 text-center desc">
           <span v-html="$t('home.desc')"></span><br />
           <!-- <b-img src="~/assets/amarenasquare.png" class="logo m-0 p-0" /> -->
@@ -55,7 +37,7 @@
             :name="video.video"
           >
             <b-row class="p-0 m-0">
-              <b-col md="8" class="p-0 m-0 text-left">
+              <b-col md="7" class="p-0 m-0 text-left">
                 <img
                   v-if="showvideo != video.video"
                   class="pointer imgvideo"
@@ -71,7 +53,7 @@
                   <source :src="amareel(video.video)" type="video/mp4" />
                 </b-embed>
               </b-col>
-              <b-col md="4">
+              <b-col md="5">
                 <b-card-body>
                   <b-card-text>
                     <b-row>

@@ -30,6 +30,9 @@ a, a:hover {
 .amarenared {
   color: #ff0033;
 }
+.mobile {
+  padding: 0px;
+}
 .whiteback {
   background-color: white;
 }
@@ -58,19 +61,32 @@ a, a:hover {
   background-color: white;
   position: absolute;
   top: 0px;
-  height: 600px;
+  left: 0px;
+}
+.mobile{
+  padding: 0px
+}
+.z-1{
+  z-index: 1;
+}
+.z-2{
+  z-index: 2;
+}
+.z-3{
+  z-index: 2;
+}
+.o-0{
+  opacity: 0;
 }
 .thatsamarena{
   position: absolute;
   top: 0px;
   opacity: 0;
-  z-index: 2;
   animation: fadeinout 5s forwards;
   max-width: 100%;
 }
 #thatsamarenavideo{
   width: 100%;
-  height: inherit;
 }
 @keyframes fadeinout {
   0%   {opacity: 0;}
@@ -100,16 +116,12 @@ a, a:hover {
   font-size:3vh;
   text-transform: uppercase;
 }
-.videos{
-  position: absolute;
-  top: 650px;
-}
 .videocard {
   border-color: #FF0033;
   border-width: 0px;
 }
 .imgvideo{
-  width: 64.5vw;
+  width: 100%;
 }
 .videotitle{
   font-size: 6vh;
@@ -156,15 +168,13 @@ a, a:hover {
   max-height: 9vh;
 }
 
-@media only screen and (max-width: 600px) {
-  .imgvideo {width: 92vw}
-  .thatsamarena {top: 240px}
-  .videos {top: 500px;}
+@media only screen and (max-width: 900px) {
+  .mobile{position: absolute; top: 500px;}
   .videotitle{ font-size: 5vh; }
   .videoabstract{ font-size: 4vh; }
   .videospecstype{ font-size: 2.5vh; }
   .videospecs{ font-size: 2.5vh;}
   .majestic{ font-size: 4.5vh; letter-spacing: 0.6vw;}
   .weprovide{ font-size: 3vh; }
-  .thatsamarena{animation: none; opacity: 100;}
+  .thatsamarena{animation: none; opacity: 100; top: 300px;}
 }

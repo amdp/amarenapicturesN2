@@ -1,5 +1,5 @@
 <template>
-  <b-container class="m-0 p-0 thatsamarena" fluid>
+  <b-container class="m-0 p-0" fluid>
     <video
       autoplay
       muted
