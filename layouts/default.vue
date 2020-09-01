@@ -1,19 +1,23 @@
 <template>
   <b-container class="m-0 p-0" fluid>
-    <img
-      height="1"
-      width="1"
-      style="display:none;"
-      alt=""
-      src="https://px.ads.linkedin.com/collect/?pid=2225833&fmt=gif"
-    />
-    <nuxt class="m-0 p-0" />
-    <foot />
+    <b-container class="m-0 p-0" fluid><thatsamarena /></b-container>
+    <b-container class="m-0 p-0" fluid>
+      <img
+        height="1"
+        width="1"
+        style="display: none;"
+        alt=""
+        src="https://px.ads.linkedin.com/collect/?pid=2225833&fmt=gif"
+      />
+      <nuxt class="m-0 p-0" />
+      <foot />
+    </b-container>
   </b-container>
 </template>
 
 <script>
 import foot from '@/components/foot'
+import thatsamarena from '@/components/thatsamarena'
 export default {
   head() {
     return {
@@ -26,6 +30,7 @@ export default {
   },
   components: {
     foot: foot,
+    thatsamarena: thatsamarena,
   }
 }
 </script>

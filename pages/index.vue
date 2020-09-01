@@ -17,17 +17,6 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-container class="m-0 p-0 thatsamarena" fluid>
-      <video
-        autoplay
-        muted
-        playsinline
-        id="thatsamarenavideo"
-        name="thatsamarenavideo"
-      >
-        <source src="~/assets/thatsamarena.mp4" type="video/mp4" />
-      </video>
-    </b-container>
 
     <b-container class="m-0 p-0 videos" fluid>
       <!-- INTRO -->
@@ -61,12 +50,12 @@
             no-body
             v-for="video in brandhere"
             :key="video.id"
-            class="text-center videocard"
+            class="text-center videocard p-0 m-0"
             :id="video.video"
             :name="video.video"
           >
             <b-row class="p-0 m-0">
-              <b-col md="8">
+              <b-col md="8" class="p-0 m-0 text-left">
                 <img
                   v-if="showvideo != video.video"
                   class="pointer imgvideo"
@@ -167,7 +156,7 @@
           <div
             v-for="brand in this.$store.state.brand"
             :key="brand.id"
-            style="overflow: visible"
+            style="overflow: visible;"
           >
             <b-link
               @click="brandFilter(brand.brand)"
