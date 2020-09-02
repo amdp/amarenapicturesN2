@@ -18,13 +18,11 @@
         <mainamarena />
       </b-container>
       <nuxt class="m-0 p-0 mobile" />
-      <foot />
     </b-container>
   </b-container>
 </template>
 
 <script>
-import foot from '@/components/foot'
 import thatsamarena from '@/components/thatsamarena'
 import mainamarena from '@/components/mainamarena'
 export default {
@@ -38,7 +36,6 @@ export default {
     }
   },
   components: {
-    foot: foot,
     thatsamarena: thatsamarena,
     mainamarena: mainamarena,
   }
