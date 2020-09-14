@@ -5,12 +5,11 @@ import path from 'path'
 import en from './t/en.json'
 import it from './t/it.json'
 module.exports = {
-  mode: 'universal',
   plugins: [],
   build: {},
   serverMiddleware: ['./api'],
   css: ['@assets/amarena.scss'],
-  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-i18n', ['@nuxtjs/google-analytics', { id: 'UA-53354338-1' }],],
+  modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-i18n',],
   loading: {
     color: '#FF0033',
     failedColor: 'black',
@@ -72,7 +71,7 @@ module.exports = {
       local: {
         endpoints: {
           login: {
-            url: '/login',
+            url: '/cms/login',
             method: 'post',
             propertyName: 'token.accessToken'
           },

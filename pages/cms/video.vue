@@ -2,7 +2,7 @@
   <b-container class="p-0 m-0 mb-5">
     <h2 class="text-center my-4">VIDEO EDIT/UPLOAD</h2>
     <p class="d-flex justify-content-center">
-      <nuxt-link to="/brand" class="amarenared">
+      <nuxt-link to="/cms/brand" class="amarenared">
         ADD A NEW BRAND INSTEAD
       </nuxt-link>
     </p>
@@ -135,8 +135,9 @@
                 v-for="brand in $store.state.brand"
                 :key="brand.id"
                 :value="brand.brand"
-                >{{ brand.brand }}</option
               >
+                {{ brand.brand }}
+              </option>
             </b-form-select>
           </b-form-group>
           <b-form-group
@@ -300,7 +301,8 @@ export default {
     async videoForm() {
       if (this.formVideoFile && this.formImageFile) {
         if (this.formVideoFile.name.slice(0, -4) != this.formImageFile.name.slice(0, -4)) {
-          return alert('The video filename and image filename differ, please upload the two files with the same name and of course .mp4 for the video and .jpg for the image, thanks.')        }
+          return alert('The video filename and image filename differ, please upload the two files with the same name and of course .mp4 for the video and .jpg for the image, thanks.')
+        }
       }
       this.editing = true
       // This function creates and sends database request body both for video creation and update
@@ -366,7 +368,7 @@ export default {
         if (res == 'OK') {
           location.href = '/'
         } else {
-          location.href = '/video'
+          location.href = '/cms/video'
         }
       }, 1200)
     },
@@ -400,7 +402,7 @@ export default {
     },
     async deletevideo(video) {
       await this.$store.dispatch('deleteVideoAction', video)
-      location.href = '/video'
+      location.href = '/cms/video'
     },
   }
 }

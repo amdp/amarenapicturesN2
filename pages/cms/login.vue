@@ -42,12 +42,11 @@
             <em>new password</em> in the above fields
             <b-button
               class="btn bhunderstanding white btn-block border-0"
-              @click="recover"
+              @click="recover()"
               >CHANGE PASSWORD</b-button
             ><br />
             If you still have problems, please
-            <nuxt-link to="./contact" class="amarenared">
-              contact us </nuxt-link
+            <nuxt-link to="./contact" class="amarenared"> contact us </nuxt-link
             >.
           </p>
         </b-form>
@@ -98,5 +97,5 @@ export default {
       )
     },
   }
-} //<b-modal id="loginmodal" title="LOGIN" hide-footer v-if="!$auth.user">
+}
 </script>

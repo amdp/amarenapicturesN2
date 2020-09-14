@@ -1,8 +1,6 @@
 <template>
   <div>
-    <p class="subheading up">
-      Changing and setting up your new password...
-    </p>
+    <p class="subheading up">Changing and setting up your new password...</p>
   </div>
 </template>
 

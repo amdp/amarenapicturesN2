@@ -1,14 +1,27 @@
 <template>
-  <b-container class="m-0 p-0 whitehead" fluid>
+  <b-container class="m-0 p-0 bwhite" fluid>
+    <b-container class="m-0 p-0 h80" fluid> </b-container>
     <b-row class="m-0 p-0">
-      <b-col cols="3"></b-col>
-      <b-col cols="6">
+      <b-col cols-md="3" cols="1"></b-col>
+      <b-col cols-md="6" cols="10">
         <b-row class="m-0 p-0">
-          <b-col cols="12">
+          <b-col cols="12" class="text-center">
             <p
-              class="amarenared videotitle text-center"
+              class="amarenared t32 text-center"
               v-html="$t('contact.title')"
             ></p>
+          </b-col>
+          <b-col cols="12" class="text-center mb-4">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d972.0218834613598!2d9.18570921715865!3d45.477562708529106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f60832cb0bec7%3A0x1f11bd4215a2736f!2sAmarena%20Pictures!5e1!3m2!1sen!2sit!4v1599490193062!5m2!1sen!2sit"
+              width="100%"
+              height="300"
+              frameborder="0"
+              style="border: 0"
+              allowfullscreen=""
+              aria-hidden="false"
+              tabindex="0"
+            ></iframe>
           </b-col>
         </b-row>
 
@@ -81,14 +94,14 @@
             </b-form>
             <b-button
               size="sm"
-              class="amarenared whiteback"
+              class="amarenared bwhite"
               @click="sendMail()"
               v-html="$t('contact.send')"
             >
             </b-button>
             <b-button
               size="sm"
-              class="amarenared whiteback"
+              class="amarenared bwhite"
               @click="cancel()"
               v-html="$t('contact.cancel')"
             >
@@ -104,14 +117,20 @@
           </b-col>
         </b-row>
       </b-col>
-      <b-col cols="3"></b-col>
+      <b-col cols-md="3" cols="1"></b-col>
     </b-row>
+    <b-container class="h80"></b-container>
+    <b-container class="h80"></b-container>
   </b-container>
 </template>
 
 <script>
 import VueRecaptcha from 'vue-recaptcha'
 export default {
+  async fetch({ store }) {
+    await store.dispatch('getVideoAction')
+    await store.dispatch('getBrandAction')
+  },
   data() {
     return {
       formName: '',
@@ -124,7 +143,7 @@ export default {
     }
   },
   components: {
-    VueRecaptcha
+    VueRecaptcha,
   },
   methods: {
     submit() {

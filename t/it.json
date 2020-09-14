@@ -5,7 +5,7 @@
     "contactus": "Contattaci"
   },
   "contact": {
-    "title": "CONTATTACI",
+    "title": "CONTACT",
     "name": "Nome:",
     "yourname": "Il tuo nome",
     "email": "Mail:",
@@ -18,7 +18,47 @@
     "cancel": "Cancella",
     "checkbox": "Con questo checkbox autorizzi il trattamento dei dati personali. Leggi l’informativa privacy sul nostro footer."
   },
+  "about": {
+    "title": "ABOUT",
+    "main1": "Amarena Pictures è una casa di produzione con regia integrata.",
+    "main2": "Nasce nel 2011 distinguendosi per adattività e tempi rapidissimi a fronte di un'efficacia e una qualità di alto livello. Corrispondendo alle esigenze video di top clients e delle migliori agenzie pubblicitarie, realizza spot pubblicitari -con declinazioni diverse, come branded content, VR o videogames- che vanno on air in tv, sul web, sui social, su canali di comunicazione interna o corporate.",
+    "main3": "\"Amarena rappresenta quel gusto unico fatto di un lato human e uno estetico, che si sente in tutti i contenuti che produciamo. Questo deriva proprio dal nostro amore per ciò che è umano: anche quando filmiamo gli anelli di Bulgari o un'Alfa Romeo, si percepisce nelle immagini la presenza di una componente comune a tutti noi; si sente la relazione con la storia di chi ha creato il    prodotto e di chi lo sceglie: oggi il prodotto stesso non è di per sé più importante del desiderio, della storia e della scelta del consumatore\"",
+    "main4": "Abbiamo collaborato, tra gli altri, con FCA, Coca-Cola, Netflix, Lavazza, Bulgari, Tim, Mercedes, Mazda, Procter & Gamble, Beiersdorf, Istituto Superiore di Sanità, Ministero della Salute e Presidenza del Consiglio.",
+    "main6": "Alessandro Merletti De Palo e Giovanni Caloro sono due registi che hanno scelto di trasformare la preparazione, il set e la post produzione in un unico percorso piacevole, creativo, non meccanico o focalizzato solo sul profitto.",
+    "main5": "Il nostro obiettivo: unire precisione, qualità e prontezza, mantenendo un clima piacevole, artistico e disteso dal rapporto B2B al set.",
+    "main7": "Grazie all'apporto di tutte le nostre professionalità coinvolte e dei nostri producers, gli \"amarena guys\", siamo sempre presenti, disponibili, friendly... col desiderio di diventare impeccabili.",
+    "main8": "Con Amarena tutto è realizzabile con cura e precisione, in un mood piacevole e intelligente.",
+    "main9": "THAT'S AMARENA!"
+  },
+  "team": {
+    "title": "TEAM",
+    "amdp1": "🍒👨🌈 Alessandro Merletti De Palo:",
+    "amdp2": "Regista e ricercatore scientifico, fonda Amarena Pictures insieme a Giovanni Caloro.",
+    "amdp3": "💗 Crede sempre molto nel potenziale delle persone che lo circondano e, come Amarena Pictures, ama la diversità non solo di genere o di orientamento sessuale ma anche di mindset, classe sociale e di credenze. 🎬 Dopo diversi documentari e un mediometraggio, fa la sua unica assistenza alla regia con Spike Lee su uno spot, il che lo introduce nella regia pubblicitaria. 🧠 Sul fronte scientifico presenta una sua tesi sulla Cooperation Science in diverse conferenze internazionali tra cui due Collective Intelligence Conference tenute dall’MIT: una in Silicon Valley e l'altra alla NYU Stern School of Business.",
+    "amdp4": "❌ Il suo amore per la creatività e la diversità è così forte che... guai fargli rifare una cosa uguale o ripetergli gli stessi concetti più volte! Rischiosissimo! 😂",
+    "amdp5": "💬 Il suo motto è: 'Si Tu Bene Es Ego Quidem Valeo'",
+    "gio1": "🍒👨🌈 Giovanni Caloro:",
+    "gio2": "🖖 Inventore del detto 'non è un paese per Giovan(n)i', nasce a Roma nel 1981. Regista, avant-gardener fonda Amarena Pictures insieme ad Alessandro Merletti De Palo.",
+    "gio3": "🎬 Vj e musicista durante il periodo universitario (tesi in storia del teatro, su 'La Raffigurazione dell’Inferno nel Teatro Medievale'), affascinato dall’interazione fra musica e immagini, si accosta alla regia girando videoclip, videodanza, videoarte. Ascolta, con pochissime eccezioni, solo musica prodotta fino 1995, ama le serie tv, David Lynch, David Fincher e Stanley Kubrick. In casa ha solo 2 dvd, autografati dai registi: Velluto Blu e Matrix.",
+    "gio4": "❌ Se siete in conferenza con lui, non è timido, ha solo lasciato spento il microfono! 😂",
+    "gio5": "💬 Il suo motto: 'Danzi mai con il diavolo nel pallido plenilunio?'",
+    "nina1": "🍒👩🏼🌈 Nina Gurgoglione:",
+    "nina2": "'Mom' Producer, la chiamiamo 'la mamma': attenta a tutto e meticolosa organizzatrice multitasking.",
+    "nina3": "🎓 Si è laureata in 'CIMO', corso di Laurea Magistrale, presso l’Università Cattolica del Sacro Cuore a pieni voti. L’overseas alla UCLA di Los Angeles, la sua passione per il cinema e la sua esperienza presso una grande agenzia creativa, però, l’hanno portata ad appassionarsi alla pubblicità e a identificare al meglio il proprio settore.",
+    "nina4": "❌ Anche se appare molto cortese con tutti, non bisogna mai scherzare col fuoco, poiché è  altrettanto austera nell’evidenziare deadline, incongruenze e soprattutto quando in ufficio va ricomprata la birra (eh, sapete, il venerdì sera…). 😂",
+    "nina5": "💬 Il suo motto: 'Ricordati che devi morire'",
+    "ari1": "🍒👩🏻🌈 Arianna Giri:",
+    "ari2": " 🎥 Junior Producer & New Business. Dinamica, solare, decisa, tatuata. Giovanissima furbissima. La riconoscete subito. Ha inoltre lavorato nelle redazioni di Sky TG24 e Le Iene (gruppo Mediaset), consolidando nel pratico le proprie conoscenze di settore.",
+    "ari3": "🍾 Le sue spiccate doti di PR non lasciano scampo a nessuno: un secondo prima sei con lei in ufficio e il secondo dopo ti ritrovi a fare aperitivo con il pass per un privée in tasca e il drink in mano. 🔝 Attiva ed estremamente puntuale nell’organizzazione di produzione, riesce a destreggiarsi abilmente tra le chiamate ai fornitori e i rapporti con le agenzie e i clienti. Se volete rompere il ghiaccio con facilità e immediatezza (e qualche spritz in più), lei è il contatto che fa al caso vostro.",
+    "ari4": "❌ Nonostante il suo fisichetto attenzione⚠️: non mangia cibi sani, pesce, verdure ma solo hamburger, patatine, nutella... le sue amate 'schifezze'! 😂",
+    "ari5": "💬 Il suo motto: 'Vivere con ambizione per raggiungere i propri sogni'",
+    "ste1": "🍒👨🏻🌈 Stefano Brandoni:",
+    "ste2": "Business and Marketing Strategist",
+    "ste3": "📚 Arrivato a Milano per completare i suoi studi in Marketing e Comunicazione presso l’Università Cattolica del Sacro Cuore, non rinnega mai il suo attaccamento ai tortellini, anche se l’ombra della Madunina lo ha ormai catturato. 📈 Si occupa di curare le attività digital di Amarena Pictures e di trasformarle in opportunità di networking. Anche questi post sui social network sono opera sua, perciò, qualora non vi piacessero, sapete con chi prendervela 😀",
+    "ste4": "❌ Odia il contatto fisico peggio dei giapponesi. Se siete in cerca di un abbraccio evitatelo, non fa al caso vostro (ma ci stiamo lavorando…). Stranamente però, basta parlargli di soldi e vi accoglierà a braccia aperte! 🤗",
+    "ste5": "💬 Il suo motto: 'Volere significa far sorgere i paradossi'."
+  },
   "footer": {
-    "main": "<span class=\"amarenared\">Amarena</span> Pictures S.r.l. ~ <span class=\"amarenared\">Milano</span> ~ <span class=\"amarenared\">Roma</span> ~ WE <span class=\"amarenared\"> &hearts; </span> <span class=\"diversity\">DIVERSITY~</span> "
+    "main": "<span class=\"amarenared\">Amarena</span> Pictures S.r.l. ~ <span class=\"amarenared\">Milano</span> ~ <span class=\"amarenared\">Roma</span> ~ WE <span class=\"amarenared\"> &hearts; </span> <span class=\"diversity\">DIVERSITY</span> "
   }
 }

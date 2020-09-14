@@ -1,10 +1,11 @@
 <template>
-  <b-container class="m-0 p-0 whitehead" fluid>
+  <b-container class="m-0 p-0 bwhite" fluid>
+    <b-container class="m-0 p-0 h80" fluid> </b-container>
     <b-row class="p-0 m-0">
       <b-col cols="12" class="text-center m-0 p-0 mt-0 mb-0">
         <div class="container d-flex justify-content-center">
           <p>
-            <span class="videotitle"
+            <span class="t32 amarenared"
               >COOKIE AND PRIVACY POLICY, TERMS AND CONDITIONS</span
             ><br /><br />
             Informazioni di contatto del Titolare
@@ -378,8 +379,18 @@
             >
           </p>
         </div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <b-container class="h80"></b-container>
+        <b-container class="h80"></b-container>
       </b-col>
     </b-row>
   </b-container>
 </template>
+
+<script>
+export default {
+  async fetch({ store }) {
+    await store.dispatch('getVideoAction')
+    await store.dispatch('getBrandAction')
+  },
+}
+</script>

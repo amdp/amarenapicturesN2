@@ -5,7 +5,7 @@
     "contactus": "Contact us"
   },
   "contact": {
-    "title": "CONTACT US",
+    "title": "CONTACT",
     "name": "Name:",
     "yourname": "Your name",
     "email": "Mail:",
@@ -18,7 +18,47 @@
     "cancel": "Cancel",
     "checkbox": "With this checkbox you authorize the treatment of your personal data. Please read our terms and privacy policy following the link on our footer."
   },
+  "about": {
+    "title": "ABOUT",
+    "main1": "Amarena Pictures is a production and direction company.",
+    "main2": "It was born in 2011, distinguishing itself for its adaptivity and its ability to work quickly while maintaining effectiveness and high quality. We create different genre advertising films such as branded content, VR, or even videogames that have been broadcasted on TV, web, social media and internal or corporate communication channels. It is our pride to meet our clients and advertising agencies needs.",
+    "main3": "<i>\"Amarena Pictures represents that unique taste made of a human side and an aesthetic research that is felt in all the contents we produce. This derives precisely from our love for what is ‘human’: even when we film Bulgari rings or an Alfa Romeo we still give a human touch in the moving images style: today the product itself is not more important than the desire, the history, and the choice of the consumer.\"</i>",
+    "main4": "We have been working with top brands like FCA, Coca-Cola, Netflix, Lavazza, Bulgari, Tim, Mercedes, Mazda, Procter & Gamble, Beiersdorf, Istituto Superiore di Sanità, Ministry of Health, and Presidency of the Council of the Ministers.",
+    "main5": "Alessandro Merletti De Palo and Giovanni Caloro are two directors who have chosen to transform the pre-production, the set, and the post-production into a single pleasant, creative, non-mechanical path.",
+    "main6": "Our goal is to combine precision, quality, promptness and maintaining at the same time a pleasant, artistic, and relaxed atmosphere from the B2B relationship during production.",
+    "main7": "Thanks to the contribution of all the professionals involved and our producers – the \"amarena guys\" – we are always ready, available, and friendly ...with the constant intention to become impeccable.",
+    "main8": "With Amarena, everything can be done with care and precision, in a caring and intelligent mood.",
+    "main9": "THAT'S AMARENA!"
+  },
+  "team": {
+    "title": "TEAM",
+    "amdp1": "🍒👨🌈 Alessandro Merletti De Palo:",
+    "amdp2": "Director and scientific researcher,founder of Amarena Pictures together with Giovanni Caloro.",
+    "amdp3": "💗 He strongly believes in the potential of the people around him and, like Amarena Pictures, he loves diversity, not only of gender or sexual orientation but also of mindset, social class, and beliefs. 🎬 After several documentaries and a medium-length film, he's for his only time Spike Lee's assistanr director in shooting a commercial film. This experience introduces him in the commercial film direction world. 🧠 On the scientific side, he presented his Cooperation Science thesis at several international conferences including two Collective Intelligence Conferences held by MIT: in Silicon Valley and at the NYU Stern School of Business.",
+    "amdp4": "❌ His love for creativity and diversity is so strong that he hates to repeat activities and concepts several times. Don’t ask him to repeat! Very risky! 😂",
+    "amdp5": "💬 His motto: 'Si Tu Bene Es Ego Quidem Valeo'",
+    "gio1": "🍒👨🌈 Giovanni Caloro:",
+    "gio2": "🖖 He was born in Rome in 1981. Director, avant-gardener founder of Amarena Pictures together with Alessandro Merletti De Palo.",
+    "gio3": "🎬 Vj and musician during his college days (thesis in theatre history, on 'The Representation of Hell in the Medieval Theatre'), fascinated by the interaction between music and images, approaches directing by filming video clips, dance videos, and art videos. He listens only to music produced until 1995 (with very few exceptions), loves TV series, David Lynch, David Fincher and Stanley Kubrick. At home it has only 2 Dvds, both signed by the movie directors: Blue Velvet and The Matrix.",
+    "gio4": "❌ If you’re in a conference call with him: he’s not shy, he just forgot the microphone off! 😂",
+    "gio5": "💬 His motto: 'Danzi mai col diavolo nel pallido plenilunio?'",
+    "nina1": "🍒👩🏼🌈 Nina Gurgoglione:",
+    "nina2": "'Mom' Producer, We call her 'La mamma': she keeps track of everything, obsessed with organizing and multitasking.",
+    "nina3": "🎓 She graduated in 'Marketing Management', as Master’s Degree, from the Catholic University in Milan with 110 cum laude. She studied at UCLA in Los Angeles as an exchange student for six month, where she discovered her passion for cinema and movies. Her experience in a well known communication and creative agency, led her to become passionate about advertising.",
+    "nina4": "❌ Even if she seems very nice and kind with everyone, you should pay attention, don’t joke with fire! She is very specific, loves to highlighting deadlines and inconsistencies.",
+    "nina5": "💬 Her motto: 'Remember you will die one day",
+    "ari1": "🍒👩🏻🌈 Arianna Giri:",
+    "ari2": " 🎥 Dynamic, sunny, decisive, tattooed. Very smart young girl, you recognize it immediately. She also worked in the editorial offices of Sky TG24 and Le Iene (Mediaset group), consolidating her practical knowledge of the field.",
+    "ari3": "🍾 Her outstanding PR skills leave no one a chance: a second before you are in the office with her and a second after you find yourself having an aperitif with the pass for a privée in your pocket and the drink in your hand.🔝Active and extremely punctual in the production organization, manages to skillfully navigate between calls to suppliers and relationships with agencies and customers. If you want to break the ice with ease and immediacy (and a few more spritzes), you should contact her.",
+    "ari4": "❌ Despite her slim physique ⚠️she does not eat healthy foods, fish, vegetables but only hamburgers, chips, nutella ... her beloved 'crap food'! 😂",
+    "ari5": "💬 Her motto: 'Live with ambition to accomplish your dreams'",
+    "ste1": "🍒👨🏻🌈 Stefano Brandoni:",
+    "ste2": "Business and Marketing Strategist",
+    "ste3": "📚 Moved to Milan in order to complete his studies in Marketing and Communication at the Catholic University. He will never denies his attachment to his hometown Bologna (and the famous tortellini), even if the activity of the city has now captured him.📈 He is responsible for the digital and social media activities for Amarena Pictures, and transforming them into networking opportunities. All our social media post are made by him, so if you don't like them, you know who to blame 😀",
+    "ste4": "❌ He hates physical contact. If you are looking for a hug avoid him, it’s not your fault, we are working on it. On the other side, just talk to him about money and he will welcome you with open arms!🤗",
+    "ste5": "💬 Il suo motto: 'Volere significa far sorgere i paradossi'."
+  },
   "footer": {
-    "main": "<span class=\"amarenared\">Amarena</span> Pictures S.r.l. ~ <span class=\"amarenared\">Milano</span> ~ <span class=\"amarenared\">Roma</span> ~ WE <span class=\"amarenared\"> &hearts; </span> <span class=\"diversity\">DIVERSITY~</span> "
+    "main": "<span class=\"amarenared\">Amarena</span> Pictures S.r.l. ~ <span class=\"amarenared\">Milano</span> ~ <span class=\"amarenared\">Roma</span> ~ WE <span class=\"amarenared\"> &hearts; </span> <span class=\"diversity\">DIVERSITY ~</span> "
   }
 }

@@ -375,7 +375,7 @@ app.post('/recoverpassword', async function (req, res, next) {
         text:
           'Click here to set the new password:\n' +
           process.env.URLHOME +
-          '/recover?jws=' +
+          '/cms/recover?jws=' +
           token +
           '\nOr please just ignore this email'
       }
