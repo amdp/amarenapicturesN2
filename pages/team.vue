@@ -14,9 +14,7 @@
                 class="rounded-circle imgteam"
               ></b-img>
               <b-card-title>Alessandro Merletti De Palo</b-card-title>
-              <b-card-sub-title>
-                Film Director - CEO - CFO - QCO
-              </b-card-sub-title>
+              <b-card-sub-title> Film Director - CFO - QCO </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.amdpmodal> BIO </b-link>
               </b-card-text>
