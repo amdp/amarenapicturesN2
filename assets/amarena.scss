@@ -161,6 +161,12 @@ a:hover {
   animation-name: moveme;
   animation-duration: 15s;
   animation-timing-function: ease-out;
+  overflow: hidden;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.moveme::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 .brandrow {

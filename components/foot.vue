@@ -3,11 +3,7 @@
     <b-row class="p-0 m-0 brandrow">
       <b-col cols="12" class="text-center up mb-1"> </b-col>
       <b-col cols="12" class="d-flex moveme">
-        <div
-          v-for="brand in $store.state.brand"
-          :key="brand.id"
-          style="overflow: visible"
-        >
+        <div v-for="brand in $store.state.brand" :key="brand.id">
           <b-link
             v-if="$route.path == '/'"
             @click="brandFilter(brand.brand)"
