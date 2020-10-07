@@ -166,8 +166,9 @@ a:hover {
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
 .moveme::-webkit-scrollbar { /* Safari and Chrome */
-  width: 0;
-  height: 0;  
+  width: 0px; /* Remove scrollbar space */
+  height: 0px;
+  background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
 .brandrow {
