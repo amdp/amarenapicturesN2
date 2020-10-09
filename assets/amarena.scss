@@ -167,7 +167,8 @@ a:hover {
 }
 .moveme::-webkit-scrollbar { /* Safari and Chrome */
   width: 0px; /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  height: 0px;
+  /*background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
 .brandrow {
