@@ -167,6 +167,13 @@ a:hover {
 .brandrow {
   overflow: scroll;
   min-height: 9vh;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.brandrow::-webkit-scrollbar { /* Safari and Chrome */
+  width: 0px; /* Remove scrollbar space */
+  height: 0px;
+  background: transparent;  /* Optional: just make scrollbar invisible */
 }
 .imgbrand {
   max-height: 9vh;
@@ -176,13 +183,6 @@ a:hover {
   animation-name: moveme;
   animation-duration: 15s;
   animation-timing-function: ease-out;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-}
-.moveme::-webkit-scrollbar { /* Safari and Chrome */
-  width: 0px; /* Remove scrollbar space */
-  height: 0px;
-  background: transparent;  /* Optional: just make scrollbar invisible */
 }
 @keyframes moveme {
   0%   {right: 0%}
