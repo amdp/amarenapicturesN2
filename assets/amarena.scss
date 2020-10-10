@@ -2,11 +2,18 @@
   font-family: 'oswald200';
   font-style: normal;
   src: url('oswald200.woff') format('woff');
+  font-display: block;
 }
 @font-face {
   font-family: 'oswald300';
   font-style: normal;
   src: url('oswald300.woff') format('woff');
+  font-display: block;
+}
+
+:root {
+  --font-family-sans-serif: 'oswald300', sans-serif;
+  --font-family-monospace: 'oswald300', sans-serif;
 }
 
 * {
@@ -168,11 +175,10 @@ a:hover {
 .moveme::-webkit-scrollbar { /* Safari and Chrome */
   width: 0px; /* Remove scrollbar space */
   height: 0px;
-  /*background: transparent;  /* Optional: just make scrollbar invisible */
+  background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
 .brandrow {
-  overflow-x: scroll;
   min-height: 9vh;
 }
 .imgbrand {
@@ -221,14 +227,14 @@ a:hover {
 }
 
 @keyframes moveme {
-  0%   {right: 0%}
-  50% {right: 20%}
-  100% {right: 0%}
+  0%   {right: 0px}
+  50% {right: 20px}
+  100% {right: 0px}
 }
 @keyframes fadeinout {
   0%   {opacity: 0;}
   15% {opacity: 0;}
-  100% {opacity: 90;}
+  100% {opacity: 100;}
 }
 
 @media only screen and (max-width: 900px) {
