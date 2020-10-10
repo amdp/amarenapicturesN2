@@ -163,12 +163,19 @@ a:hover {
 .diversity{
   letter-spacing: 1px;
 }
+
+.brandrow {
+  overflow: scroll;
+  min-height: 9vh;
+}
+.imgbrand {
+  max-height: 9vh;
+}
 .moveme {
   animation-delay: 3s;
   animation-name: moveme;
   animation-duration: 15s;
   animation-timing-function: ease-out;
-  overflow: scroll;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
@@ -177,13 +184,13 @@ a:hover {
   height: 0px;
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
+@keyframes moveme {
+  0%   {right: 0%}
+  50% {right: 20%}
+  100% {right: 0%}
+}
 
-.brandrow {
-  min-height: 9vh;
-}
-.imgbrand {
-  max-height: 9vh;
-}
+
 
 .imgteam {
   max-width: 26vh;
@@ -226,11 +233,7 @@ a:hover {
   display: inline-block;
 }
 
-@keyframes moveme {
-  0%   {right: 0px}
-  50% {right: 20px}
-  100% {right: 0px}
-}
+
 @keyframes fadeinout {
   0%   {opacity: 0;}
   15% {opacity: 0;}
