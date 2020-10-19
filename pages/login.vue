@@ -1,10 +1,10 @@
 <template>
   <b-container>
-    <b-row class="mr-3 ml-3">
+    <b-row class="mr-3 ml-3 mt-5">
       <div class="container d-flex justify-content-center">
         <b-form
           @submit.prevent="login"
-          class="needs-valitation"
+          class="needs-valitation mt-5"
           autocomplete="on"
         >
           <b-form-group label-for="loginEmail" label="Email:">
