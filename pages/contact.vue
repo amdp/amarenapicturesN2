@@ -106,7 +106,12 @@
               v-html="$t('contact.cancel')"
             >
             </b-button>
-            <b-check id="termscheckbox" name="termscheckbox" required>
+            <b-check
+              id="termscheckbox"
+              name="termscheckbox"
+              v-model="termscheckbox"
+              required
+            >
               <span class="diversity">
                 <i v-html="$t('contact.checkbox')"> </i>
               </span>
@@ -137,7 +142,8 @@ export default {
       formBody: '',
       recaptchaToken: '',
       response: '',
-      envrecaptcha: process.env.RECAPTCHA
+      envrecaptcha: process.env.RECAPTCHA,
+      termscheckbox: null,
     }
   },
   components: {

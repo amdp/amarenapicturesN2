@@ -71,7 +71,7 @@ module.exports = {
       local: {
         endpoints: {
           login: {
-            url: '/cms/login',
+            url: '/login',
             method: 'post',
             propertyName: 'token.accessToken'
           },
