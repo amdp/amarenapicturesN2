@@ -63,11 +63,11 @@
             <p class="up">
               WELCOME {{ $auth.user.name }} {{ $auth.user.surname }} <br />
               <br />
-              <nuxt-link class="amarenared" to="/cms/video">
+              <nuxt-link class="amarenared" to="/video">
                 ADD/EDIT VIDEO
               </nuxt-link>
               <br />
-              <nuxt-link class="amarenared" to="/cms/brand">
+              <nuxt-link class="amarenared" to="/brand">
                 ADD/EDIT BRAND
               </nuxt-link>
               <br />
@@ -229,7 +229,7 @@ export default {
     },
     editvideo(video) {
       this.$store.commit('setEdit', video)
-      return this.$router.push({ path: '/cms/video' })
+      return this.$router.push({ path: '/video' })
     },
     tag(video) {
       location.href = process.env.URLHOME + '#' + video.video
@@ -250,7 +250,7 @@ export default {
     },
     editbrand(brand) {
       this.$store.commit('setEdit', brand)
-      return this.$router.push({ path: '/cms/brand' })
+      return this.$router.push({ path: '/brand' })
     }
   }
 }

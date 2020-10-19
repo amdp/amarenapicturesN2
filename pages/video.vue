@@ -2,7 +2,7 @@
   <b-container class="p-0 m-0 mb-5">
     <h2 class="text-center my-4">VIDEO EDIT/UPLOAD</h2>
     <p class="d-flex justify-content-center">
-      <nuxt-link to="/cms/brand" class="amarenared">
+      <nuxt-link to="/brand" class="amarenared">
         ADD A NEW BRAND INSTEAD
       </nuxt-link>
     </p>
@@ -368,7 +368,7 @@ export default {
         if (res == 'OK') {
           location.href = '/'
         } else {
-          location.href = '/cms/video'
+          location.href = '/video'
         }
       }, 1200)
     },
@@ -402,7 +402,7 @@ export default {
     },
     async deletevideo(video) {
       await this.$store.dispatch('deleteVideoAction', video)
-      location.href = '/cms/video'
+      location.href = '/video'
     },
   }
 }

@@ -65,7 +65,7 @@ export default {
     },
     editbrand(brand) {
       this.$store.commit('setEdit', brand)
-      return this.$router.push({ path: '/cms/brand' })
+      return this.$router.push({ path: '/brand' })
     }
   }
 }
