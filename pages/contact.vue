@@ -91,32 +91,26 @@
                   loadRecaptchaScript
                 ></VueRecaptcha>
               </b-form-group>
+
+              <b-button
+                size="sm"
+                type="submit"
+                class="amarenared bwhite"
+                v-html="$t('contact.send')"
+              >
+              </b-button>
+              <b-check
+                id="termscheckbox"
+                name="termscheckbox"
+                v-model="termscheckbox"
+                required
+              >
+                <span>
+                  <i v-html="$t('contact.checkbox')"> </i>
+                </span>
+              </b-check>
+              <div v-if="response.length" v-html="response"></div>
             </b-form>
-            <b-button
-              size="sm"
-              class="amarenared bwhite"
-              @click="sendMail()"
-              v-html="$t('contact.send')"
-            >
-            </b-button>
-            <b-button
-              size="sm"
-              class="amarenared bwhite"
-              @click="cancel()"
-              v-html="$t('contact.cancel')"
-            >
-            </b-button>
-            <b-check
-              id="termscheckbox"
-              name="termscheckbox"
-              v-model="termscheckbox"
-              required
-            >
-              <span class="diversity">
-                <i v-html="$t('contact.checkbox')"> </i>
-              </span>
-            </b-check>
-            <div v-if="response.length" v-html="response"></div>
           </b-col>
         </b-row>
       </b-col>
@@ -152,6 +146,7 @@ export default {
   methods: {
     submit() {
       this.$refs.recaptcha.execute()
+      this.sendMail()
     },
     onVerify(res) {
       this.recaptchaToken = res
