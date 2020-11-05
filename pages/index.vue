@@ -240,10 +240,10 @@ export default {
   },
   methods: {
     showall() {
-      let scrollTop = document.body.scrollTop;
+      let scrollTop = window.document.body.scrollTop;
       this.end += this.increment
       this.brandhere = this.$store.state.video.slice(0, this.end)
-      document.body.scrollTop = scrollTop;
+      window.document.body.scrollTop = scrollTop;
     },
     videoImage(imagename) {
       try {
