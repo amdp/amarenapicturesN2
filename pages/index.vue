@@ -173,8 +173,17 @@
             </b-card>
           </b-col>
         </b-row>
-        <b-row class="m-0 my-5 p-0">
-          <b-col cols="12" class="my-5"> &nbsp; </b-col>
+        <b-row class="m-0 mb-5 mt-2 p-0" align-v="start">
+          <b-col cols="12" class="mb-5">
+            <b-button
+              block
+              v-if="!showallvideo"
+              class="amarenared bwhite"
+              v-html="$t('home.showall')"
+              @click="showall()"
+            >
+            </b-button>
+          </b-col>
         </b-row>
       </b-container>
     </b-container>
@@ -199,6 +208,7 @@ export default {
   data() {
     return {
       showvideo: null,
+      showallvideo: false,
       thatsamarena: false,
       show: false,
       brandhere: [],
@@ -209,9 +219,13 @@ export default {
     this.show = true
   },
   created() {
-    this.brandhere = this.$store.state.video
+    this.brandhere = this.$store.state.video.slice(0, 5)
   },
   methods: {
+    showall() {
+      this.brandhere = this.$store.state.video
+      this.showallvideo = true
+    },
     videoImage(imagename) {
       try {
         return '/i/' + imagename + '.jpg'

@@ -2,7 +2,8 @@
   "home": {
     "head": "Produzione e regia.<br><span class=\"amarenared\">Integrate.</span>",
     "desc": "<span class=\"amarenared\">Amarena</span> Pictures unisce <span class=\"amarenared\">regia</span> e <span class=\"amarenared\">produzione</span> in un'unica esperienza creativa.",
-    "contactus": "Contattaci"
+    "contactus": "Contattaci",
+    "showall": "Mostra altri..."
   },
   "contact": {
     "title": "CONTACT",
