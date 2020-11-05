@@ -1,13 +1,7 @@
 <template>
   <b-container class="m-0 p-0" fluid>
     <amarenahead />
-    <img
-      height="1"
-      width="1"
-      style="display: none"
-      alt=""
-      src="https://px.ads.linkedin.com/collect/?pid=2225833&fmt=gif"
-    />
+    <img height="1" width="1" style="display: none" alt="" src="linkedin" />
     <nuxt class="m-0 p-0" />
     <foot />
   </b-container>
@@ -30,5 +24,13 @@ export default {
     amarenahead: amarenahead,
     foot: foot,
   },
+  data() {
+    return {
+      linkedin: null
+    }
+  },
+  mounted() {
+    this.linkedin = 'https://px.ads.linkedin.com/collect/?pid=2225833&fmt=gif'
+  }
 }
 </script>
