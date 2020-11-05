@@ -182,7 +182,7 @@
           <b-col cols="12" class="mb-5">
             <b-button
               block
-              v-if="this.end > this.$store.state.video.length"
+              v-if="addbutton"
               class="amarenared bwhite"
               v-html="$t('home.showall')"
               @click="showall()"
@@ -226,6 +226,17 @@ export default {
   },
   created() {
     this.brandhere = this.$store.state.video //.slice(0, this.end)
+  },
+  computed: {
+    addbutton() {
+      if (process.browser) {
+        if (window.safari !== undefined) {
+          if (this.end < this.$store.state.video.length) {
+            return true
+          }
+        }
+      }
+    }
   },
   methods: {
     showall() {
