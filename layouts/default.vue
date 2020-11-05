@@ -1,15 +1,21 @@
 <template>
   <b-container class="m-0 p-0" fluid>
     <amarenahead />
-    <img height="1" width="1" style="display: none" alt="" src="linkedin" />
+    <img
+      height="1"
+      width="1"
+      style="display: none"
+      alt=""
+      src="https://px.ads.linkedin.com/collect/?pid=2225833&fmt=gif"
+    />
     <nuxt class="m-0 p-0" />
     <foot />
   </b-container>
 </template>
 
 <script>
-import amarenahead from '@/components/amarenahead'
 import foot from '@/components/foot'
+import amarenahead from '@/components/amarenahead'
 export default {
   head() {
     return {
@@ -21,16 +27,8 @@ export default {
     }
   },
   components: {
-    amarenahead: amarenahead,
     foot: foot,
+    amarenahead: amarenahead,
   },
-  data() {
-    return {
-      linkedin: null
-    }
-  },
-  mounted() {
-    this.linkedin = 'https://px.ads.linkedin.com/collect/?pid=2225833&fmt=gif'
-  }
 }
 </script>
