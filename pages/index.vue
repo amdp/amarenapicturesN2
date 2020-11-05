@@ -40,6 +40,7 @@
         playsinline
         id="thatsamarenavideo"
         name="thatsamarenavideo"
+        preload="none"
       >
         <source src="~/assets/thatsamarena.mp4" type="video/mp4" />
       </video>
@@ -177,7 +178,7 @@
           <b-col cols="12" class="mb-5">
             <b-button
               block
-              v-if="this.end < this.$store.state.video.length"
+              v-if="this.end > this.$store.state.video.length"
               class="amarenared bwhite"
               v-html="$t('home.showall')"
               @click="showall()"
@@ -220,12 +221,14 @@ export default {
     this.show = true
   },
   created() {
-    this.brandhere = this.$store.state.video.slice(0, this.end)
+    this.brandhere = this.$store.state.video //.slice(0, this.end)
   },
   methods: {
     showall() {
+      let scrollTop = document.body.scrollTop;
       this.end += this.increment
       this.brandhere = this.$store.state.video.slice(0, this.end)
+      document.body.scrollTop = scrollTop;
     },
     videoImage(imagename) {
       try {
