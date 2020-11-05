@@ -88,20 +88,24 @@
             >
               <b-row class="p-0 m-0">
                 <b-col md="7" class="p-0 m-0 text-left">
-                  <img
-                    v-if="showvideo != video.video"
-                    class="pointer imgvideo"
+                  <b-container
+                    class="m-0 p-0 pointer"
                     @click="amareel(video.video)"
-                    :src="videoImage(video.video)"
-                  />
-                  <b-embed
-                    v-if="showvideo == video.video"
-                    type="video"
-                    autoplay
-                    controls
                   >
-                    <source :src="amareel(video.video)" type="video/mp4" />
-                  </b-embed>
+                    <img
+                      class="imgvideo"
+                      v-if="showvideo != video.video"
+                      :src="videoImage(video.video)"
+                    />
+                    <b-embed
+                      v-if="showvideo == video.video"
+                      type="video"
+                      autoplay
+                      controls
+                    >
+                      <source :src="amareel(video.video)" type="video/mp4" />
+                    </b-embed>
+                  </b-container>
                 </b-col>
                 <b-col md="5">
                   <b-card-body>
