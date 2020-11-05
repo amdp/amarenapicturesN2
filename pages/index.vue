@@ -177,7 +177,7 @@
           <b-col cols="12" class="mb-5">
             <b-button
               block
-              v-if="!showallvideo"
+              v-if="this.end < this.$store.state.video.length"
               class="amarenared bwhite"
               v-html="$t('home.showall')"
               @click="showall()"
@@ -208,10 +208,11 @@ export default {
   data() {
     return {
       showvideo: null,
-      showallvideo: false,
       thatsamarena: false,
       show: false,
       brandhere: [],
+      end: 5,
+      increment: 5
     }
   },
   mounted() {
@@ -219,12 +220,12 @@ export default {
     this.show = true
   },
   created() {
-    this.brandhere = this.$store.state.video.slice(0, 5)
+    this.brandhere = this.$store.state.video.slice(0, this.end)
   },
   methods: {
     showall() {
-      this.brandhere = this.$store.state.video
-      this.showallvideo = true
+      this.end += this.increment
+      this.brandhere = this.$store.state.video.slice(0, this.end)
     },
     videoImage(imagename) {
       try {
