@@ -229,13 +229,13 @@ export default {
   },
   computed: {
     addbutton() {
-      if (process.browser) {
-        if (window.safari !== undefined) {
-          if (this.end < this.$store.state.video.length) {
-            return true
-          }
-        }
+      //if (process.browser) {
+      //if (window.safari !== undefined) {
+      if (this.end < this.$store.state.video.length) {
+        return true
       }
+      //}
+      //}
     }
   },
   methods: {
