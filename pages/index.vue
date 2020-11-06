@@ -88,13 +88,11 @@
             >
               <b-row class="p-0 m-0">
                 <b-col md="7" class="p-0 m-0 text-left">
-                  <b-container
-                    class="m-0 p-0 pointer"
-                    @click="amareel(video.video)"
-                  >
+                  <b-container class="m-0 p-0 pointer">
                     <img
-                      class="imgvideo"
                       v-if="showvideo != video.video"
+                      class="imgvideo"
+                      @click="amareel(video.video)"
                       :src="videoImage(video.video)"
                     />
                     <b-embed
@@ -112,9 +110,11 @@
                     <b-card-text>
                       <b-row>
                         <b-col cols="12" class="mb-1 p-1">
-                          <span class="up amarenared videotitle">{{
-                            video.title
-                          }}</span>
+                          <span
+                            class="up amarenared videotitle"
+                            @click="amareel(video.video)"
+                            >{{ video.title }}</span
+                          >
                         </b-col>
                         <b-col
                           cols="12"
@@ -229,10 +229,11 @@ export default {
   },
   methods: {
     showall() {
-      let scrollTop = window.document.body.scrollTop;
+      let scroll = this.end
       this.end += this.increment
       this.brandhere = this.$store.state.video.slice(0, this.end)
-      window.document.body.scrollTop = scrollTop;
+      //location.href = process.env.URLHOME + '#' + video.video
+      return this.$router.push({ path: '/#' + this.$store.state.video[scroll - 1].video })
     },
     videoImage(imagename) {
       try {
