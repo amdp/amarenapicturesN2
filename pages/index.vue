@@ -40,6 +40,7 @@
         playsinline
         id="thatsamarenavideo"
         name="thatsamarenavideo"
+        preload="none"
       >
         <source src="~/assets/thatsamarena.mp4" type="video/mp4" />
       </video>
