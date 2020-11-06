@@ -225,7 +225,7 @@ export default {
     this.show = true
   },
   created() {
-    this.brandhere = this.$store.state.video //.slice(0, this.end)
+    this.brandhere = this.$store.state.video.slice(0, this.end)
   },
   methods: {
     showall() {
