@@ -40,7 +40,6 @@
         playsinline
         id="thatsamarenavideo"
         name="thatsamarenavideo"
-        preload="none"
       >
         <source src="~/assets/thatsamarena.mp4" type="video/mp4" />
       </video>
@@ -91,7 +90,7 @@
                   <b-container class="m-0 p-0 pointer">
                     <img
                       v-if="showvideo != video.video"
-                      class="imgvideo"
+                      class="imgvideo pointer"
                       @click="amareel(video.video)"
                       :src="videoImage(video.video)"
                     />
@@ -216,7 +215,7 @@ export default {
       thatsamarena: false,
       show: false,
       brandhere: [],
-      end: 5,
+      end: 7,
       increment: 5
     }
   },
