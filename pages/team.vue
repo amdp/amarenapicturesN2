@@ -42,11 +42,11 @@
           <b-card class="border-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
-                src="~/assets/nina.jpg"
+                src="~/assets/jessie.jpg"
                 class="rounded-circle imgteam"
               ></b-img>
-              <b-card-title>Nina Gurgoglione</b-card-title>
-              <b-card-sub-title> Production Main Supervisor </b-card-sub-title>
+              <b-card-title>Jessica Stella</b-card-title>
+              <b-card-sub-title> Marketing Manager </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.ninamodal> BIO </b-link>
               </b-card-text>
@@ -60,9 +60,7 @@
                 class="rounded-circle imgteam"
               ></b-img>
               <b-card-title>Arianna Giri</b-card-title>
-              <b-card-sub-title>
-                Junior Producer and New Business
-              </b-card-sub-title>
+              <b-card-sub-title> Production Main Supervisor </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.arimodal> BIO </b-link>
               </b-card-text>
@@ -72,13 +70,11 @@
           <b-card class="border-0 m-0 p-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
-                src="~/assets/ste.jpg"
+                src="~/assets/olli.jpg"
                 class="rounded-circle imgteam"
               ></b-img>
-              <b-card-title>Stefano Brandoni</b-card-title>
-              <b-card-sub-title>
-                Business and Marketing Strategist
-              </b-card-sub-title>
+              <b-card-title>Olga Bartolucci</b-card-title>
+              <b-card-sub-title> Junior Producer </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.stemodal> BIO </b-link>
               </b-card-text>
@@ -122,13 +118,13 @@
     <b-modal ok-only hide-header-close id="ninamodal" title="Nina Gurgoglione">
       <b-container class="text-center">
         <b-img
-          src="~/assets/nina.jpg"
+          src="~/assets/jessie.jpg"
           class="rounded-circle imgteam mb-3"
         ></b-img>
-        <p class="t18" v-html="$t('team.nina2')"></p>
-        <p class="t18" v-html="$t('team.nina3')"></p>
-        <p class="t18" v-html="$t('team.nina4')"></p>
-        <p class="t18" v-html="$t('team.nina5')"></p>
+        <p class="t18" v-html="$t('team.jessie2')"></p>
+        <p class="t18" v-html="$t('team.jessie3')"></p>
+        <p class="t18" v-html="$t('team.jessie4')"></p>
+        <p class="t18" v-html="$t('team.jessie5')"></p>
       </b-container>
     </b-modal>
     <b-modal ok-only hide-header-close id="arimodal" title="Arianna Giri">
@@ -146,13 +142,13 @@
     <b-modal ok-only hide-header-close id="stemodal" title="Stefano Brandoni">
       <b-container class="text-center">
         <b-img
-          src="~/assets/ste.jpg"
+          src="~/assets/olli.jpg"
           class="rounded-circle imgteam mb-3"
         ></b-img>
-        <p class="t18" v-html="$t('team.ste2')"></p>
-        <p class="t18" v-html="$t('team.ste3')"></p>
-        <p class="t18" v-html="$t('team.ste4')"></p>
-        <p class="t18" v-html="$t('team.ste5')"></p>
+        <p class="t18" v-html="$t('team.olli2')"></p>
+        <p class="t18" v-html="$t('team.olli3')"></p>
+        <p class="t18" v-html="$t('team.olli4')"></p>
+        <p class="t18" v-html="$t('team.olli5')"></p>
       </b-container>
     </b-modal>
   </b-container>
