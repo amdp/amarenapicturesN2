@@ -84,7 +84,7 @@ module.exports = {
       home: '/',
       login: '/',
       user: '/',
-      logout: '/'
+      logout: '/login'
     }
   }
 }
