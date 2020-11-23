@@ -304,7 +304,7 @@ app.post('/login', async function (req, res, next) {
 })
 
 app.post('/logout', (req, res) => {
-  res.send({ status: 'OK' })
+  res.status(200).send('OK')
 })
 
 app.get('/user', async function (req, res, next) {
