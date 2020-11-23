@@ -48,7 +48,7 @@
               <b-card-title>Jessica Stella</b-card-title>
               <b-card-sub-title> Marketing Manager </b-card-sub-title>
               <b-card-text>
-                <b-link class="amarenared" v-b-modal.ninamodal> BIO </b-link>
+                <b-link class="amarenared" v-b-modal.jessicamodal> BIO </b-link>
               </b-card-text>
             </b-card-body>
           </b-card>
@@ -76,11 +76,32 @@
               <b-card-title>Olga Bartolucci</b-card-title>
               <b-card-sub-title> Junior Producer </b-card-sub-title>
               <b-card-text>
-                <b-link class="amarenared" v-b-modal.stemodal> BIO </b-link>
+                <b-link class="amarenared" v-b-modal.olgamodal> BIO </b-link>
               </b-card-text>
             </b-card-body>
           </b-card>
         </b-card-group>
+
+        <b-container class="my-2"></b-container>
+
+        <b-card-group deck>
+          <b-card class="border-0">
+            <b-card-body class="text-center p-0 m-0">
+              <b-img
+                src="~/assets/jessie.jpg"
+                class="rounded-circle imgteam"
+              ></b-img>
+              <b-card-title>Giorgia Galli</b-card-title>
+              <b-card-sub-title>
+                Social Media Manager - Stage
+              </b-card-sub-title>
+              <b-card-text>
+                <b-link class="amarenared" v-b-modal.giorgiamodal> BIO </b-link>
+              </b-card-text>
+            </b-card-body>
+          </b-card>
+        </b-card-group>
+
         <b-container class="h80"></b-container>
         <b-container class="h80"></b-container>
       </b-col>
@@ -115,7 +136,7 @@
         <p class="t18" v-html="$t('team.gio5')"></p>
       </b-container>
     </b-modal>
-    <b-modal ok-only hide-header-close id="ninamodal" title="Nina Gurgoglione">
+    <b-modal ok-only hide-header-close id="jessicamodal" title="Jessica Stella">
       <b-container class="text-center">
         <b-img
           src="~/assets/jessie.jpg"
@@ -139,7 +160,7 @@
         <p class="t18" v-html="$t('team.ari5')"></p>
       </b-container>
     </b-modal>
-    <b-modal ok-only hide-header-close id="stemodal" title="Stefano Brandoni">
+    <b-modal ok-only hide-header-close id="olgamodal" title="Olga Bartolucci">
       <b-container class="text-center">
         <b-img
           src="~/assets/olli.jpg"
@@ -149,6 +170,18 @@
         <p class="t18" v-html="$t('team.olli3')"></p>
         <p class="t18" v-html="$t('team.olli4')"></p>
         <p class="t18" v-html="$t('team.olli5')"></p>
+      </b-container>
+    </b-modal>
+    <b-modal ok-only hide-header-close id="giorgiamodal" title="Giorgia Galli">
+      <b-container class="text-center">
+        <b-img
+          src="~/assets/giorgia.jpg"
+          class="rounded-circle imgteam mb-3"
+        ></b-img>
+        <p class="t18" v-html="$t('team.giorgia2')"></p>
+        <p class="t18" v-html="$t('team.giorgia3')"></p>
+        <p class="t18" v-html="$t('team.giorgia4')"></p>
+        <p class="t18" v-html="$t('team.giorgia5')"></p>
       </b-container>
     </b-modal>
   </b-container>
