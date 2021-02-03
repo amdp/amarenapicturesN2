@@ -84,7 +84,7 @@
               </b-card-text>
             </b-card-body>
           </b-card>
-          <b-card class="border-0">
+          <!-- <b-card class="border-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
                 src="~/assets/giorgia.jpg"
@@ -98,7 +98,7 @@
                 <b-link class="amarenared" v-b-modal.giorgiamodal> BIO </b-link>
               </b-card-text>
             </b-card-body>
-          </b-card>
+          </b-card> -->
         </b-card-group>
 
         <b-container class="h80"></b-container>
