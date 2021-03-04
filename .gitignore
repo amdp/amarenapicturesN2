@@ -2,6 +2,8 @@
 
 # Main config
 .env
+/.k/
+
 
 #sublime
 *.sublime-project

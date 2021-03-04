@@ -7,8 +7,8 @@ import it from './t/it.json'
 module.exports = {
   plugins: [],
   build: {
-    followSymlinks: true
   },
+  telemetry: false,
   serverMiddleware: ['./api'],
   css: ['@assets/amarena.scss'],
   modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-i18n',],
