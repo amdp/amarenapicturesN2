@@ -46,7 +46,7 @@
                 class="rounded-circle imgteam"
               ></b-img>
               <b-card-title>Jessica Stella</b-card-title>
-              <b-card-sub-title> Marketing Manager </b-card-sub-title>
+              <b-card-sub-title> Business Relations </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.jessicamodal> BIO </b-link>
               </b-card-text>
@@ -71,7 +71,7 @@
         <b-container class="my-2"></b-container>
 
         <b-card-group deck>
-          <b-card class="border-0 m-0 p-0">
+          <!-- <b-card class="border-0 m-0 p-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
                 src="~/assets/olli.jpg"
@@ -83,7 +83,7 @@
                 <b-link class="amarenared" v-b-modal.olgamodal> BIO </b-link>
               </b-card-text>
             </b-card-body>
-          </b-card>
+          </b-card> -->
           <!-- <b-card class="border-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
