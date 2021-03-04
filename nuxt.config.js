@@ -32,10 +32,10 @@ module.exports = {
       port: process.env.PORT,
       host: process.env.HOST,
       https: {
-        key: fs.readFile(
+        key: fs.readFileSync(
           path.resolve(process.env.HTTPSDIR, process.env.HTTPSKEY)
         ),
-        cert: fs.readFile(
+        cert: fs.readFileSync(
           path.resolve(process.env.HTTPSDIR, process.env.HTTPSCERT)
         )
       }
