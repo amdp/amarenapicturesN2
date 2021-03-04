@@ -6,7 +6,9 @@ import en from './t/en.json'
 import it from './t/it.json'
 module.exports = {
   plugins: [],
-  build: {},
+  build: {
+    followSymlinks: true
+  },
   serverMiddleware: ['./api'],
   css: ['@assets/amarena.scss'],
   modules: ['@nuxtjs/axios', '@nuxtjs/toast', 'bootstrap-vue/nuxt', '@nuxtjs/auth', 'nuxt-i18n',],
