@@ -7,6 +7,10 @@ import it from './t/it.json'
 module.exports = {
   plugins: [],
   build: {
+    babel: {
+      plugins: [["@babel/plugin-proposal-private-methods", { "loose": true }]
+      ]
+    },
   },
   telemetry: false,
   serverMiddleware: ['./api'],
