@@ -16,7 +16,7 @@
               <b-card-title>Alessandro Merletti De Palo</b-card-title>
               <b-card-sub-title> Film Director - CFO - QCO </b-card-sub-title>
               <b-card-text>
-                <b-link class="amarenared" v-b-modal.amdpmodal> BIO </b-link>
+                <b-link class="amarenared" v-b-modal.1amodal> BIO </b-link>
               </b-card-text>
             </b-card-body>
           </b-card>
@@ -30,29 +30,14 @@
               <b-card-title>Giovanni Caloro</b-card-title>
               <b-card-sub-title> Film Director - CEO </b-card-sub-title>
               <b-card-text>
-                <b-link class="amarenared" v-b-modal.giomodal> BIO </b-link>
+                <b-link class="amarenared" v-b-modal.1bmodal> BIO </b-link>
               </b-card-text>
             </b-card-body>
           </b-card>
         </b-card-group>
 
         <b-container class="my-2"></b-container>
-
         <b-card-group deck>
-          <b-card class="border-0">
-            <b-card-body class="text-center p-0 m-0">
-              <b-img
-                src="~/assets/jessie.jpg"
-                class="rounded-circle imgteam"
-              ></b-img>
-              <b-card-title>Jessica Stella</b-card-title>
-              <b-card-sub-title> Business Relations </b-card-sub-title>
-              <b-card-text>
-                <b-link class="amarenared" v-b-modal.jessicamodal> BIO </b-link>
-              </b-card-text>
-            </b-card-body>
-          </b-card>
-
           <b-card class="border-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
@@ -62,7 +47,23 @@
               <b-card-title>Arianna Giri</b-card-title>
               <b-card-sub-title> Production Main Supervisor </b-card-sub-title>
               <b-card-text>
-                <b-link class="amarenared" v-b-modal.arimodal> BIO </b-link>
+                <b-link class="amarenared" v-b-modal.2amodal> BIO </b-link>
+              </b-card-text>
+            </b-card-body>
+          </b-card>
+
+          <b-card class="border-0">
+            <b-card-body class="text-center p-0 m-0">
+              <b-img
+                src="~/assets/emilia.jpg"
+                class="rounded-circle imgteam"
+              ></b-img>
+              <b-card-title>Emilia Apperti</b-card-title>
+              <b-card-sub-title>
+                Junior Marketing and Strategy
+              </b-card-sub-title>
+              <b-card-text>
+                <b-link class="amarenared" v-b-modal.2bmodal> BIO </b-link>
               </b-card-text>
             </b-card-body>
           </b-card>
@@ -71,34 +72,33 @@
         <b-container class="my-2"></b-container>
 
         <b-card-group deck>
-          <!-- <b-card class="border-0 m-0 p-0">
+          <b-card class="border-0 m-0 p-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
-                src="~/assets/olli.jpg"
+                src="~/assets/bea.png"
                 class="rounded-circle imgteam"
               ></b-img>
-              <b-card-title>Olga Bartolucci</b-card-title>
+              <b-card-title>Beatrice Caimi</b-card-title>
               <b-card-sub-title> Junior Producer </b-card-sub-title>
               <b-card-text>
-                <b-link class="amarenared" v-b-modal.olgamodal> BIO </b-link>
+                <b-link class="amarenared" v-b-modal.3amodal> BIO </b-link>
               </b-card-text>
             </b-card-body>
-          </b-card> -->
-          <!-- <b-card class="border-0">
+          </b-card>
+          <b-card class="border-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
-                src="~/assets/giorgia.jpg"
+                src="~/assets/chiara.png"
                 class="rounded-circle imgteam"
               ></b-img>
-              <b-card-title>Giorgia Galli</b-card-title>
-              <b-card-sub-title>
-                Social Media Manager - Stage
-              </b-card-sub-title>
+              <b-card-title>Chiara Nicolini</b-card-title>
+              <b-card-sub-title> Junior Producer </b-card-sub-title>
               <b-card-text>
-                <b-link class="amarenared" v-b-modal.giorgiamodal> BIO </b-link>
+                <b-link class="amarenared" v-b-modal.3bmodal> BIO </b-link>
               </b-card-text>
             </b-card-body>
-          </b-card> -->
+          </b-card>
+          -->
         </b-card-group>
 
         <b-container class="h80"></b-container>
@@ -109,7 +109,7 @@
     <b-modal
       ok-only
       hide-header-close
-      id="amdpmodal"
+      id="1amodal"
       title="Alessandro Merletti De Palo"
     >
       <b-container class="text-center">
@@ -123,7 +123,7 @@
         <p class="t18" v-html="$t('team.amdp5')"></p>
       </b-container>
     </b-modal>
-    <b-modal ok-only hide-header-close id="giomodal" title="Giovanni Caloro">
+    <b-modal ok-only hide-header-close id="1bmodal" title="Giovanni Caloro">
       <b-container class="text-center">
         <b-img
           src="~/assets/gio.jpg"
@@ -135,19 +135,7 @@
         <p class="t18" v-html="$t('team.gio5')"></p>
       </b-container>
     </b-modal>
-    <b-modal ok-only hide-header-close id="jessicamodal" title="Jessica Stella">
-      <b-container class="text-center">
-        <b-img
-          src="~/assets/jessie.jpg"
-          class="rounded-circle imgteam mb-3"
-        ></b-img>
-        <p class="t18" v-html="$t('team.jessie2')"></p>
-        <p class="t18" v-html="$t('team.jessie3')"></p>
-        <p class="t18" v-html="$t('team.jessie4')"></p>
-        <p class="t18" v-html="$t('team.jessie5')"></p>
-      </b-container>
-    </b-modal>
-    <b-modal ok-only hide-header-close id="arimodal" title="Arianna Giri">
+    <b-modal ok-only hide-header-close id="2amodal" title="Arianna Giri">
       <b-container class="text-center">
         <b-img
           src="~/assets/ari.jpg"
@@ -159,28 +147,40 @@
         <p class="t18" v-html="$t('team.ari5')"></p>
       </b-container>
     </b-modal>
-    <b-modal ok-only hide-header-close id="olgamodal" title="Olga Bartolucci">
+    <b-modal ok-only hide-header-close id="2bmodal" title="Emilia Apperti">
       <b-container class="text-center">
         <b-img
-          src="~/assets/olli.jpg"
+          src="~/assets/emilia.jpg"
           class="rounded-circle imgteam mb-3"
         ></b-img>
-        <p class="t18" v-html="$t('team.olli2')"></p>
-        <p class="t18" v-html="$t('team.olli3')"></p>
-        <p class="t18" v-html="$t('team.olli4')"></p>
-        <p class="t18" v-html="$t('team.olli5')"></p>
+        <p class="t18" v-html="$t('team.emilia2')"></p>
+        <p class="t18" v-html="$t('team.emilia3')"></p>
+        <p class="t18" v-html="$t('team.emilia4')"></p>
+        <p class="t18" v-html="$t('team.emilia5')"></p>
       </b-container>
     </b-modal>
-    <b-modal ok-only hide-header-close id="giorgiamodal" title="Giorgia Galli">
+    <b-modal ok-only hide-header-close id="3amodal" title="Beatrice Caimi">
       <b-container class="text-center">
         <b-img
-          src="~/assets/giorgia.jpg"
+          src="~/assets/bea.png"
           class="rounded-circle imgteam mb-3"
         ></b-img>
-        <p class="t18" v-html="$t('team.giorgia2')"></p>
-        <p class="t18" v-html="$t('team.giorgia3')"></p>
-        <p class="t18" v-html="$t('team.giorgia4')"></p>
-        <p class="t18" v-html="$t('team.giorgia5')"></p>
+        <p class="t18" v-html="$t('team.bea2')"></p>
+        <p class="t18" v-html="$t('team.bea3')"></p>
+        <p class="t18" v-html="$t('team.bea4')"></p>
+        <p class="t18" v-html="$t('team.bea5')"></p>
+      </b-container>
+    </b-modal>
+    <b-modal ok-only hide-header-close id="3bmodal" title="Chiara Nicolini">
+      <b-container class="text-center">
+        <b-img
+          src="~/assets/chiara.png"
+          class="rounded-circle imgteam mb-3"
+        ></b-img>
+        <p class="t18" v-html="$t('team.chiara2')"></p>
+        <p class="t18" v-html="$t('team.chiara3')"></p>
+        <p class="t18" v-html="$t('team.chiara4')"></p>
+        <p class="t18" v-html="$t('team.chiara5')"></p>
       </b-container>
     </b-modal>
   </b-container>
