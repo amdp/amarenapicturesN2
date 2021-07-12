@@ -14,7 +14,7 @@
                 class="rounded-circle imgteam"
               ></b-img>
               <b-card-title>Alessandro Merletti De Palo</b-card-title>
-              <b-card-sub-title> Film Director - CFO - QCO </b-card-sub-title>
+              <b-card-sub-title> </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.1amodal> BIO </b-link>
               </b-card-text>
@@ -45,7 +45,7 @@
                 class="rounded-circle imgteam"
               ></b-img>
               <b-card-title>Arianna Giri</b-card-title>
-              <b-card-sub-title> Production Main Supervisor </b-card-sub-title>
+              <b-card-sub-title> {{ $t("team.ari2") }} </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.2amodal> BIO </b-link>
               </b-card-text>
@@ -60,7 +60,7 @@
               ></b-img>
               <b-card-title>Emilia Apperti</b-card-title>
               <b-card-sub-title>
-                Junior Marketing and Strategy
+                {{ $t("team.emilia2") }}
               </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.2bmodal> BIO </b-link>
@@ -79,7 +79,7 @@
                 class="rounded-circle imgteam"
               ></b-img>
               <b-card-title>Beatrice Caimi</b-card-title>
-              <b-card-sub-title> Junior Producer </b-card-sub-title>
+              <b-card-sub-title> {{ $t("team.bea2") }} </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.3amodal> BIO </b-link>
               </b-card-text>
@@ -92,7 +92,7 @@
                 class="rounded-circle imgteam"
               ></b-img>
               <b-card-title>Chiara Nicolini</b-card-title>
-              <b-card-sub-title> Junior Producer </b-card-sub-title>
+              <b-card-sub-title> {{ $t("team.chiara2") }} </b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.3bmodal> BIO </b-link>
               </b-card-text>
