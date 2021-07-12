@@ -98,7 +98,6 @@
               </b-card-text>
             </b-card-body>
           </b-card>
-          -->
         </b-card-group>
 
         <b-container class="h80"></b-container>
