@@ -14,7 +14,7 @@
                 class="rounded-circle imgteam"
               ></b-img>
               <b-card-title>Alessandro Merletti De Palo</b-card-title>
-              <b-card-sub-title> </b-card-sub-title>
+              <b-card-sub-title>Founder</b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.1amodal> BIO </b-link>
               </b-card-text>
@@ -28,7 +28,7 @@
                 class="rounded-circle imgteam"
               ></b-img>
               <b-card-title>Giovanni Caloro</b-card-title>
-              <b-card-sub-title> Film Director - CEO </b-card-sub-title>
+              <b-card-sub-title>Founder</b-card-sub-title>
               <b-card-text>
                 <b-link class="amarenared" v-b-modal.1bmodal> BIO </b-link>
               </b-card-text>
@@ -55,6 +55,20 @@
           <b-card class="border-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
+                src="~/assets/chiara.png"
+                class="rounded-circle imgteam"
+              ></b-img>
+              <b-card-title>Chiara Nicolini</b-card-title>
+              <b-card-sub-title> {{ $t("team.chiara2") }} </b-card-sub-title>
+              <b-card-text>
+                <b-link class="amarenared" v-b-modal.3bmodal> BIO </b-link>
+              </b-card-text>
+            </b-card-body>
+          </b-card>
+
+          <b-card class="border-0">
+            <b-card-body class="text-center p-0 m-0">
+              <b-img
                 src="~/assets/emilia.jpg"
                 class="rounded-circle imgteam"
               ></b-img>
@@ -71,7 +85,7 @@
 
         <b-container class="my-2"></b-container>
 
-        <b-card-group deck>
+        <!-- <b-card-group deck>
           <b-card class="border-0 m-0 p-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
@@ -85,20 +99,7 @@
               </b-card-text>
             </b-card-body>
           </b-card>
-          <b-card class="border-0">
-            <b-card-body class="text-center p-0 m-0">
-              <b-img
-                src="~/assets/chiara.png"
-                class="rounded-circle imgteam"
-              ></b-img>
-              <b-card-title>Chiara Nicolini</b-card-title>
-              <b-card-sub-title> {{ $t("team.chiara2") }} </b-card-sub-title>
-              <b-card-text>
-                <b-link class="amarenared" v-b-modal.3bmodal> BIO </b-link>
-              </b-card-text>
-            </b-card-body>
-          </b-card>
-        </b-card-group>
+        </b-card-group> -->
 
         <b-container class="h80"></b-container>
         <b-container class="h80"></b-container>
