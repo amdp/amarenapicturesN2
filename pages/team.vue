@@ -55,20 +55,6 @@
           <b-card class="border-0">
             <b-card-body class="text-center p-0 m-0">
               <b-img
-                src="~/assets/chiara.png"
-                class="rounded-circle imgteam"
-              ></b-img>
-              <b-card-title>Chiara Nicolini</b-card-title>
-              <b-card-sub-title> {{ $t("team.chiara2") }} </b-card-sub-title>
-              <b-card-text>
-                <b-link class="amarenared" v-b-modal.3bmodal> BIO </b-link>
-              </b-card-text>
-            </b-card-body>
-          </b-card>
-
-          <b-card class="border-0">
-            <b-card-body class="text-center p-0 m-0">
-              <b-img
                 src="~/assets/emilia.jpg"
                 class="rounded-circle imgteam"
               ></b-img>
@@ -82,6 +68,20 @@
             </b-card-body>
           </b-card>
         </b-card-group>
+
+        <b-card class="border-0">
+          <b-card-body class="text-center p-0 m-0">
+            <b-img
+              src="~/assets/cri.jpg"
+              class="rounded-circle imgteam"
+            ></b-img>
+            <b-card-title>Cristina Ragazzoni</b-card-title>
+            <b-card-sub-title> {{ $t("team.cri2") }} </b-card-sub-title>
+            <b-card-text>
+              <b-link class="amarenared" v-b-modal.3bmodal> BIO </b-link>
+            </b-card-text>
+          </b-card-body>
+        </b-card>
 
         <b-container class="my-2"></b-container>
 
@@ -171,16 +171,16 @@
         <p class="t18" v-html="$t('team.bea5')"></p>
       </b-container>
     </b-modal>
-    <b-modal ok-only hide-header-close id="3bmodal" title="Chiara Nicolini">
+    <b-modal ok-only hide-header-close id="3bmodal" title="Cristina Ragazzoni">
       <b-container class="text-center">
         <b-img
-          src="~/assets/chiara.png"
+          src="~/assets/cri.jpg"
           class="rounded-circle imgteam mb-3"
         ></b-img>
-        <p class="t18" v-html="$t('team.chiara2')"></p>
-        <p class="t18" v-html="$t('team.chiara3')"></p>
-        <p class="t18" v-html="$t('team.chiara4')"></p>
-        <p class="t18" v-html="$t('team.chiara5')"></p>
+        <p class="t18" v-html="$t('team.cri2')"></p>
+        <p class="t18" v-html="$t('team.cri3')"></p>
+        <p class="t18" v-html="$t('team.cri4')"></p>
+        <p class="t18" v-html="$t('team.cri5')"></p>
       </b-container>
     </b-modal>
   </b-container>

@@ -66,6 +66,12 @@ a:hover {
   position: absolute;
   z-index: 2;
 }
+.overlay{
+  position:absolute;
+  z-index: 3;
+  top: 0px;
+  left: 0px;
+}
 .o-0{
   opacity: 0;
 }
@@ -129,6 +135,7 @@ a:hover {
 .videocard {
   border-color: #FF0033;
   border-width: 0px;
+  position:relative;
 }
 .imgvideo{
   width: 100%;
