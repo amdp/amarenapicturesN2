@@ -718,27 +718,39 @@ async function autoLoad() {
   }
 }
 
-async function saveData() {
-  try {
-    // Send the current data array back to your server
-    const response = await fetch('https://amarenapictures.com/api/save.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      // Send the data as a JSON string to your server
-      body: JSON.stringify(data) 
-    });
+// ── DATABASE SYNC ─────────────────────────────────────────────────────────────
+async function syncRow(row, oldName = null) {
+  const payload = {
+    name: row.name,
+    tier: row.tier,
+    tier_label: row.tier_label,
+    sector: row.sector,
+    status: row.status,
+    next_contact: row.next_contact,
+    notes: row.notes,
+    old: oldName !== null,  // true if updating, false if inserting
+    oldname: oldName        // only used for updates
+  };
 
-    if (!response.ok) {
-      toast('⚠️ Error saving to database!');
+  try {
+    const res = await fetch('https://amarenapictures.com/api/crm'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    const responseText = await res.text();
+    if (responseText === 'exists') {
+      toast('⚠️ Contact name already exists!');
+      return false;
     }
+    return true;
   } catch (err) {
-    console.error("Save error:", err);
-    toast('⚠️ Error saving to database!');
+    console.error("Sync error:", err);
+    toast('⚠️ Database connection error');
+    return false;
   }
 }
-
 
 function resetData() {
   if (!confirm('Reset all data to defaults? This cannot be undone.')) return;
@@ -961,34 +973,38 @@ function goPage(p) { page = p; render(); }
 function setPerPage(n) { perPage = parseInt(n); page = 1; render(); }
 
 // ── ACTIONS ───────────────────────────────────────────────────────────────────
-function markContacted(id) {
-  const r = data.find(d=>d._id===id);
+async function markContacted(id) {
+  const r = data.find(d => d._id === id);
   if (!r) return;
-
-  // Toggle logic: If it's already contacted, revert to pending
+  
+  const originalName = r.name;
   if (r.status === 'contacted') {
     r.status = 'pending';
-    saveData();
     render();
+    await syncRow(r, originalName);
     toast(`↺ ${r.name} reverted to pending`);
-  } 
-  // Otherwise, set to contacted and push date forward
-  else {
+  } else {
     r.status = 'contacted';
-    saveData();
+    r.next_contact = addDays(today(), 27);
     render();
-    toast(`✓ ${r.name} marked as contacted `);
+    await syncRow(r, originalName);
+    toast(`✓ ${r.name} marked as contacted — follow-up: ${r.next_contact}`);
   }
 }
 
-function snooze(id, days) {
-  const r = data.find(d=>d._id===id);
+async function snooze(id, days) {
+  const r = data.find(d => d._id === id);
   if (!r) return;
+  
+  const originalName = r.name; // Keep track for the WHERE clause
   r.next_contact = addDays(r.next_contact || today(), days);
-  saveData();
-  render();
+  
+  render(); // Update UI instantly
+  await syncRow(r, originalName); // Send to database
   toast(`${r.name} snoozed by ${days}d → ${r.next_contact}`);
 }
+
+
 
 // ── MODAL ─────────────────────────────────────────────────────────────────────
 function openAddModal() {
@@ -1024,42 +1040,34 @@ function closeModal(e) {
   document.getElementById('modalBg').classList.remove('open');
 }
 
-function saveModal() {
-  const name = document.getElementById('f-name').value.trim();
-  if (!name) { alert('Brand name is required.'); return; }
-  const tierLabels = {'1':'Existing client','2':'AI video angle','3':'Institutional'};
-  const tier = document.getElementById('f-tier').value;
+async function saveModal() {
+  const id = parseInt(document.getElementById('edit-id').value);
+  const r = id ? data.find(d => d._id === id) : {};
+  const isNew = !id;
+  const originalName = isNew ? null : r.name; // Crucial for your backend UPDATE
 
-  if (editId !== null) {
-    const r = data.find(d=>d._id===editId);
-    if (r) {
-      r.name = name;
-      r.tier = tier;
-      r.tier_label = tierLabels[tier];
-      r.sector = document.getElementById('f-sector').value.trim();
-      r.status = document.getElementById('f-status').value;
-      r.next_contact = document.getElementById('f-date').value;
-      r.notes = document.getElementById('f-notes').value.trim();
-    }
-    toast(`✓ ${name} updated`);
-  } else {
-    const newId = data.length > 0 ? Math.max(...data.map(d=>d._id)) + 1 : 0;
-    data.push({
-      _id: newId,
-      name,
-      tier,
-      tier_label: tierLabels[tier],
-      sector: document.getElementById('f-sector').value.trim(),
-      status: document.getElementById('f-status').value,
-      next_contact: document.getElementById('f-date').value,
-      notes: document.getElementById('f-notes').value.trim()
-    });
-    toast(`✓ ${name} added`);
+  const newRow = {
+    _id: isNew ? Date.now() : id, // Internal ID for frontend only
+    name: document.getElementById('edit-name').value.trim(),
+    tier: document.getElementById('edit-tier').value,
+    tier_label: document.getElementById('edit-tier-label').value.trim(),
+    sector: document.getElementById('edit-sector').value.trim(),
+    status: document.getElementById('edit-status').value,
+    next_contact: document.getElementById('edit-date').value,
+    notes: document.getElementById('edit-notes').value.trim()
+  };
+
+  // Wait for the backend to confirm before updating the screen
+  const success = await syncRow(newRow, originalName);
+  
+  if (success) {
+    if (isNew) data.push(newRow);
+    else Object.assign(r, newRow);
+    
+    closeModal();
+    render();
+    if (isNew) toast('✓ Contact added');
   }
-
-  saveData();
-  document.getElementById('modalBg').classList.remove('open');
-  render();
 }
 
 // ── EXPORT CSV ────────────────────────────────────────────────────────────────
@@ -1113,23 +1121,21 @@ function setTableHeight() {
 // ── INIT ──────────────────────────────────────────────────────────────────────
 (async () => {
   try {
-    // Call your server script to get the data
-    // (Your server should return the data as JSON, which is much easier than CSV)
-    const response = await fetch('https://amarenapictures.com/api/get.js');
-    
-    if (response.ok) {
-      data = await response.json(); // Load the database rows directly into your app
+    const res = await fetch('https://amarenapictures.com/api/crm');
+    if (res.ok) {
+      const dbRows = await res.json();
+      // Inject a local _id so the frontend UI buttons work correctly
+      data = dbRows.map((row, index) => ({ ...row, _id: index + 1 }));
       render();
-      toast('✓ Connected to MySQL database!');
+      toast('✓ Connected to database!');
     } else {
-      toast('⚠️ Failed to load from database.');
+      toast('⚠️ Failed to load data');
     }
   } catch (err) {
-    console.error("Database connection error:", err);
-    toast('⚠️ Could not connect to server.');
+    console.error("Load error:", err);
+    toast('⚠️ Database connection failed');
   }
 
-  // Setup UI
   setTableHeight();
   window.addEventListener('resize', setTableHeight);
   setTimeout(setTableHeight, 100);
