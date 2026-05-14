@@ -719,31 +719,24 @@ async function autoLoad() {
 }
 
 async function saveData() {
-  if (!fileHandle) return;
+  try {
+    // Send the current data array back to your server
+    const response = await fetch('https://amarenapictures.com/api/save.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      // Send the data as a JSON string to your server
+      body: JSON.stringify(data) 
+    });
 
-  const headers = [
-    'name',
-    'tier',
-    'tier_label',
-    'sector',
-    'status',
-    'next_contact',
-    'notes'
-  ];
-
-  const esc = v => `"${String(v || '').replace(/"/g, '""')}"`;
-
-  const rows = data.map(r => {
-    return headers.map(h => esc(r[h])).join(',');
-  });
-
-  const csv = [headers.join(','), ...rows].join('\n');
-
-  const writable = await fileHandle.createWritable();
-
-  await writable.write(csv);
-
-  await writable.close();
+    if (!response.ok) {
+      toast('⚠️ Error saving to database!');
+    }
+  } catch (err) {
+    console.error("Save error:", err);
+    toast('⚠️ Error saving to database!');
+  }
 }
 
 
@@ -1119,14 +1112,27 @@ function setTableHeight() {
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 (async () => {
-  // 1. Attempt to auto-load the file from the previous session silently
-  await autoLoad();
+  try {
+    // Call your server script to get the data
+    // (Your server should return the data as JSON, which is much easier than CSV)
+    const response = await fetch('https://amarenapictures.com/api/get.js');
+    
+    if (response.ok) {
+      data = await response.json(); // Load the database rows directly into your app
+      render();
+      toast('✓ Connected to MySQL database!');
+    } else {
+      toast('⚠️ Failed to load from database.');
+    }
+  } catch (err) {
+    console.error("Database connection error:", err);
+    toast('⚠️ Could not connect to server.');
+  }
 
-  // 2. Setup the table layout
+  // Setup UI
   setTableHeight();
   window.addEventListener('resize', setTableHeight);
   setTimeout(setTableHeight, 100);
-  setTimeout(setTableHeight, 400);
 })();
 </script>
 </body>
