@@ -1045,7 +1045,18 @@ function setTableHeight() {
       const dbRows = await res.json();
       
       // Map the REAL database 'id' to '_id' so your frontend buttons work safely
-      data = dbRows.map(row => ({ ...row, _id: row.id }));
+      data = dbRows.map(row => {
+        let cleanDate = row.next_contact;
+        if (cleanDate && cleanDate.includes('T')) {
+          cleanDate = cleanDate.split('T')[0]; // Grabs just the YYYY-MM-DD part
+        }
+        
+        return { 
+          ...row, 
+          _id: row.id,
+          next_contact: cleanDate
+        };
+      });
       
       render();
       toast('✓ Connected to database!');
