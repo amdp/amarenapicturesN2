@@ -26,52 +26,44 @@ const pool = mysql.createPool({
 const mypool = pool.promise()
 
 // CRM //
+
 app.post('/crm', async (req, res, next) => {
-  if (!req.body.old) { 
+  if (!req.body.old) {
     // ── ADDING A NEW CONTACT ──
     try {
       // 1. Check if name already exists
-      let query = 'SELECT * FROM `crm` WHERE `name`=? LIMIT 1';
-      let param = [req.body.name];
-      const [rows] = await mypool.execute(query, param) 
-      if (rows.length > 0) { 
-        return res.status(200).send('exists'); 
-      }
-      
-      // if (!req.body.id) { req.body.id = false } // no id means new item
-      
-      // 2. Insert new record (Explicitly naming the 7 columns so 'id' auto-increments safely)
-      let query = 'INSERT INTO crm (`name`, `tier`, `tier_label`, `sector`, `status`, `next_contact`, `notes`) VALUES (?,?,?,?,?,?,?)';
-      let param = [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes];
-      
-      const [rows] = await mypool.execute(query, param);
-      res.status(200).send('inserted');
-      
+      const [exists] = await mypool.execute(
+        'SELECT id FROM `crm` WHERE `name`=? LIMIT 1',
+        [req.body.name]
+      )
+      if (exists.length > 0) return res.status(200).send('exists')
+
+      // 2. Insert new record
+      await mypool.execute(
+        'INSERT INTO crm (`name`,`tier`,`tier_label`,`sector`,`status`,`next_contact`,`notes`) VALUES (?,?,?,?,?,?,?)',
+        [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes]
+      )
+      res.status(200).send('inserted')
     } catch (err) {
-      next(err);
+      next(err)
     }
-    
   } else {
     // ── UPDATING AN EXISTING CONTACT ──
     try {
-      let query = 'UPDATE crm SET `name` = ?, `tier` = ?, `tier_label` = ?, `sector` = ?, `status` = ?, `next_contact` = ?, `notes` = ? WHERE `name` = ?';
-      // Note: we use req.body.oldname in the WHERE clause so we can update the name if it has been edited
-      let param = [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes, req.body.oldname];
-      
-      const [result] = await mypool.execute(query, param);
-      res.status(200).send('updated');
-      
+      await mypool.execute(
+        'UPDATE crm SET `name`=?,`tier`=?,`tier_label`=?,`sector`=?,`status`=?,`next_contact`=?,`notes`=? WHERE `name`=?',
+        [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes, req.body.oldname]
+      )
+      res.status(200).send('updated')
     } catch (err) {
-      next(err);
+      next(err)
     }
   }
-});
+})
 
 app.get('/crm', async (req, res, next) => {
   try {
-    let query = 'SELECT * FROM `crm`
-    let param = ['1']
-    const [rows] = await mypool.execute(query, param)
+    const [rows] = await mypool.execute('SELECT * FROM `crm` ORDER BY `next_contact` ASC')
     res.status(200).send(rows)
   } catch (err) {
     next(err)
