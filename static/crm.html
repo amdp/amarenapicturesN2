@@ -899,7 +899,6 @@ async function markContacted(id) {
     toast(`↺ ${r.name} reverted to pending`);
   } else {
     r.status = 'contacted';
-    r.next_contact = addDays(today(), 27);
     render();
     await syncRow(r, originalName);
     toast(`✓ ${r.name} marked as contacted — follow-up: ${r.next_contact}`);
