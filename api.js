@@ -26,37 +26,46 @@ const pool = mysql.createPool({
 const mypool = pool.promise()
 
 // CRM //
-
 app.post('/crm', async (req, res, next) => {
-  if (!req.body.old) { //adding a new one here
+  if (!req.body.old) { 
+    // ── ADDING A NEW CONTACT ──
     try {
-      let query = 'SELECT * FROM `crm` WHERE `name`=? LIMIT 1'
-      let param = [req.body.name]
-      const [rows] = await mypool.execute(query, param)
-      if (rows.length > 0) { return res.status(200).send('exists') }
+      // 1. Check if name already exists
+      let query = 'SELECT * FROM `crm` WHERE `name`=? LIMIT 1';
+      let param = [req.body.name];
+      const [rows] = await mypool.execute(query, param) 
+      if (rows.length > 0) { 
+        return res.status(200).send('exists'); 
+      }
+      
+      // if (!req.body.id) { req.body.id = false } // no id means new item
+      
+      // 2. Insert new record (Explicitly naming the 7 columns so 'id' auto-increments safely)
+      let query = 'INSERT INTO crm (`name`, `tier`, `tier_label`, `sector`, `status`, `next_contact`, `notes`) VALUES (?,?,?,?,?,?,?)';
+      let param = [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes];
+      
+      const [rows] = await mypool.execute(query, param);
+      res.status(200).send('inserted');
+      
     } catch (err) {
-      next(err)
+      next(err);
     }
-    if (!req.body.id) { req.body.id = false } // no id means new item
-    try {
-      let query = 'insert into crm values (?,?,?,?,?,?,?)'
-      let params = [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes]
-      const [rows] = await mypool.execute(query, params)
-      res.status(200).send(rows)
-    } catch (err) {
-      next(err)
-    }
+    
   } else {
+    // ── UPDATING AN EXISTING CONTACT ──
     try {
-      let query = 'UPDATE crm set `name` = ?, `tier` = ?, `tier_label` = ?, `sector` = ?, `status` = ?, `next_contact` = ?, `notes` = ? where `oldname` = ?'
-      let param = [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes, req.body.oldname]
-      const [rows] = await mypool.execute(query, param)
-      res.status(200).send(rows)
+      let query = 'UPDATE crm SET `name` = ?, `tier` = ?, `tier_label` = ?, `sector` = ?, `status` = ?, `next_contact` = ?, `notes` = ? WHERE `name` = ?';
+      // Note: we use req.body.oldname in the WHERE clause so we can update the name if it has been edited
+      let param = [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes, req.body.oldname];
+      
+      const [result] = await mypool.execute(query, param);
+      res.status(200).send('updated');
+      
     } catch (err) {
-      next(err)
+      next(err);
     }
   }
-})
+});
 
 app.get('/crm', async (req, res, next) => {
   try {
