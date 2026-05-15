@@ -502,7 +502,6 @@
   }
   .toast.show { opacity: 1; transform: translateY(0); }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/idb-keyval@6/dist/umd.js"></script>
 </head>
 <body>
 
@@ -517,7 +516,7 @@
   <div class="header-stats" id="headerStats"></div>
 <div class="header-actions">
     <button class="btn btn-due" id="btnDue" onclick="toggleDue()">⚑ Due</button>
-    <button class="btn" onclick="loadData()">📁 Load CSV</button> <button class="btn" onclick="exportCSV()">↓ CSV</button>
+    <button class="btn" onclick="exportCSV()">↓ CSV</button>
     <button class="btn btn-red" onclick="openAddModal()">+ Add</button>
   </div>
 </header>
@@ -631,26 +630,6 @@
 <script>
   let fileHandle = null;
 
-// ── CSV PARSER ────────────────────────────────────────────────────────────────
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = lines[0].split(',');
-  return lines.slice(1).map((line, idx) => {
-    const cols = splitLine(line);
-    const obj = { _id: idx };
-    headers.forEach((h, i) => { obj[h.trim()] = (cols[i] || '').trim(); });
-    return obj;
-  });
-}
-function splitLine(line) {
-  const cols = []; let cur = '', inQ = false;
-  for (const c of line) {
-    if (c === '"') { inQ = !inQ; continue; }
-    if (c === ',' && !inQ) { cols.push(cur); cur = ''; continue; }
-    cur += c;
-  }
-  cols.push(cur); return cols;
-}
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
 const STORE_KEY = 'amarena_crm_v2';
@@ -662,61 +641,6 @@ let page = 1;
 let perPage = 30;
 let dueOnly = false;
 let editId = null;
-
-// ── FILE HANDLING ─────────────────────────────────────────────────────────────
-
-// 1. Helper to read the file and update the screen
-async function readAndRenderFile() {
-  const file = await fileHandle.getFile();
-  const text = await file.text();
-  data = parseCSV(text);
-  render();
-  toast('CSV Loaded & Synced!');
-}
-
-// 2. Triggered manually when clicking "Load CSV" (First time only)
-async function loadData() {
-  try {
-    const handles = await window.showOpenFilePicker({
-      types: [{ description: 'CSV Files', accept: { 'text/csv': ['.csv'] } }],
-      multiple: false
-    });
-
-    fileHandle = handles[0];
-    await fileHandle.requestPermission({ mode: 'readwrite' });
-
-    // Save the file handle to the browser's database so it remembers it
-    await idbKeyval.set('amarenaCsvHandle', fileHandle);
-
-    await readAndRenderFile();
-  } catch (err) {
-    if (err.name !== 'AbortError') alert(err.message);
-  }
-}
-
-// 3. Triggered automatically in the background when the page loads
-async function autoLoad() {
-  try {
-    // Look for a saved file connection from a previous session
-    const savedHandle = await idbKeyval.get('amarenaCsvHandle');
-    
-    if (savedHandle) {
-      fileHandle = savedHandle;
-      
-      // Check if the browser still grants us permission silently
-      const permission = await fileHandle.queryPermission({ mode: 'readwrite' });
-      
-      if (permission === 'granted') {
-        // Success! Load the table automatically
-        await readAndRenderFile();
-      } else {
-        console.log("Browser requires manual permission. Please click 'Load CSV'.");
-      }
-    }
-  } catch (err) {
-    console.error("Auto-load failed:", err);
-  }
-}
 
 // ── DATABASE SYNC ─────────────────────────────────────────────────────────────
 async function syncRow(row, oldName = null) {
@@ -733,7 +657,7 @@ async function syncRow(row, oldName = null) {
   };
 
   try {
-    const res = await fetch('https://amarenapictures.com/api/crm'), {
+    const res = await fetch('https://amarenapictures.com/api/crm', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -750,15 +674,6 @@ async function syncRow(row, oldName = null) {
     toast('⚠️ Database connection error');
     return false;
   }
-}
-
-function resetData() {
-  if (!confirm('Reset all data to defaults? This cannot be undone.')) return;
-  localStorage.removeItem(STORE_KEY);
-  loadData();
-  page = 1;
-  render();
-  toast('Data reset to defaults');
 }
 
 // ── DATE UTILS ────────────────────────────────────────────────────────────────
@@ -964,7 +879,6 @@ function renderPager() {
     <select class="per-page-select" onchange="setPerPage(this.value)">
       ${[20,30,50,100].map(n=>`<option value="${n}"${n===perPage?' selected':''}>${n}</option>`).join('')}
     </select>
-    <button class="btn" onclick="resetData()" style="font-size:10px;padding:4px 10px;">↺ Reset</button>
   </div>`;
   document.getElementById('pager').innerHTML = html;
 }
@@ -1041,20 +955,24 @@ function closeModal(e) {
 }
 
 async function saveModal() {
-  const id = parseInt(document.getElementById('edit-id').value);
+  const id = editId; // Uses the global variable set when opening the modal
   const r = id ? data.find(d => d._id === id) : {};
   const isNew = !id;
   const originalName = isNew ? null : r.name; // Crucial for your backend UPDATE
 
+  // Auto-generate the tier label based on what they select
+  const tierVal = document.getElementById('f-tier').value;
+  const tierLabels = {'1': 'Existing client', '2': 'AI video angle', '3': 'Institutional'};
+
   const newRow = {
     _id: isNew ? Date.now() : id, // Internal ID for frontend only
-    name: document.getElementById('edit-name').value.trim(),
-    tier: document.getElementById('edit-tier').value,
-    tier_label: document.getElementById('edit-tier-label').value.trim(),
-    sector: document.getElementById('edit-sector').value.trim(),
-    status: document.getElementById('edit-status').value,
-    next_contact: document.getElementById('edit-date').value,
-    notes: document.getElementById('edit-notes').value.trim()
+    name: document.getElementById('f-name').value.trim(),
+    tier: tierVal,
+    tier_label: tierLabels[tierVal] || '',
+    sector: document.getElementById('f-sector').value.trim(),
+    status: document.getElementById('f-status').value,
+    next_contact: document.getElementById('f-date').value,
+    notes: document.getElementById('f-notes').value.trim()
   };
 
   // Wait for the backend to confirm before updating the screen
@@ -1067,6 +985,7 @@ async function saveModal() {
     closeModal();
     render();
     if (isNew) toast('✓ Contact added');
+    else toast('✓ Contact updated');
   }
 }
 
@@ -1124,8 +1043,10 @@ function setTableHeight() {
     const res = await fetch('https://amarenapictures.com/api/crm');
     if (res.ok) {
       const dbRows = await res.json();
-      // Inject a local _id so the frontend UI buttons work correctly
-      data = dbRows.map((row, index) => ({ ...row, _id: index + 1 }));
+      
+      // Map the REAL database 'id' to '_id' so your frontend buttons work safely
+      data = dbRows.map(row => ({ ...row, _id: row.id }));
+      
       render();
       toast('✓ Connected to database!');
     } else {
