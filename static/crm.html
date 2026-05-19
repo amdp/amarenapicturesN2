@@ -234,6 +234,11 @@
     font-size: 11px;
     white-space: nowrap;
   }
+  .td-owners {
+    color: var(--text-muted);
+    font-size: 11px;
+    white-space: nowrap;
+  }
   .td-notes {
     color: var(--text-muted);
     font-size: 11px;
@@ -546,6 +551,9 @@
   <select id="filterSector" onchange="onFilter()">
     <option value="">All sectors</option>
   </select>
+  <select id="filterOwner" onchange="onFilter()">
+    <option value="">All owners</option>
+  </select>
   <select id="sortCol" onchange="onFilter()">
     <option value="next_contact">Sort: Next contact</option>
     <option value="tier">Sort: Tier</option>
@@ -560,6 +568,7 @@
     <thead>
       <tr>
         <th onclick="setSort('name')">Brand <span class="sort-arrow" id="sa-name"></span></th>
+        <th onclick="setSort('owner')">Owner <span class="sort-arrow" id="sa-owner"></span></th>
         <th onclick="setSort('tier')">Tier <span class="sort-arrow" id="sa-tier"></span></th>
         <th onclick="setSort('sector')">Sector <span class="sort-arrow" id="sa-sector"></span></th>
         <th onclick="setSort('status')">Status <span class="sort-arrow" id="sa-status"></span></th>
@@ -717,6 +726,9 @@ function applyFilters() {
   const ft = document.getElementById('filterTier').value;
   const fs = document.getElementById('filterStatus').value;
   const fsc = document.getElementById('filterSector').value;
+  const fo = document.getElementById('filterOwner').value;
+
+
 
   filtered = data.filter(r => {
     if (dueOnly) {
@@ -729,6 +741,7 @@ function applyFilters() {
     if (ft && r.tier !== ft) return false;
     if (fs && r.status !== fs) return false;
     if (fsc && r.sector !== fsc) return false;
+    if (fo && r.owner !== fo) return false;
     return true;
   });
 
@@ -774,6 +787,11 @@ function populate() {
   const owners = [...new Set(data.map(r => r.owner).filter(Boolean))].sort();
   const odl = document.getElementById('owner-options');
   if (odl) odl.innerHTML = owners.map(o => `<option value="${o}">`).join('');
+  // Owner filter dropdown in toolbar
+  const osel = document.getElementById('filterOwner');
+  const ocur = osel.value;
+  osel.innerHTML = '<option value="">All owners</option>' +
+    owners.map(o => `<option value="${o}"${o===ocur?' selected':''}>${o}</option>`).join('');
 }
   
 // ── RENDER ────────────────────────────────────────────────────────────────────
@@ -806,7 +824,7 @@ function renderStats() {
 }
 
 function renderSortArrows() {
-  ['name','tier','sector','status','next_contact'].forEach(col => {
+  ['name','tier','sector','owner','status','next_contact'].forEach(col => {
     const el = document.getElementById('sa-'+col);
     if (!el) return;
     const th = el.closest('th');
@@ -854,6 +872,7 @@ function renderTable() {
       <td class="td-name">${esc(r.name)}</td>
       <td>${tierBadge(r.tier)}</td>
       <td class="td-sector">${esc(r.sector)}</td>
+      <td class="td-owner">${esc(r.owner || '—')}</td>
       <td>${statusBadge(r.status)}</td>
       <td class="td-date ${dc}">${fmtDate(r.next_contact)}</td>
       <td class="td-notes" title="${esc(r.notes)}">${esc(r.notes)}</td>
