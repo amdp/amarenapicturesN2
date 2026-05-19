@@ -173,11 +173,10 @@
   .btn-due.active { background: var(--pending); color: var(--black); }
 
   /* ── TABLE ── */
-  .table-wrap {
+.table-wrap {
     overflow-x: auto;
     overflow-y: auto;
-    padding: 0 28px 0;
-    /* height set by JS so thead sticky works relative to this container */
+    padding: 0 28px 70px; 
   }
   table {
     width: 100%;
@@ -662,7 +661,7 @@ let filtered = [];
 let sortCol = 'next_contact';
 let sortAsc = true;
 let page = 1;
-let perPage = 30;
+let perPage = 'all';
 let dueOnly = false;
 let editId = null;
 
@@ -864,8 +863,8 @@ function renderTable() {
   const tbody = document.getElementById('tbody');
   const empty = document.getElementById('emptyState');
   const total = filtered.length;
-  const start = (page-1)*perPage;
-  const slice = filtered.slice(start, start+perPage);
+  const start = perPage === 'all' ? 0 : (page - 1) * perPage;
+  const slice = perPage === 'all' ? filtered : filtered.slice(start, start + perPage);
 
   if (total === 0) {
     tbody.innerHTML = '';
@@ -909,7 +908,7 @@ function renderTable() {
 
 function renderPager() {
   const total = filtered.length;
-  const pages = Math.max(1, Math.ceil(total / perPage));
+  const pages = perPage === 'all' ? 1 : Math.max(1, Math.ceil(total / perPage));
   if (page > pages) page = pages;
 
   let html = `<span class="pager-info">${total} results</span>`;
@@ -922,14 +921,14 @@ function renderPager() {
   html += `<div class="pager-right">
     <span class="per-page-label">Per page</span>
     <select class="per-page-select" onchange="setPerPage(this.value)">
-      ${[20,30,50,100].map(n=>`<option value="${n}"${n===perPage?' selected':''}>${n}</option>`).join('')}
+      ${['all', 20, 30, 50, 100].map(n => `<option value="${n}"${n === perPage ? ' selected' : ''}>${n === 'all' ? 'All' : n}</option>`).join('')}
     </select>
   </div>`;
   document.getElementById('pager').innerHTML = html;
 }
 
 function goPage(p) { page = p; render(); }
-function setPerPage(n) { perPage = parseInt(n); page = 1; render(); }
+function setPerPage(n) { perPage = n === 'all' ? 'all' : parseInt(n); page = 1; render(); }
 
 // ── ACTIONS ───────────────────────────────────────────────────────────────────
 async function markContacted(id) {
