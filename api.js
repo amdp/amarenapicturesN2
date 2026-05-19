@@ -25,34 +25,28 @@ const pool = mysql.createPool({
 
 const mypool = pool.promise()
 
-// CRM //
-
 app.post('/crm', async (req, res, next) => {
   if (!req.body.old) {
-    // ── ADDING A NEW CONTACT ──
     try {
-      // 1. Check if name already exists
       const [exists] = await mypool.execute(
         'SELECT id FROM `crm` WHERE `name`=? LIMIT 1',
         [req.body.name]
       )
       if (exists.length > 0) return res.status(200).send('exists')
 
-      // 2. Insert new record
       await mypool.execute(
         'INSERT INTO crm (`name`,`tier`,`tier_label`,`sector`,`owner`,`status`,`next_contact`,`notes`) VALUES (?,?,?,?,?,?,?,?)',
-        [row.name, row.tier, row.tier_label, row.sector, row.owner, row.status, row.next_contact, row.notes]
+        [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.owner, req.body.status, req.body.next_contact, req.body.notes]
       )
       res.status(200).send('inserted')
     } catch (err) {
       next(err)
     }
   } else {
-    // ── UPDATING AN EXISTING CONTACT ──
     try {
       await mypool.execute(
-        ''UPDATE crm SET `name`=?,`tier`=?,`tier_label`=?,`sector`=?,`owner`=?,`status`=?,`next_contact`=?,`notes`=? WHERE `name`=?',
-        [row.name, row.tier, row.tier_label, row.sector, row.owner, row.status, row.next_contact, row.notes, oldname]
+        'UPDATE crm SET `name`=?,`tier`=?,`tier_label`=?,`sector`=?,`owner`=?,`status`=?,`next_contact`=?,`notes`=? WHERE `name`=?',
+        [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.owner, req.body.status, req.body.next_contact, req.body.notes, req.body.oldname]
       )
       res.status(200).send('updated')
     } catch (err) {
