@@ -40,8 +40,8 @@ app.post('/crm', async (req, res, next) => {
 
       // 2. Insert new record
       await mypool.execute(
-        'INSERT INTO crm (`name`,`tier`,`tier_label`,`sector`,`status`,`next_contact`,`notes`) VALUES (?,?,?,?,?,?,?)',
-        [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes]
+        'INSERT INTO crm (`name`,`tier`,`tier_label`,`sector`,`owner`,`status`,`next_contact`,`notes`) VALUES (?,?,?,?,?,?,?,?)',
+        [row.name, row.tier, row.tier_label, row.sector, row.owner, row.status, row.next_contact, row.notes]
       )
       res.status(200).send('inserted')
     } catch (err) {
@@ -51,8 +51,8 @@ app.post('/crm', async (req, res, next) => {
     // ── UPDATING AN EXISTING CONTACT ──
     try {
       await mypool.execute(
-        'UPDATE crm SET `name`=?,`tier`=?,`tier_label`=?,`sector`=?,`status`=?,`next_contact`=?,`notes`=? WHERE `name`=?',
-        [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.status, req.body.next_contact, req.body.notes, req.body.oldname]
+        ''UPDATE crm SET `name`=?,`tier`=?,`tier_label`=?,`sector`=?,`owner`=?,`status`=?,`next_contact`=?,`notes`=? WHERE `name`=?',
+        [row.name, row.tier, row.tier_label, row.sector, row.owner, row.status, row.next_contact, row.notes, oldname]
       )
       res.status(200).send('updated')
     } catch (err) {
