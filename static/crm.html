@@ -322,6 +322,9 @@
   
   .act-btn.act-yellow { border-color: var(--pending); color: var(--pending); }
   .act-btn.act-yellow:hover { background: var(--pending); color: var(--black); }
+  
+  .act-btn.act-gray { border-color: var(--pass); color: var(--pass); }
+  .act-btn.act-gray:hover { background: var(--pass); color: var(--black); }
 
   /* Tiny custom snooze input */
   .act-input {
@@ -593,20 +596,22 @@
           <option value="3">3 — Institutional</option>
         </select>
       </div>
-      <div class="form-row">
-        <label>Sector</label>
-        <input type="text" id="f-sector" placeholder="e.g. FMCG">
-      </div>
+    <div class="form-row">
+      <label>Sector</label>
+      <input type="text" id="f-sector" list="sector-options" placeholder="Select or type new…" autocomplete="off">
+      <datalist id="sector-options"></datalist>
+    </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
       <div class="form-row">
-        <label>Status</label>
-        <select id="f-status">
-          <option value="pending">Pending</option>
-          <option value="contacted">Contacted</option>
-          <option value="replied">Replied</option>
-          <option value="pass">Pass</option>
-        </select>
+        <label>Owner</label>
+        <input type="text" id="f-owner" list="owner-options" placeholder="Gio, Ale, Mixed…" autocomplete="off">
+        <datalist id="owner-options">
+          <option value="Gio">
+          <option value="Ale">
+          <option value="Mixed">
+          <option value="Other">
+        </datalist>
       </div>
       <div class="form-row">
         <label>Next contact</label>
@@ -649,11 +654,12 @@ async function syncRow(row, oldName = null) {
     tier: row.tier,
     tier_label: row.tier_label,
     sector: row.sector,
+    owner: row.owner || '',
     status: row.status,
     next_contact: row.next_contact,
     notes: row.notes,
-    old: oldName !== null,  // true if updating, false if inserting
-    oldname: oldName        // only used for updates
+    old: oldName !== null,
+    oldname: oldName
   };
 
   try {
@@ -755,18 +761,25 @@ function toggleDue() {
 }
 
 // ── SECTORS ──────────────────────────────────────────────────────────────────
-function populateSectors() {
+function populate() {
   const sectors = [...new Set(data.map(r => r.sector))].sort();
   const sel = document.getElementById('filterSector');
   const cur = sel.value;
   sel.innerHTML = '<option value="">All sectors</option>' +
     sectors.map(s => `<option value="${s}"${s===cur?' selected':''}>${s}</option>`).join('');
+  // Also feed the modal datalist
+  const dl = document.getElementById('sector-options');
+  if (dl) dl.innerHTML = sectors.map(s => `<option value="${s}">`).join('');
+  // Owners
+  const owners = [...new Set(data.map(r => r.owner).filter(Boolean))].sort();
+  const odl = document.getElementById('owner-options');
+  if (odl) odl.innerHTML = owners.map(o => `<option value="${o}">`).join('');
 }
-
+  
 // ── RENDER ────────────────────────────────────────────────────────────────────
 function render() {
   applyFilters();
-  populateSectors();
+  populate();
   renderStats();
   renderSortArrows();
   renderTable();
@@ -846,15 +859,15 @@ function renderTable() {
       <td class="td-notes" title="${esc(r.notes)}">${esc(r.notes)}</td>
       <td>
         <div class="row-actions">
-          <button class="act-btn ${r.status === 'contacted' ? 'act-yellow' : 'act-blue'}" onclick="markContacted(${r._id})">
-            ${r.status === 'contacted' ? '↺ Pending' : '✓ Contacted'}
-          </button>
+          ${(() => {
+            const owner = r.owner || '';
+            const ownerClass = owner === 'Gio' ? 'act-blue' : owner === 'Ale' ? 'act-yellow' : 'act-gray';
+            return `<button class="act-btn ${ownerClass}" onclick="cycleOwner(${r._id})">${owner || '—'}</button>`;
+          })()}
           <button class="act-btn act-green" onclick="snooze(${r._id}, 1)">+1</button>
           <button class="act-btn act-yellow" onclick="snooze(${r._id}, 3)">+3</button>
-          
-          <input type="number" class="act-input" placeholder="..." title="Enter days" 
+          <input type="number" class="act-input" placeholder="..." title="Enter days"
                  onkeydown="if(event.key === 'Enter' && this.value) snooze(${r._id}, parseInt(this.value))">
-                 
           <button class="act-btn act-red" onclick="openEditModal(${r._id})">Edit</button>
         </div>
       </td>
@@ -905,6 +918,16 @@ async function markContacted(id) {
   }
 }
 
+async function cycleOwner(id) {
+  const r = data.find(d => d._id === id);
+  if (!r) return;
+  const originalName = r.name;
+  r.owner = r.owner === 'Ale' ? 'Gio' : 'Ale';
+  render();
+  await syncRow(r, originalName);
+  toast(`${r.name} → ${r.owner}`);
+}
+
 async function snooze(id, days) {
   const r = data.find(d => d._id === id);
   if (!r) return;
@@ -931,6 +954,7 @@ function openAddModal() {
   document.getElementById('f-notes').value = '';
   document.getElementById('modalBg').classList.add('open');
   document.getElementById('f-name').focus();
+  document.getElementById('f-owner').value = '';
 }
 
 function openEditModal(id) {
@@ -946,6 +970,7 @@ function openEditModal(id) {
   document.getElementById('f-notes').value = r.notes;
   document.getElementById('modalBg').classList.add('open');
   document.getElementById('f-name').focus();
+  document.getElementById('f-owner').value = r.owner || '';
 }
 
 function closeModal(e) {
@@ -970,6 +995,7 @@ async function saveModal() {
     tier_label: tierLabels[tierVal] || '',
     sector: document.getElementById('f-sector').value.trim(),
     status: document.getElementById('f-status').value,
+    owner: document.getElementById('f-owner').value.trim(), 
     next_contact: document.getElementById('f-date').value,
     notes: document.getElementById('f-notes').value.trim()
   };
