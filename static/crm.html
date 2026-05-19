@@ -888,9 +888,12 @@ function renderTable() {
       <td>
         <div class="row-actions">
           ${(() => {
-            const owner = r.owner || '';
-            const ownerClass = owner === 'Gio' ? 'act-blue' : owner === 'Ale' ? 'act-yellow' : 'act-gray';
-            return `<button class="act-btn ${ownerClass}" onclick="cycleOwner(${r._id})">${owner || '—'}</button>`;
+            // Determine the NEXT owner based on the current one
+            const nextOwner = r.owner === 'Ale' ? 'Gio' : 'Ale';
+            // Set the color for the NEXT owner (Gio = blue, Ale = yellow)
+            const ownerClass = nextOwner === 'Gio' ? 'act-blue' : 'act-yellow';
+            
+            return `<button class="act-btn ${ownerClass}" onclick="cycleOwner(${r._id})">${nextOwner}</button>`;
           })()}
           <button class="act-btn act-green" onclick="snooze(${r._id}, 1)">+1</button>
           <button class="act-btn act-yellow" onclick="snooze(${r._id}, 3)">+3</button>
