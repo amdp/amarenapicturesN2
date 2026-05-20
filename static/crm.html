@@ -15,6 +15,7 @@
     --border-light: #333;
     --text: #e8e8e8;
     --text-muted: #777;
+    --text-dim: #555;
     --t1: #E8151B; --t2: #f0b429; --t3: #3ecf8e; --t4: #4a9eff; --t5: #888888;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,29 +33,160 @@
   .hstat-num.t1 { color: var(--t1); } .hstat-num.t2 { color: var(--t2); } .hstat-num.t3 { color: var(--t3); } .hstat-num.t4 { color: var(--t4); } .hstat-num.t5 { color: var(--t5); }
   .header-actions { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 
-  /* ── TABLE ── */
+  /* ── TABLE & ACTIONS ── */
   .table-wrap { overflow-x: auto; overflow-y: auto; padding: 0 28px 70px; }
   table { width: 100%; border-collapse: collapse; }
   th { text-align: left; padding: 10px 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 10px; color: var(--text-muted); border-bottom: 1px solid var(--border); cursor: pointer; }
-  tbody tr { border-bottom: 1px solid var(--border); }
   td { padding: 9px 12px; }
-  .td-name { font-weight: 500; white-space: nowrap; }
   .td-notes { color: #ffffff !important; font-size: 11px; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .td-date.t1 { color: var(--t1); } .td-date.t2 { color: var(--t2); } .td-date.t3 { color: var(--t3); } .td-date.t4 { color: var(--t4); } .td-date.t5 { color: var(--text-muted); }
-
-  /* ── BADGES & ACTIONS ── */
+  
   .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 2px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 10px; text-transform: uppercase; }
-  .bdg-t1 { background: rgba(232,21,27,0.15); color: var(--t1); } .bdg-t2 { background: rgba(240,180,41,0.15); color: var(--t2); } .bdg-t3 { background: rgba(62,207,142,0.15); color: var(--t3); } .bdg-t4 { background: rgba(74,158,255,0.15); color: var(--t4); } .bdg-t5 { background: rgba(136,136,136,0.15); color: var(--t5); }
+  .badge-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .bdg-t1 { background: rgba(232,21,27,0.15); color: var(--t1); } .bdg-t1 .badge-dot { background: var(--t1); }
+  .bdg-t2 { background: rgba(240,180,41,0.15); color: var(--t2); } .bdg-t2 .badge-dot { background: var(--t2); }
+  .bdg-t3 { background: rgba(62,207,142,0.15); color: var(--t3); } .bdg-t3 .badge-dot { background: var(--t3); }
+  .bdg-t4 { background: rgba(74,158,255,0.15); color: var(--t4); } .bdg-t4 .badge-dot { background: var(--t4); }
+  .bdg-t5 { background: rgba(136,136,136,0.15); color: var(--t5); } .bdg-t5 .badge-dot { background: var(--t5); }
+  
   .row-actions { display: flex; gap: 4px; opacity: 0; transition: opacity 0.15s; }
   tbody tr:hover .row-actions, tbody tr:focus-within .row-actions { opacity: 1; }
-  .act-btn { padding: 3px 8px; border: 1px solid var(--border-light); border-radius: 3px; background: transparent; color: var(--text-muted); cursor: pointer; }
+  .act-btn { padding: 3px 8px; border: 1px solid var(--border-light); border-radius: 3px; background: transparent; color: var(--text-muted); cursor: pointer; font-size: 10px; }
   .act-btn:hover { background: var(--card); border-color: var(--text-muted); }
-  .btn { padding: 7px 16px; border-radius: 4px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 12px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text); }
+  .btn { padding: 7px 16px; border-radius: 4px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--card); color: var(--text); }
   .btn-t1 { background: var(--t1); border: none; color: white; }
+  .edit-select { background: var(--black); border: 1px solid var(--border-light); color: var(--text); padding: 4px; }
 </style>
 </head>
 <body>
-<!-- (Structure remains the same) -->
-<!-- ... -->
+
+<header>
+  <div class="logo">
+    <div class="logo-text"><span>Amarena</span> Pictures</div>
+  </div>
+  <div class="header-stats" id="headerStats"></div>
+  <div class="header-actions">
+    <button class="btn" onclick="toggleDue()">⚑ Due</button>
+    <button class="btn" onclick="exportCSV()">↓ CSV</button>
+    <button class="btn btn-t1" onclick="openAddModal()">+ Add</button>
+  </div>
+</header>
+
+<div class="toolbar" style="padding:12px 28px; background:var(--off-black); border-bottom:1px solid var(--border);">
+  <input type="text" id="search" placeholder="Search..." oninput="render()">
+  <select id="filterType" onchange="render()"><option value="">All Types</option><option value="Client">Client</option><option value="Agency">Agency</option><option value="Other">Other</option></select>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Brand</th><th>Owner</th><th>Type</th><th>Sector</th><th>Status</th><th>Next Contact</th><th>Notes</th><th></th></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<div class="pager" id="pager"></div>
+
+<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h3 id="modalTitle">Add/Edit</h3>
+    <div class="form-row"><label>Brand</label><input type="text" id="f-name"></div>
+    <div class="form-row"><label>Type</label><select id="f-type"><option value="Client">Client</option><option value="Agency">Agency</option><option value="Other">Other</option></select></div>
+    <div class="form-row"><label>Owner</label><select id="f-owner"><option value="Gio">Gio</option><option value="Ale">Ale</option><option value="Other">Other</option></select></div>
+    <div class="form-row"><label>Next Contact</label><input type="date" id="f-date"></div>
+    <div class="form-row"><label>Notes</label><textarea id="f-notes"></textarea></div>
+    <button class="btn btn-t1" onclick="saveModal()">Save</button>
+  </div>
+</div>
+
+<script>
+let data = [], filtered = [], page = 1, perPage = 'all', editId = null;
+
+function render() {
+  filtered = data.filter(r => {
+    const q = document.getElementById('search').value.toLowerCase();
+    const ft = document.getElementById('filterType').value;
+    return (!q || r.name.toLowerCase().includes(q)) && (!ft || r.type === ft);
+  });
+  renderStats();
+  document.getElementById('tbody').innerHTML = filtered.map(r => `
+    <tr>
+      <td class="td-name">${esc(r.name)}</td>
+      <td>${badge('owner', r.owner, r._id)}</td>
+      <td>${badge('type', r.type, r._id)}</td>
+      <td>${esc(r.sector)}</td>
+      <td>${r.status}</td>
+      <td class="td-date ${dateClass(r.next_contact)}">${r.next_contact}</td>
+      <td class="td-notes">${esc(r.notes)}</td>
+      <td>
+        <div class="row-actions">
+          <button class="act-btn" onclick="snooze(${r._id}, 1)">+1</button>
+          <button class="act-btn" onclick="snooze(${r._id}, 3)">+3</button>
+          <button class="act-btn" onclick="snooze(${r._id}, 7)">+7</button>
+          <button class="act-btn" onclick="openEditModal(${r._id})">Edit</button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+function badge(field, val, id) {
+    const map = { 'Client':'t2', 'Agency':'t4', 'Other':'t3', 'Ale':'t2', 'Gio':'t4' };
+    const c = map[val] || 't5';
+    return `<span class="badge bdg-${c}" style="cursor:pointer" onclick="inlineEdit(event, ${id}, '${field}')"><span class="badge-dot"></span>${val || '—'}</span>`;
+}
+
+function inlineEdit(e, id, field) {
+    const td = e.currentTarget.closest('td');
+    const r = data.find(d => d._id === id);
+    const options = field === 'type' ? ['Client','Agency','Other'] : ['Gio','Ale','Other'];
+    td.innerHTML = `<select class="edit-select" onchange="saveInline(${id}, '${field}', this.value)" onblur="render()">${options.map(o => `<option value="${o}" ${r[field]===o?'selected':''}>${o}</option>`).join('')}</select>`;
+    td.querySelector('select').focus();
+}
+
+async function saveInline(id, field, val) {
+    const r = data.find(d => d._id === id);
+    r[field] = val;
+    await fetch('https://amarenapictures.com/api/crm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(r) });
+    render();
+}
+
+function dateClass(d) {
+    const diff = Math.ceil((new Date(d) - new Date()) / 86400000);
+    if (diff < 0) return 't1'; if (diff === 0) return 't2'; if (diff === 1) return 't3'; return 't4';
+}
+
+function renderStats() {
+    document.getElementById('headerStats').innerHTML = `
+        <div class="hstat"><div class="hstat-num">${data.length}</div><div class="hstat-label">Total</div></div>
+        <div class="hstat"><div class="hstat-num t2">${data.filter(r=>r.type==='Client').length}</div><div class="hstat-label">Clients</div></div>
+        <div class="hstat"><div class="hstat-num t4">${data.filter(r=>r.type==='Agency').length}</div><div class="hstat-label">Agencies</div></div>
+    `;
+}
+
+async function snooze(id, days) {
+    const r = data.find(d => d._id === id);
+    const dt = new Date(r.next_contact || new Date());
+    dt.setDate(dt.getDate() + days);
+    r.next_contact = dt.toISOString().slice(0,10);
+    await fetch('https://amarenapictures.com/api/crm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(r) });
+    render();
+}
+
+function openAddModal() { editId = null; document.getElementById('modalBg').classList.add('open'); }
+function openEditModal(id) { editId = id; const r = data.find(d=>d._id===id); document.getElementById('f-name').value=r.name; document.getElementById('modalBg').classList.add('open'); }
+function closeModal(e) { if (!e || e.target.id === 'modalBg') document.getElementById('modalBg').classList.remove('open'); }
+async function saveModal() {
+    const r = editId ? data.find(d=>d._id===editId) : {};
+    r.name = document.getElementById('f-name').value; r.type = document.getElementById('f-type').value; r.owner = document.getElementById('f-owner').value; r.next_contact = document.getElementById('f-date').value; r.notes = document.getElementById('f-notes').value;
+    await fetch('https://amarenapictures.com/api/crm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(r) });
+    closeModal(); render();
+}
+function esc(s) { return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
+(async () => {
+    const res = await fetch('https://amarenapictures.com/api/crm');
+    data = (await res.json()).map(r => ({ ...r, _id: r.id }));
+    render();
+})();
+</script>
 </body>
 </html>
