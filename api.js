@@ -20,7 +20,8 @@ const pool = mysql.createPool({
   database: process.env.DBDB,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
+  dateStrings: true
 })
 
 const mypool = pool.promise()
