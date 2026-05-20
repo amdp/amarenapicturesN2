@@ -96,11 +96,13 @@
     color: var(--text-muted);
     margin-top: 2px;
   }
-  .hstat-num.red { color: var(--t1); }
-  .hstat-num.yellow { color: var(--t2); }
-  .hstat-num.green { color: var(--t3); }
-  .hstat-num.blue { color: var(--t4); }
-  .hstat-num.gray { color: var(--t5); }
+  
+  /* Header Stats Colors */
+  .hstat-num.t1 { color: var(--t1); }
+  .hstat-num.t2 { color: var(--t2); }
+  .hstat-num.t3 { color: var(--t3); }
+  .hstat-num.t4 { color: var(--t4); }
+  .hstat-num.t5 { color: var(--t5); }
   
   .header-actions {
     display: flex;
@@ -152,6 +154,7 @@
   select { cursor: pointer; }
   select option { background: var(--card); }
 
+  /* Generic Button System */
   .btn {
     padding: 7px 16px;
     border-radius: 4px;
@@ -168,11 +171,10 @@
     white-space: nowrap;
   }
   .btn:hover { border-color: var(--t1); color: var(--t1); }
-  .btn-red { background: var(--t1); border-color: var(--t1); color: #fff; }
-  .btn-red:hover { background: var(--t1-dark); border-color: var(--t1-dark); color: #fff; }
-  .btn-due { background: transparent; border-color: var(--t2); color: var(--t2); }
-  .btn-due:hover { background: var(--t2); color: var(--black); }
-  .btn-due.active { background: var(--t2); color: var(--black); }
+  .btn-t1 { background: var(--t1); border-color: var(--t1); color: #fff; }
+  .btn-t1:hover { background: var(--t1-dark); border-color: var(--t1-dark); color: #fff; }
+  .btn-t2 { background: transparent; border-color: var(--t2); color: var(--t2); }
+  .btn-t2:hover, .btn-t2.active { background: var(--t2); color: var(--black); }
 
   /* ── TABLE ── */
   .table-wrap {
@@ -215,10 +217,12 @@
     transition: background 0.1s;
   }
   tbody tr:hover { background: rgba(255,255,255,0.03); }
-  tbody tr.overdue { border-left: 2px solid var(--t1); }
-  tbody tr.due-today { border-left: 2px solid var(--t2); }
-  tbody tr.due-soon { border-left: 2px solid var(--t3); }
-  tbody tr.due-ok { border-left: 2px solid var(--t4); }
+  
+  /* Row Highlight Colors */
+  tbody tr.t1 { border-left: 2px solid var(--t1); }
+  tbody tr.t2 { border-left: 2px solid var(--t2); }
+  tbody tr.t3 { border-left: 2px solid var(--t3); }
+  tbody tr.t4 { border-left: 2px solid var(--t4); }
 
   td {
     padding: 9px 12px;
@@ -231,11 +235,6 @@
     min-width: 160px;
   }
   .td-sector {
-    color: var(--text-muted);
-    font-size: 11px;
-    white-space: nowrap;
-  }
-  .td-owners {
     color: var(--text-muted);
     font-size: 11px;
     white-space: nowrap;
@@ -253,11 +252,13 @@
     font-size: 12px;
     font-variant-numeric: tabular-nums;
   }
-  .td-date.overdue { color: var(--t1); font-weight: 500; }
-  .td-date.due-today { color: var(--t2); font-weight: 500; }
-  .td-date.due-soon { color: var(--t3); }
-  .td-date.due-ok { color: var(--t4); }
-  .td-date.ok { color: var(--text-muted); }
+  
+  /* Date Colors */
+  .td-date.t1 { color: var(--t1); font-weight: 500; }
+  .td-date.t2 { color: var(--t2); font-weight: 500; }
+  .td-date.t3 { color: var(--t3); }
+  .td-date.t4 { color: var(--t4); }
+  .td-date.t5 { color: var(--text-muted); }
 
   /* ── BADGES ── */
   .badge {
@@ -279,27 +280,19 @@
     flex-shrink: 0;
   }
   
-  /* Type Badges */
-  .type-Client { background: rgba(240,180,41,0.15); color: var(--t2); }
-  .type-Client .badge-dot { background: var(--t2); }
-  .type-Agency { background: rgba(74,158,255,0.15); color: var(--t4); }
-  .type-Agency .badge-dot { background: var(--t4); }
-  .type-Other { background: rgba(62,207,142,0.15); color: var(--t3); }
-  .type-Other .badge-dot { background: var(--t3); }
-
-  /* Owner Badges */
-  .owner-Ale { background: rgba(240,180,41,0.15); color: var(--t2); }
-  .owner-Ale .badge-dot { background: var(--t2); }
-  .owner-Gio { background: rgba(74,158,255,0.15); color: var(--t4); }
-  .owner-Gio .badge-dot { background: var(--t4); }
-  .owner-Other { background: rgba(62,207,142,0.15); color: var(--t3); }
-  .owner-Other .badge-dot { background: var(--t3); }
-  .owner-unassigned { background: transparent; color: var(--text-muted); border: 1px dotted var(--border-light); padding: 1px 7px; }
-
-  .s-pending { background: rgba(240,180,41,0.15); color: var(--t2); }
-  .s-contacted { background: rgba(74,158,255,0.15); color: var(--t4); }
-  .s-replied { background: rgba(62,207,142,0.15); color: var(--t3); }
-  .s-pass { background: rgba(136,136,136,0.15); color: var(--t5); }
+  /* Unified Badge System */
+  .bdg-t1 { background: rgba(232,21,27,0.15); color: var(--t1); }
+  .bdg-t1 .badge-dot { background: var(--t1); }
+  .bdg-t2 { background: rgba(240,180,41,0.15); color: var(--t2); }
+  .bdg-t2 .badge-dot { background: var(--t2); }
+  .bdg-t3 { background: rgba(62,207,142,0.15); color: var(--t3); }
+  .bdg-t3 .badge-dot { background: var(--t3); }
+  .bdg-t4 { background: rgba(74,158,255,0.15); color: var(--t4); }
+  .bdg-t4 .badge-dot { background: var(--t4); }
+  .bdg-t5 { background: rgba(136,136,136,0.15); color: var(--t5); }
+  .bdg-t5 .badge-dot { background: var(--t5); }
+  
+  .bdg-empty { background: transparent; color: var(--text-muted); border: 1px dotted var(--border-light); padding: 1px 7px; }
 
   /* ── ACTIONS ── */
   .row-actions {
@@ -328,16 +321,17 @@
   }
   .act-btn:hover { background: var(--card); color: var(--text); border-color: var(--text-muted); }
   
-  .act-btn.act-blue { border-color: var(--t4); color: var(--t4); }
-  .act-btn.act-blue:hover { background: var(--t4); color: var(--black); }
-  .act-btn.act-red { border-color: var(--t1); color: var(--t1); }
-  .act-btn.act-red:hover { background: var(--t1); color: var(--black); }
-  .act-btn.act-green { border-color: var(--t3); color: var(--t3); }
-  .act-btn.act-green:hover { background: var(--t3); color: var(--black); }
-  .act-btn.act-yellow { border-color: var(--t2); color: var(--t2); }
-  .act-btn.act-yellow:hover { background: var(--t2); color: var(--black); }
-  .act-btn.act-gray { border-color: var(--t5); color: var(--t5); }
-  .act-btn.act-gray:hover { background: var(--t5); color: var(--black); }
+  /* Action Buttons System */
+  .act-t1 { border-color: var(--t1); color: var(--t1); }
+  .act-t1:hover { background: var(--t1); color: var(--black); }
+  .act-t2 { border-color: var(--t2); color: var(--t2); }
+  .act-t2:hover { background: var(--t2); color: var(--black); }
+  .act-t3 { border-color: var(--t3); color: var(--t3); }
+  .act-t3:hover { background: var(--t3); color: var(--black); }
+  .act-t4 { border-color: var(--t4); color: var(--t4); }
+  .act-t4:hover { background: var(--t4); color: var(--black); }
+  .act-t5 { border-color: var(--t5); color: var(--t5); }
+  .act-t5:hover { background: var(--t5); color: var(--black); }
 
   .act-input {
     width: 32px;
@@ -528,9 +522,9 @@
   </div>
   <div class="header-stats" id="headerStats"></div>
 <div class="header-actions">
-    <button class="btn btn-due" id="btnDue" onclick="toggleDue()">⚑ Due</button>
+    <button class="btn btn-t2" id="btnDue" onclick="toggleDue()">⚑ Due</button>
     <button class="btn" onclick="exportCSV()">↓ CSV</button>
-    <button class="btn btn-red" onclick="openAddModal()">+ Add</button>
+    <button class="btn btn-t1" onclick="openAddModal()">+ Add</button>
   </div>
 </header>
 
@@ -646,7 +640,7 @@
     </div>
     <div class="modal-actions">
       <button class="btn" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-red" onclick="saveModal()">Save</button>
+      <button class="btn btn-t1" onclick="saveModal()">Save</button>
     </div>
   </div>
 </div>
@@ -662,7 +656,7 @@ let filtered = [];
 let sortCol = 'next_contact';
 let sortAsc = true;
 let page = 1;
-let perPage = 'all'; // Default to 'all'
+let perPage = 'all'; 
 let dueOnly = false;
 let editId = null;
 
@@ -721,12 +715,12 @@ function fmtDate(d) {
 }
 function dateClass(d) {
   const diff = daysUntil(d);
-  if (diff === null) return 'ok';
-  if (diff < 0) return 'overdue';
-  if (diff === 0) return 'due-today';
-  if (diff === 1) return 'due-soon';  
-  if (diff <= 3) return 'due-ok';  
-  return 'ok';
+  if (diff === null) return 't5';
+  if (diff < 0) return 't1';
+  if (diff === 0) return 't2';
+  if (diff === 1) return 't3';  
+  if (diff <= 3) return 't4';  
+  return 't5';
 }
 
 // ── FILTER & SORT ─────────────────────────────────────────────────────────────
@@ -817,12 +811,12 @@ function renderStats() {
   const overdue = data.filter(r=>r.status==='pending'&&daysUntil(r.next_contact)<=0).length;
   document.getElementById('headerStats').innerHTML = `
     <div class="hstat"><div class="hstat-num">${data.length}</div><div class="hstat-label">Brands</div></div>
-    <div class="hstat"><div class="hstat-num yellow">${countClient}</div><div class="hstat-label">Client</div></div>
-    <div class="hstat"><div class="hstat-num blue">${countAgency}</div><div class="hstat-label">Agency</div></div>
-    <div class="hstat"><div class="hstat-num green">${countOther}</div><div class="hstat-label">Other</div></div>
-    <div class="hstat"><div class="hstat-num blue">${contacted}</div><div class="hstat-label">Contacted</div></div>
-    <div class="hstat"><div class="hstat-num green">${replied}</div><div class="hstat-label">Replied</div></div>
-    ${overdue > 0 ? `<div class="hstat"><div class="hstat-num red">${overdue}</div><div class="hstat-label">Overdue</div></div>` : ''}
+    <div class="hstat"><div class="hstat-num t2">${countClient}</div><div class="hstat-label">Client</div></div>
+    <div class="hstat"><div class="hstat-num t4">${countAgency}</div><div class="hstat-label">Agency</div></div>
+    <div class="hstat"><div class="hstat-num t3">${countOther}</div><div class="hstat-label">Other</div></div>
+    <div class="hstat"><div class="hstat-num t4">${contacted}</div><div class="hstat-label">Contacted</div></div>
+    <div class="hstat"><div class="hstat-num t3">${replied}</div><div class="hstat-label">Replied</div></div>
+    ${overdue > 0 ? `<div class="hstat"><div class="hstat-num t1">${overdue}</div><div class="hstat-label">Overdue</div></div>` : ''}
   `;
 }
 
@@ -845,18 +839,33 @@ function esc(s) {
   return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
+// ── BADGE GENERATORS ──────────────────────────────────────────────────────────
 function statusBadge(s) {
-  return `<span class="badge s-${s}">${s}</span>`;
+  const colors = { 'pending':'t2', 'contacted':'t4', 'replied':'t3', 'pass':'t5' };
+  const c = colors[s] || 't5';
+  return `<span class="badge bdg-${c}">${s}</span>`;
 }
 
-// ── INLINE TYPE EDITING ───────────────────────────────────────────────────────
 function typeBadge(typeVal, id) {
   const t = typeVal || 'Other';
-  if (!id) return `<span class="badge type-${t}"><span class="badge-dot"></span>${t}</span>`;
+  const colors = { 'Client':'t2', 'Agency':'t4', 'Other':'t3' };
+  const c = colors[t] || 't5';
   
-  return `<span class="badge type-${t}" style="cursor:pointer" title="Change Type" onclick="inlineEditType(event, ${id}, '${t}')"><span class="badge-dot"></span>${t}</span>`;
+  if (!id) return `<span class="badge bdg-${c}"><span class="badge-dot"></span>${t}</span>`;
+  return `<span class="badge bdg-${c}" style="cursor:pointer" title="Change Type" onclick="inlineEditType(event, ${id}, '${t}')"><span class="badge-dot"></span>${t}</span>`;
 }
 
+function ownerLabel(o, id) {
+  const val = o || '—';
+  const colors = { 'Ale':'t2', 'Gio':'t4', 'Other':'t3' };
+  const c = o ? (colors[o] || 't5') : 'empty';
+  const dotHtml = o ? '<span class="badge-dot"></span>' : '';
+  
+  if (!id) return `<span class="badge bdg-${c}">${dotHtml}${esc(val)}</span>`;
+  return `<span class="badge bdg-${c}" style="cursor:pointer" title="Change Owner" onclick="inlineEditOwner(event, ${id}, '${esc(o||'')}')">${dotHtml}${esc(val)}</span>`;
+}
+
+// ── INLINE TYPE/OWNER EDITING ─────────────────────────────────────────────────
 function inlineEditType(e, id, currentType) {
   const td = e.currentTarget.closest('td');
   td.innerHTML = `
@@ -882,17 +891,6 @@ async function saveType(id, newType) {
   render();
   await syncRow(r, originalName);
   toast(`✓ Type updated to ${r.type}`);
-}
-
-// ── INLINE OWNER EDITING ──────────────────────────────────────────────────────
-function ownerLabel(o, id) {
-  const val = o || '—';
-  const safeVal = o ? esc(o) : 'unassigned';
-  const dotHtml = o ? '<span class="badge-dot"></span>' : '';
-  
-  if (!id) return `<span class="badge owner-${safeVal}">${dotHtml}${esc(val)}</span>`;
-  
-  return `<span class="badge owner-${safeVal}" style="cursor:pointer" title="Change Owner" onclick="inlineEditOwner(event, ${id}, '${esc(o||'')}')">${dotHtml}${esc(val)}</span>`;
 }
 
 function inlineEditOwner(e, id, currentOwner) {
@@ -940,9 +938,8 @@ function renderTable() {
 
   tbody.innerHTML = slice.map(r => {
     const dc = dateClass(r.next_contact);
-    const rowCls = dc === 'overdue' ? 'overdue' : dc === 'due-soon' ? "due-soon" : dc === 'due-today' ? 'due-today' : dc === 'due-ok' ? 'due-ok' : '';
     
-    return `<tr class="${rowCls}" id="row-${r._id}">
+    return `<tr class="${dc}" id="row-${r._id}">
       <td class="td-name">${esc(r.name)}</td>
       <td class="td-owner">${ownerLabel(r.owner, r._id)}</td>
       <td>${typeBadge(r.type, r._id)}</td>
@@ -952,11 +949,11 @@ function renderTable() {
       <td class="td-notes" title="${esc(r.notes)}">${esc(r.notes)}</td>
       <td>
         <div class="row-actions">
-          <button class="act-btn act-green" onclick="snooze(${r._id}, 7)">+7</button>
-          <button class="act-btn act-yellow" onclick="snooze(${r._id}, 3)">+3</button>
+          <button class="act-btn act-t3" onclick="snooze(${r._id}, 7)">+7</button>
+          <button class="act-btn act-t2" onclick="snooze(${r._id}, 3)">+3</button>
           <input type="number" class="act-input" placeholder="..." title="Enter days"
                  onkeydown="if(event.key === 'Enter' && this.value) snooze(${r._id}, parseInt(this.value))">
-          <button class="act-btn act-red" onclick="openEditModal(${r._id})">Edit</button>
+          <button class="act-btn act-t1" onclick="openEditModal(${r._id})">Edit</button>
         </div>
       </td>
     </tr>`;
