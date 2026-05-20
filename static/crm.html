@@ -537,9 +537,9 @@
   </div>
   <select id="filterTier" onchange="onFilter()">
     <option value="">All tiers</option>
-    <option value="1">Tier 1 — Existing clients</option>
-    <option value="2">Tier 2 — AI video angle</option>
-    <option value="3">Tier 3 — Institutional</option>
+    <option value="1">Client</option>
+    <option value="2">Agency</option>
+    <option value="3">Other</option>
   </select>
   <select id="filterStatus" onchange="onFilter()">
     <option value="">All statuses</option>
@@ -600,9 +600,9 @@
       <div class="form-row">
         <label>Tier</label>
         <select id="f-tier">
-          <option value="1">1 — Existing client</option>
-          <option value="2" selected>2 — AI video angle</option>
-          <option value="3">3 — Institutional</option>
+          <option value="1">Client</option>
+          <option value="2" selected>Agency</option>
+          <option value="3">Other</option>
         </select>
       </div>
     <div class="form-row">
@@ -1017,7 +1017,7 @@ async function saveModal() {
 
   // Auto-generate the tier label based on what they select
   const tierVal = document.getElementById('f-tier').value;
-  const tierLabels = {'1': 'Existing client', '2': 'AI video angle', '3': 'Institutional'};
+  const tierLabels = {'1': 'Client', '2': 'Agency', '3': 'Other'};
 
   const newRow = {
     _id: isNew ? Date.now() : id, // Internal ID for frontend only
