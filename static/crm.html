@@ -854,7 +854,7 @@ function esc(s) {
 }
 
 function tierBadge(t) {
-  const labels = {'1':'Tier 1','2':'Tier 2','3':'Tier 3'};
+  const labels = {'1':'Client','2':'Agency','3':'Other'};
   return `<span class="badge t${t}"><span class="badge-dot"></span>${labels[t]||t}</span>`;
 }
 function statusBadge(s) {
