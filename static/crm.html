@@ -949,8 +949,9 @@ function renderTable() {
       <td class="td-notes" title="${esc(r.notes)}">${esc(r.notes)}</td>
       <td>
         <div class="row-actions">
-          <button class="act-btn act-t3" onclick="snooze(${r._id}, 7)">+7</button>
-          <button class="act-btn act-t2" onclick="snooze(${r._id}, 3)">+3</button>
+          <button class="act-btn act-t4" onclick="snooze(${r._id}, 1)">+1</button>
+          <button class="act-btn act-t3" onclick="snooze(${r._id}, 3)">+3</button>
+          <button class="act-btn act-t2" onclick="snooze(${r._id}, 7)">+7</button>
           <input type="number" class="act-input" placeholder="..." title="Enter days"
                  onkeydown="if(event.key === 'Enter' && this.value) snooze(${r._id}, parseInt(this.value))">
           <button class="act-btn act-t1" onclick="openEditModal(${r._id})">Edit</button>
