@@ -20,6 +20,7 @@
     --t1: #E8151B;
     --t2: #4a9eff;
     --t3: #888;
+    --t4: #f0b429;
     --pending: #f0b429;
     --contacted: #4a9eff;
     --replied: #3ecf8e;
@@ -99,6 +100,7 @@
   .hstat-num.red { color: var(--t1); }
   .hstat-num.blue { color: var(--t2); }
   .hstat-num.gray { color: var(--t3); }
+  .hstat-num.yellow { color: var(--t4); }
   .hstat-num.green { color: var(--replied); }
   .header-actions {
     display: flex;
@@ -823,9 +825,9 @@ function renderStats() {
   const overdue = data.filter(r=>r.status==='pending'&&daysUntil(r.next_contact)<=0).length;
   document.getElementById('headerStats').innerHTML = `
     <div class="hstat"><div class="hstat-num">${data.length}</div><div class="hstat-label">Brands</div></div>
-    <div class="hstat"><div class="hstat-num red">${t1}</div><div class="hstat-label">Tier 1</div></div>
-    <div class="hstat"><div class="hstat-num blue">${t2}</div><div class="hstat-label">Tier 2</div></div>
-    <div class="hstat"><div class="hstat-num gray">${t3}</div><div class="hstat-label">Tier 3</div></div>
+    <div class="hstat"><div class="hstat-num yellow">${t1}</div><div class="hstat-label">Client</div></div>
+    <div class="hstat"><div class="hstat-num blue">${t2}</div><div class="hstat-label">Agency</div></div>
+    <div class="hstat"><div class="hstat-num green">${t3}</div><div class="hstat-label">Other</div></div>
     <div class="hstat"><div class="hstat-num blue">${contacted}</div><div class="hstat-label">Contacted</div></div>
     <div class="hstat"><div class="hstat-num green">${replied}</div><div class="hstat-label">Replied</div></div>
     ${overdue > 0 ? `<div class="hstat"><div class="hstat-num red">${overdue}</div><div class="hstat-label">Overdue</div></div>` : ''}
