@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amarena Pictures — CRM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0d0d0d;
+    --off-black: #141414;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --border-light: #333;
+    --text: #e8e8e8;
+    --text-muted: #777;
+    --text-dim: #555;
+    
+    /* ── UNIFIED COLOR PALETTE ── */
+    --t1: #E8151B; /* Red */
+    --t1-dark: #b50f13; 
+    --t2: #f0b429; /* Yellow */
+    --t3: #3ecf8e; /* Green */
+    --t4: #4a9eff; /* Blue */
+    --t5: #888888; /* Grey */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--off-black);
+    border-bottom: 1px solid var(--border);
+    padding: 0 28px;
+    display: flex;
+    align-items: stretch;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-right: 28px;
+    border-right: 1px solid var(--border);
+  }
+  .logo-wave {
+    width: 32px;
+    height: 18px;
+  }
+  .logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .logo-text span { color: var(--t1); }
+  .header-stats {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-left: 20px;
+    flex: 1;
+  }
+  .hstat {
+    padding: 0 20px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  .hstat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+  }
+  .hstat-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .hstat-num.red { color: var(--t1); }
+  .hstat-num.yellow { color: var(--t2); }
+  .hstat-num.green { color: var(--t3); }
+  .hstat-num.blue { color: var(--t4); }
+  .hstat-num.gray { color: var(--t5); }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+  }
+
+  /* ── TOOLBAR ── */
+  .toolbar {
+    padding: 12px 28px;
+    background: var(--off-black);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 56px;
+    z-index: 90;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.4;
+  }
+  input[type=text], select {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 7px 10px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type=text]:focus, select:focus { border-color: var(--t1); }
+  .search-wrap input { width: 100%; padding-left: 32px; }
+  select { cursor: pointer; }
+  select option { background: var(--card); }
+
+  .btn {
+    padding: 7px 16px;
+    border-radius: 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .btn:hover { border-color: var(--t1); color: var(--t1); }
+  .btn-red { background: var(--t1); border-color: var(--t1); color: #fff; }
+  .btn-red:hover { background: var(--t1-dark); border-color: var(--t1-dark); color: #fff; }
+  .btn-due { background: transparent; border-color: var(--t2); color: var(--t2); }
+  .btn-due:hover { background: var(--t2); color: var(--black); }
+  .btn-due.active { background: var(--t2); color: var(--black); }
+
+  /* ── TABLE ── */
+  .table-wrap {
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 0 28px 70px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+  }
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--black);
+  }
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+  }
+  th:hover { color: var(--text); }
+  th .sort-arrow { margin-left: 4px; opacity: 0.4; }
+  th.sort-active { color: var(--t1); }
+  th.sort-active .sort-arrow { opacity: 1; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: rgba(255,255,255,0.03); }
+  tbody tr.overdue { border-left: 2px solid var(--t1); }
+  tbody tr.due-today { border-left: 2px solid var(--t2); }
+  tbody tr.due-soon { border-left: 2px solid var(--t3); }
+  tbody tr.due-ok { border-left: 2px solid var(--t4); }
+
+  td {
+    padding: 9px 12px;
+    vertical-align: middle;
+  }
+  .td-name {
+    font-weight: 500;
+    font-size: 13px;
+    white-space: nowrap;
+    min-width: 160px;
+  }
+  .td-sector {
+    color: var(--text-muted);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .td-owners {
+    color: var(--text-muted);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .td-notes {
+    color: var(--text-muted);
+    font-size: 11px;
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .td-date {
+    white-space: nowrap;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .td-date.overdue { color: var(--t1); font-weight: 500; }
+  .td-date.due-today { color: var(--t2); font-weight: 500; }
+  .td-date.due-soon { color: var(--t3); }
+  .td-date.due-ok { color: var(--t4); }
+  .td-date.ok { color: var(--text-muted); }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .badge-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  .type-Client { background: rgba(232,21,27,0.15); color: var(--t1); }
+  .type-Client .badge-dot { background: var(--t1); }
+  .type-Agency { background: rgba(74,158,255,0.15); color: var(--t4); }
+  .type-Agency .badge-dot { background: var(--t4); }
+  .type-Other { background: rgba(136,136,136,0.15); color: var(--t5); }
+  .type-Other .badge-dot { background: var(--t5); }
+
+  .s-pending { background: rgba(240,180,41,0.15); color: var(--t2); }
+  .s-contacted { background: rgba(74,158,255,0.15); color: var(--t4); }
+  .s-replied { background: rgba(62,207,142,0.15); color: var(--t3); }
+  .s-pass { background: rgba(136,136,136,0.15); color: var(--t5); }
+
+  /* ── ACTIONS ── */
+  .row-actions {
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  tbody tr:hover .row-actions,
+  tbody tr:focus-within .row-actions { opacity: 1; }
+
+  .act-btn {
+    padding: 3px 8px;
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.12s;
+    white-space: nowrap;
+  }
+  .act-btn:hover { background: var(--card); color: var(--text); border-color: var(--text-muted); }
+  
+  .act-btn.act-blue { border-color: var(--t4); color: var(--t4); }
+  .act-btn.act-blue:hover { background: var(--t4); color: var(--black); }
+  .act-btn.act-red { border-color: var(--t1); color: var(--t1); }
+  .act-btn.act-red:hover { background: var(--t1); color: var(--black); }
+  .act-btn.act-green { border-color: var(--t3); color: var(--t3); }
+  .act-btn.act-green:hover { background: var(--t3); color: var(--black); }
+  .act-btn.act-yellow { border-color: var(--t2); color: var(--t2); }
+  .act-btn.act-yellow:hover { background: var(--t2); color: var(--black); }
+  .act-btn.act-gray { border-color: var(--t5); color: var(--t5); }
+  .act-btn.act-gray:hover { background: var(--t5); color: var(--black); }
+
+  .act-input {
+    width: 32px;
+    padding: 3px 0;
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--text);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    transition: all 0.12s;
+  }
+  .act-input:hover, .act-input:focus { 
+    background: var(--card); 
+    border-color: var(--text-muted); 
+  }
+  .act-input::placeholder { color: var(--text-muted); }
+  .act-input::-webkit-outer-spin-button,
+  .act-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .act-input[type=number] { -moz-appearance: textfield; }
+
+  /* ── INLINE EDIT ── */
+  .edit-row td { background: rgba(255,255,255,0.02); }
+  .edit-input {
+    background: var(--black);
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    padding: 4px 7px;
+    width: 100%;
+    outline: none;
+  }
+  .edit-input:focus { border-color: var(--t1); }
+  input[type=date].edit-input {
+    color-scheme: dark;
+    width: 140px;
+  }
+  .edit-select {
+    background: var(--black);
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    padding: 4px 7px;
+    width: 100%;
+    outline: none;
+  }
+  .edit-select:focus { border-color: var(--t1); }
+
+  /* ── MODAL ── */
+  .modal-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: var(--off-black);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px;
+    width: 480px;
+    max-width: 95vw;
+  }
+  .modal h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--t1);
+  }
+  .form-row {
+    margin-bottom: 14px;
+  }
+  .form-row label {
+    display: block;
+    font-size: 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+  .form-row input, .form-row select, .form-row textarea {
+    width: 100%;
+    background: var(--black);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    padding: 8px 10px;
+    outline: none;
+  }
+  .form-row textarea { min-height: 70px; resize: vertical; }
+  .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color: var(--t1); }
+  .modal-actions { display: flex; gap: 8px; margin-top: 20px; justify-content: flex-end; }
+
+  /* ── PAGINATION ── */
+  .pager {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--off-black);
+    border-top: 1px solid var(--border);
+    padding: 10px 28px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 50;
+  }
+  .pager-info {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-right: 8px;
+  }
+  .pager-btn {
+    width: 28px; height: 28px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.12s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pager-btn:hover { border-color: var(--t1); color: var(--t1); }
+  .pager-btn.active { background: var(--t1); border-color: var(--t1); color: #fff; }
+  .pager-right { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+  .per-page-label { font-size: 11px; color: var(--text-muted); }
+  .per-page-select { padding: 4px 6px; font-size: 11px; width: auto; }
+
+  /* ── EMPTY STATE ── */
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-dim);
+  }
+  .empty svg { margin-bottom: 12px; opacity: 0.3; }
+  .empty p { font-size: 14px; }
+
+  /* ── NOTIFICATION ── */
+  .toast {
+    position: fixed;
+    bottom: 60px;
+    right: 28px;
+    background: var(--card);
+    border: 1px solid var(--border-light);
+    border-left: 3px solid var(--t3);
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 12px;
+    z-index: 300;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.2s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <svg class="logo-wave" viewBox="0 0 120 40" fill="none">
+      <path d="M0 28 C20 28 20 8 40 8 C60 8 60 28 80 28 C100 28 100 8 120 8" stroke="#E8151B" stroke-width="5" stroke-linecap="round" fill="none"/>
+    </svg>
+    <div class="logo-text"><span>Amarena</span> Pictures</div>
+  </div>
+  <div class="header-stats" id="headerStats"></div>
+<div class="header-actions">
+    <button class="btn btn-due" id="btnDue" onclick="toggleDue()">⚑ Due</button>
+    <button class="btn" onclick="exportCSV()">↓ CSV</button>
+    <button class="btn btn-red" onclick="openAddModal()">+ Add</button>
+  </div>
+</header>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="Search brand, sector, notes…" oninput="onFilter()">
+  </div>
+  <select id="filterType" onchange="onFilter()">
+    <option value="">All types</option>
+    <option value="Client">Client</option>
+    <option value="Agency">Agency</option>
+    <option value="Other">Other</option>
+  </select>
+  <select id="filterStatus" onchange="onFilter()">
+    <option value="">All statuses</option>
+    <option value="pending">Pending</option>
+    <option value="contacted">Contacted</option>
+    <option value="replied">Replied</option>
+    <option value="pass">Pass</option>
+  </select>
+  <select id="filterSector" onchange="onFilter()">
+    <option value="">All sectors</option>
+  </select>
+  <select id="filterOwner" onchange="onFilter()">
+    <option value="">All owners</option>
+  </select>
+  <select id="sortCol" onchange="onFilter()">
+    <option value="next_contact">Sort: Next contact</option>
+    <option value="type">Sort: Type</option>
+    <option value="name">Sort: Name A–Z</option>
+    <option value="status">Sort: Status</option>
+  </select>
+</div>
+
+<!-- TABLE -->
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th onclick="setSort('name')">Brand <span class="sort-arrow" id="sa-name"></span></th>
+        <th onclick="setSort('owner')">Owner <span class="sort-arrow" id="sa-owner"></span></th>
+        <th onclick="setSort('type')">Type <span class="sort-arrow" id="sa-type"></span></th>
+        <th onclick="setSort('sector')">Sector <span class="sort-arrow" id="sa-sector"></span></th>
+        <th onclick="setSort('status')">Status <span class="sort-arrow" id="sa-status"></span></th>
+        <th onclick="setSort('next_contact')">Next Contact <span class="sort-arrow" id="sa-next_contact">↑</span></th>
+        <th>Notes</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div class="empty" id="emptyState" style="display:none">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <p>No brands match your filters.</p>
+  </div>
+</div>
+
+<!-- PAGINATION -->
+<div class="pager" id="pager"></div>
+
+<!-- ADD/EDIT MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h3 id="modalTitle">Add Brand</h3>
+    <div class="form-row">
+      <label>Brand name</label>
+      <input type="text" id="f-name" placeholder="e.g. Ferrero">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="form-row">
+        <label>Type</label>
+        <select id="f-type">
+          <option value="Client">Client</option>
+          <option value="Agency" selected>Agency</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    <div class="form-row">
+      <label>Sector</label>
+      <input type="text" id="f-sector" list="sector-options" placeholder="Select or type new…" autocomplete="off">
+      <datalist id="sector-options"></datalist>
+    </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="form-row">
+        <label>Owner</label>
+        <select id="f-owner">
+          <option value="">—</option>
+          <option value="Gio">Gio</option>
+          <option value="Ale">Ale</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Status</label>
+        <select id="f-status">
+          <option value="pending">Pending</option>
+          <option value="contacted">Contacted</option>
+          <option value="replied">Replied</option>
+          <option value="pass">Pass</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Next contact</label>
+        <input type="date" id="f-date">
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Notes</label>
+      <textarea id="f-notes" placeholder="Bid history, relationship notes…"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-red" onclick="saveModal()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── STATE ─────────────────────────────────────────────────────────────────────
+const STORE_KEY = 'amarena_crm_v2';
+let data = [];
+let filtered = [];
+let sortCol = 'next_contact';
+let sortAsc = true;
+let page = 1;
+let perPage = 'all'; // Default to 'all'
+let dueOnly = false;
+let editId = null;
+
+// ── DATABASE SYNC ─────────────────────────────────────────────────────────────
+async function syncRow(row, oldName = null) {
+  const payload = {
+    name: row.name,
+    type: row.type, 
+    sector: row.sector,
+    owner: row.owner || '',
+    status: row.status,
+    next_contact: row.next_contact,
+    notes: row.notes,
+    old: oldName !== null,
+    oldname: oldName
+  };
+
+  try {
+    const res = await fetch('https://amarenapictures.com/api/crm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    
+    const responseText = await res.text();
+    if (responseText === 'exists') {
+      toast('⚠️ Contact name already exists!');
+      return false;
+    }
+    return true;
+  } catch (err) {
+    console.error("Sync error:", err);
+    toast('⚠️ Database connection error');
+    return false;
+  }
+}
+
+// ── DATE UTILS ────────────────────────────────────────────────────────────────
+function today() { return new Date().toISOString().slice(0,10); }
+function daysUntil(d) {
+  if (!d) return null;
+  return Math.ceil((new Date(d) - new Date(today())) / 86400000);
+}
+function addDays(d, n) {
+  const dt = new Date(d || today());
+  dt.setDate(dt.getDate() + n);
+  return dt.toISOString().slice(0,10);
+}
+function fmtDate(d) {
+  if (!d) return '—';
+  const diff = daysUntil(d);
+  if (diff < 0) return d + ` (${Math.abs(diff)}d ago)`;
+  if (diff === 0) return d + ' (today)';
+  if (diff <= 3) return d + ` (+${diff}d)`;
+  return d;
+}
+function dateClass(d) {
+  const diff = daysUntil(d);
+  if (diff === null) return 'ok';
+  if (diff < 0) return 'overdue';
+  if (diff === 0) return 'due-today';
+  if (diff === 1) return 'due-soon';  
+  if (diff <= 3) return 'due-ok';  
+  return 'ok';
+}
+
+// ── FILTER & SORT ─────────────────────────────────────────────────────────────
+function applyFilters() {
+  const q = (document.getElementById('search').value || '').toLowerCase();
+  const ft = document.getElementById('filterType').value;
+  const fs = document.getElementById('filterStatus').value;
+  const fsc = document.getElementById('filterSector').value;
+  const fo = document.getElementById('filterOwner').value;
+
+  filtered = data.filter(r => {
+    if (dueOnly) {
+      const d = daysUntil(r.next_contact);
+      if (!(d !== null && d <= 0 && r.status === 'pending')) return false;
+    }
+    if (q && !r.name.toLowerCase().includes(q) &&
+        !r.sector.toLowerCase().includes(q) &&
+        !r.notes.toLowerCase().includes(q)) return false;
+    if (ft && r.type !== ft) return false;
+    if (fs && r.status !== fs) return false;
+    if (fsc && r.sector !== fsc) return false;
+    if (fo && r.owner !== fo) return false;
+    return true;
+  });
+
+  filtered.sort((a, b) => {
+    let av = a[sortCol] || '', bv = b[sortCol] || '';
+    const cmp = av < bv ? -1 : av > bv ? 1 : 0;
+    return sortAsc ? cmp : -cmp;
+  });
+}
+
+function setSort(col) {
+  if (sortCol === col) sortAsc = !sortAsc;
+  else { sortCol = col; sortAsc = true; }
+  document.getElementById('sortCol').value = col;
+  render();
+}
+
+function onFilter() {
+  sortCol = document.getElementById('sortCol').value;
+  page = 1;
+  render();
+}
+
+function toggleDue() {
+  dueOnly = !dueOnly;
+  document.getElementById('btnDue').classList.toggle('active', dueOnly);
+  page = 1;
+  render();
+}
+
+// ── SECTORS & OWNERS ──────────────────────────────────────────────────────────
+function populate() {
+  const sectors = [...new Set(data.map(r => r.sector))].sort();
+  const sel = document.getElementById('filterSector');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">All sectors</option>' +
+    sectors.map(s => `<option value="${s}"${s===cur?' selected':''}>${s}</option>`).join('');
+  
+  const dl = document.getElementById('sector-options');
+  if (dl) dl.innerHTML = sectors.map(s => `<option value="${s}">`).join('');
+  
+  const owners = [...new Set(data.map(r => r.owner).filter(Boolean))].sort();
+  const osel = document.getElementById('filterOwner');
+  const ocur = osel.value;
+  osel.innerHTML = '<option value="">All owners</option>' +
+    owners.map(o => `<option value="${o}"${o===ocur?' selected':''}>${o}</option>`).join('');
+}
+  
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render() {
+  applyFilters();
+  populate();
+  renderStats();
+  renderSortArrows();
+  renderTable();
+  renderPager();
+  setTimeout(setTableHeight, 0);
+}
+
+function renderStats() {
+  const countClient = data.filter(r=>r.type==='Client').length;
+  const countAgency = data.filter(r=>r.type==='Agency').length;
+  const countOther = data.filter(r=>r.type==='Other').length;
+  const replied = data.filter(r=>r.status==='replied').length;
+  const contacted = data.filter(r=>r.status==='contacted').length;
+  const overdue = data.filter(r=>r.status==='pending'&&daysUntil(r.next_contact)<=0).length;
+  document.getElementById('headerStats').innerHTML = `
+    <div class="hstat"><div class="hstat-num">${data.length}</div><div class="hstat-label">Brands</div></div>
+    <div class="hstat"><div class="hstat-num red">${countClient}</div><div class="hstat-label">Client</div></div>
+    <div class="hstat"><div class="hstat-num blue">${countAgency}</div><div class="hstat-label">Agency</div></div>
+    <div class="hstat"><div class="hstat-num gray">${countOther}</div><div class="hstat-label">Other</div></div>
+    <div class="hstat"><div class="hstat-num blue">${contacted}</div><div class="hstat-label">Contacted</div></div>
+    <div class="hstat"><div class="hstat-num green">${replied}</div><div class="hstat-label">Replied</div></div>
+    ${overdue > 0 ? `<div class="hstat"><div class="hstat-num red">${overdue}</div><div class="hstat-label">Overdue</div></div>` : ''}
+  `;
+}
+
+function renderSortArrows() {
+  ['name','type','sector','owner','status','next_contact'].forEach(col => {
+    const el = document.getElementById('sa-'+col);
+    if (!el) return;
+    const th = el.closest('th');
+    if (col === sortCol) {
+      el.textContent = sortAsc ? '↑' : '↓';
+      th.classList.add('sort-active');
+    } else {
+      el.textContent = '';
+      th.classList.remove('sort-active');
+    }
+  });
+}
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function statusBadge(s) {
+  return `<span class="badge s-${s}">${s}</span>`;
+}
+
+// ── INLINE TYPE EDITING ───────────────────────────────────────────────────────
+function typeBadge(typeVal, id) {
+  const t = typeVal || 'Other';
+  if (!id) return `<span class="badge type-${t}"><span class="badge-dot"></span>${t}</span>`;
+  
+  return `<span class="badge type-${t}" style="cursor:pointer" title="Change Type" onclick="inlineEditType(event, ${id}, '${t}')"><span class="badge-dot"></span>${t}</span>`;
+}
+
+function inlineEditType(e, id, currentType) {
+  const td = e.currentTarget.closest('td');
+  td.innerHTML = `
+    <select class="edit-select" onchange="saveType(${id}, this.value)" onblur="render()">
+      <option value="Client" ${currentType==='Client'?'selected':''}>Client</option>
+      <option value="Agency" ${currentType==='Agency'?'selected':''}>Agency</option>
+      <option value="Other" ${currentType==='Other'?'selected':''}>Other</option>
+    </select>
+  `;
+  setTimeout(() => td.querySelector('select').focus(), 0);
+}
+
+async function saveType(id, newType) {
+  const r = data.find(d => d._id === id);
+  if (!r) return;
+  if (r.type === newType) {
+    render(); 
+    return;
+  }
+  const originalName = r.name;
+  r.type = newType;
+  
+  render();
+  await syncRow(r, originalName);
+  toast(`✓ Type updated to ${r.type}`);
+}
+
+// ── INLINE OWNER EDITING ──────────────────────────────────────────────────────
+function ownerLabel(o, id) {
+  const val = o || '—';
+  if (!id) return esc(val);
+  
+  return `<span style="cursor:pointer; border-bottom: 1px dotted var(--text-muted);" title="Change Owner" onclick="inlineEditOwner(event, ${id}, '${esc(o||'')}')">${esc(val)}</span>`;
+}
+
+function inlineEditOwner(e, id, currentOwner) {
+  const td = e.currentTarget.closest('td');
+  td.innerHTML = `
+    <select class="edit-select" onchange="saveOwner(${id}, this.value)" onblur="render()">
+      <option value="Gio" ${currentOwner==='Gio'?'selected':''}>Gio</option>
+      <option value="Ale" ${currentOwner==='Ale'?'selected':''}>Ale</option>
+      <option value="Other" ${currentOwner==='Other'?'selected':''}>Other</option>
+      <option value="" ${!['Ale','Gio','Other'].includes(currentOwner)?'selected':''}>—</option>
+    </select>
+  `;
+  setTimeout(() => td.querySelector('select').focus(), 0);
+}
+
+async function saveOwner(id, newOwner) {
+  const r = data.find(d => d._id === id);
+  if (!r) return;
+  if (r.owner === newOwner) {
+    render();
+    return;
+  }
+  const originalName = r.name;
+  r.owner = newOwner;
+  
+  render();
+  await syncRow(r, originalName);
+  toast(`✓ Owner updated to ${r.owner || 'unassigned'}`);
+}
+
+function renderTable() {
+  const tbody = document.getElementById('tbody');
+  const empty = document.getElementById('emptyState');
+  const total = filtered.length;
+  
+  const start = perPage === 'all' ? 0 : (page - 1) * perPage;
+  const slice = perPage === 'all' ? filtered : filtered.slice(start, start + perPage);
+
+  if (total === 0) {
+    tbody.innerHTML = '';
+    empty.style.display = '';
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = slice.map(r => {
+    const dc = dateClass(r.next_contact);
+    const rowCls = dc === 'overdue' ? 'overdue' : dc === 'due-soon' ? "due-soon" : dc === 'due-today' ? 'due-today' : dc === 'due-ok' ? 'due-ok' : '';
+    
+    return `<tr class="${rowCls}" id="row-${r._id}">
+      <td class="td-name">${esc(r.name)}</td>
+      <td class="td-owner">${ownerLabel(r.owner, r._id)}</td>
+      <td>${typeBadge(r.type, r._id)}</td>
+      <td class="td-sector">${esc(r.sector)}</td>
+      <td>${statusBadge(r.status)}</td>
+      <td class="td-date ${dc}">${fmtDate(r.next_contact)}</td>
+      <td class="td-notes" title="${esc(r.notes)}">${esc(r.notes)}</td>
+      <td>
+        <div class="row-actions">
+          <button class="act-btn act-green" onclick="snooze(${r._id}, 7)">+7</button>
+          <button class="act-btn act-yellow" onclick="snooze(${r._id}, 3)">+3</button>
+          <input type="number" class="act-input" placeholder="..." title="Enter days"
+                 onkeydown="if(event.key === 'Enter' && this.value) snooze(${r._id}, parseInt(this.value))">
+          <button class="act-btn act-red" onclick="openEditModal(${r._id})">Edit</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function renderPager() {
+  const total = filtered.length;
+  const pages = perPage === 'all' ? 1 : Math.max(1, Math.ceil(total / perPage));
+  if (page > pages) page = pages;
+
+  let html = `<span class="pager-info">${total} results</span>`;
+  if (pages > 1) {
+    if (page > 1) html += `<button class="pager-btn" onclick="goPage(${page-1})">‹</button>`;
+    const s = Math.max(1, page-2), e = Math.min(pages, page+2);
+    for (let p=s; p<=e; p++) html += `<button class="pager-btn${p===page?' active':''}" onclick="goPage(${p})">${p}</button>`;
+    if (page < pages) html += `<button class="pager-btn" onclick="goPage(${page+1})">›</button>`;
+  }
+  html += `<div class="pager-right">
+    <span class="per-page-label">Per page</span>
+    <select class="per-page-select" onchange="setPerPage(this.value)">
+      ${['all', 20, 30, 50, 100].map(n => `<option value="${n}"${n === perPage ? ' selected' : ''}>${n === 'all' ? 'All' : n}</option>`).join('')}
+    </select>
+  </div>`;
+  document.getElementById('pager').innerHTML = html;
+}
+
+function goPage(p) { page = p; render(); }
+function setPerPage(n) { perPage = n === 'all' ? 'all' : parseInt(n); page = 1; render(); }
+
+// ── ACTIONS ───────────────────────────────────────────────────────────────────
+async function markContacted(id) {
+  const r = data.find(d => d._id === id);
+  if (!r) return;
+  
+  const originalName = r.name;
+  if (r.status === 'contacted') {
+    r.status = 'pending';
+    render();
+    await syncRow(r, originalName);
+    toast(`↺ ${r.name} reverted to pending`);
+  } else {
+    r.status = 'contacted';
+    render();
+    await syncRow(r, originalName);
+    toast(`✓ ${r.name} marked as contacted — follow-up: ${r.next_contact}`);
+  }
+}
+
+async function snooze(id, days) {
+  const r = data.find(d => d._id === id);
+  if (!r) return;
+  
+  const originalName = r.name;
+  r.next_contact = addDays(r.next_contact || today(), days);
+  
+  render(); 
+  await syncRow(r, originalName); 
+  toast(`${r.name} snoozed by ${days}d → ${r.next_contact}`);
+}
+
+// ── MODAL ─────────────────────────────────────────────────────────────────────
+function openAddModal() {
+  editId = null;
+  document.getElementById('modalTitle').textContent = 'Add Brand';
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-type').value = 'Agency';
+  document.getElementById('f-sector').value = '';
+  document.getElementById('f-status').value = 'pending';
+  document.getElementById('f-date').value = addDays(today(), 14);
+  document.getElementById('f-notes').value = '';
+  document.getElementById('modalBg').classList.add('open');
+  document.getElementById('f-name').focus();
+  document.getElementById('f-owner').value = '';
+}
+
+function openEditModal(id) {
+  const r = data.find(d=>d._id===id);
+  if (!r) return;
+  editId = id;
+  document.getElementById('modalTitle').textContent = 'Edit Brand';
+  document.getElementById('f-name').value = r.name;
+  document.getElementById('f-type').value = r.type || 'Other';
+  document.getElementById('f-sector').value = r.sector;
+  document.getElementById('f-status').value = r.status;
+  document.getElementById('f-date').value = r.next_contact;
+  document.getElementById('f-notes').value = r.notes;
+  document.getElementById('modalBg').classList.add('open');
+  document.getElementById('f-name').focus();
+  document.getElementById('f-owner').value = r.owner || '';
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modalBg')) return;
+  document.getElementById('modalBg').classList.remove('open');
+}
+
+async function saveModal() {
+  const id = editId; 
+  const r = id ? data.find(d => d._id === id) : {};
+  const isNew = !id;
+  const originalName = isNew ? null : r.name; 
+
+  const newRow = {
+    _id: isNew ? Date.now() : id, 
+    name: document.getElementById('f-name').value.trim(),
+    type: document.getElementById('f-type').value,
+    sector: document.getElementById('f-sector').value.trim(),
+    status: document.getElementById('f-status').value,
+    owner: document.getElementById('f-owner').value.trim(), 
+    next_contact: document.getElementById('f-date').value,
+    notes: document.getElementById('f-notes').value.trim()
+  };
+
+  const success = await syncRow(newRow, originalName);
+  
+  if (success) {
+    if (isNew) data.push(newRow);
+    else Object.assign(r, newRow);
+    
+    closeModal();
+    render();
+    if (isNew) toast('✓ Contact added');
+    else toast('✓ Contact updated');
+  }
+}
+
+// ── EXPORT CSV ────────────────────────────────────────────────────────────────
+function exportCSV() {
+  const headers = ['name','type','sector','owner','status','next_contact','notes'];
+  const esc2 = v => `"${String(v||'').replace(/"/g,'""')}"`;
+  const rows = data.map(r => headers.map(h => esc2(r[h]||'')).join(','));
+  const csv = [headers.join(','), ...rows].join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `amarena_crm_${today()}.csv`;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('CSV exported');
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ── KEYBOARD ──────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('modalBg').classList.remove('open');
+  if ((e.metaKey||e.ctrlKey) && e.key==='f') {
+    e.preventDefault();
+    document.getElementById('search').focus();
+  }
+  if ((e.metaKey||e.ctrlKey) && e.key==='Enter') {
+    const mb = document.getElementById('modalBg');
+    if (mb.classList.contains('open')) saveModal();
+  }
+});
+
+// ── UI HELPERS ────────────────────────────────────────────────────────────────
+function setTableHeight() {
+  const wrap = document.querySelector('.table-wrap');
+  if (wrap) {
+    const top = wrap.getBoundingClientRect().top;
+    wrap.style.height = `calc(100vh - ${top}px)`;
+  }
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+(async () => {
+  try {
+    const res = await fetch('https://amarenapictures.com/api/crm');
+    if (res.ok) {
+      const dbRows = await res.json();
+      
+      data = dbRows.map(row => {
+        let cleanDate = row.next_contact;
+        if (cleanDate && cleanDate.includes('T')) {
+          cleanDate = cleanDate.split('T')[0];
+        }
+        
+        return { 
+          ...row, 
+          _id: row.id,
+          next_contact: cleanDate
+        };
+      });
+      
+      render();
+      toast('✓ Connected to database!');
+    } else {
+      toast('⚠️ Failed to load data');
+    }
+  } catch (err) {
+    console.error("Load error:", err);
+    toast('⚠️ Database connection failed');
+  }
+
+  setTableHeight();
+  window.addEventListener('resize', setTableHeight);
+  setTimeout(setTableHeight, 100);
+})();
+</script>
+</body>
+</html>
