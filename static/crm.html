@@ -21,6 +21,7 @@
     --t2: #4a9eff;
     --t3: #888;
     --t4: #f0b429;
+    --t5: #3ecf8e;
     --pending: #f0b429;
     --contacted: #4a9eff;
     --replied: #3ecf8e;
@@ -284,6 +285,10 @@
   .t2 .badge-dot { background: var(--t2); }
   .t3 { background: rgba(136,136,136,0.1); color: var(--t3); }
   .t3 .badge-dot { background: var(--t3); }
+  .t4 { background: rgba(240,180,41,0.12); color: var(--t3); }
+  .t4 .badge-dot { background: var(--t4); }
+  .t5 { background: rgba(62,207,142,0.12); color: var(--t3); }
+  .t5 .badge-dot { background: var(--t5); }
   .s-pending { background: rgba(240,180,41,0.12); color: var(--pending); }
   .s-contacted { background: rgba(74,158,255,0.12); color: var(--t2); }
   .s-replied { background: rgba(62,207,142,0.12); color: var(--replied); }
@@ -855,7 +860,8 @@ function esc(s) {
 
 function tierBadge(t) {
   const labels = {'1':'Client','2':'Agency','3':'Other'};
-  return `<span class="badge t${t}"><span class="badge-dot"></span>${labels[t]||t}</span>`;
+  const colors = {'1':'4','2':'2','3':'5'};
+  return `<span class="badge t${colors[t]}"><span class="badge-dot"></span>${labels[t]||t}</span>`;
 }
 function statusBadge(s) {
   return `<span class="badge s-${s}">${s}</span>`;
