@@ -279,12 +279,22 @@
     flex-shrink: 0;
   }
   
-  .type-Client { background: rgba(232,21,27,0.15); color: var(--t1); }
-  .type-Client .badge-dot { background: var(--t1); }
+  /* Type Badges */
+  .type-Client { background: rgba(240,180,41,0.15); color: var(--t2); }
+  .type-Client .badge-dot { background: var(--t2); }
   .type-Agency { background: rgba(74,158,255,0.15); color: var(--t4); }
   .type-Agency .badge-dot { background: var(--t4); }
-  .type-Other { background: rgba(136,136,136,0.15); color: var(--t5); }
-  .type-Other .badge-dot { background: var(--t5); }
+  .type-Other { background: rgba(62,207,142,0.15); color: var(--t3); }
+  .type-Other .badge-dot { background: var(--t3); }
+
+  /* Owner Badges */
+  .owner-Ale { background: rgba(240,180,41,0.15); color: var(--t2); }
+  .owner-Ale .badge-dot { background: var(--t2); }
+  .owner-Gio { background: rgba(74,158,255,0.15); color: var(--t4); }
+  .owner-Gio .badge-dot { background: var(--t4); }
+  .owner-Other { background: rgba(62,207,142,0.15); color: var(--t3); }
+  .owner-Other .badge-dot { background: var(--t3); }
+  .owner-unassigned { background: transparent; color: var(--text-muted); border: 1px dotted var(--border-light); padding: 1px 7px; }
 
   .s-pending { background: rgba(240,180,41,0.15); color: var(--t2); }
   .s-contacted { background: rgba(74,158,255,0.15); color: var(--t4); }
@@ -807,9 +817,9 @@ function renderStats() {
   const overdue = data.filter(r=>r.status==='pending'&&daysUntil(r.next_contact)<=0).length;
   document.getElementById('headerStats').innerHTML = `
     <div class="hstat"><div class="hstat-num">${data.length}</div><div class="hstat-label">Brands</div></div>
-    <div class="hstat"><div class="hstat-num red">${countClient}</div><div class="hstat-label">Client</div></div>
+    <div class="hstat"><div class="hstat-num yellow">${countClient}</div><div class="hstat-label">Client</div></div>
     <div class="hstat"><div class="hstat-num blue">${countAgency}</div><div class="hstat-label">Agency</div></div>
-    <div class="hstat"><div class="hstat-num gray">${countOther}</div><div class="hstat-label">Other</div></div>
+    <div class="hstat"><div class="hstat-num green">${countOther}</div><div class="hstat-label">Other</div></div>
     <div class="hstat"><div class="hstat-num blue">${contacted}</div><div class="hstat-label">Contacted</div></div>
     <div class="hstat"><div class="hstat-num green">${replied}</div><div class="hstat-label">Replied</div></div>
     ${overdue > 0 ? `<div class="hstat"><div class="hstat-num red">${overdue}</div><div class="hstat-label">Overdue</div></div>` : ''}
@@ -877,9 +887,12 @@ async function saveType(id, newType) {
 // ── INLINE OWNER EDITING ──────────────────────────────────────────────────────
 function ownerLabel(o, id) {
   const val = o || '—';
-  if (!id) return esc(val);
+  const safeVal = o ? esc(o) : 'unassigned';
+  const dotHtml = o ? '<span class="badge-dot"></span>' : '';
   
-  return `<span style="cursor:pointer; border-bottom: 1px dotted var(--text-muted);" title="Change Owner" onclick="inlineEditOwner(event, ${id}, '${esc(o||'')}')">${esc(val)}</span>`;
+  if (!id) return `<span class="badge owner-${safeVal}">${dotHtml}${esc(val)}</span>`;
+  
+  return `<span class="badge owner-${safeVal}" style="cursor:pointer" title="Change Owner" onclick="inlineEditOwner(event, ${id}, '${esc(o||'')}')">${dotHtml}${esc(val)}</span>`;
 }
 
 function inlineEditOwner(e, id, currentOwner) {
