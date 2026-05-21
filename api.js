@@ -27,32 +27,28 @@ const pool = mysql.createPool({
 const mypool = pool.promise()
 
 app.post('/crm', async (req, res, next) => {
-
   try {
-    // Sanitize everything here
     const data = {
-      name: clean(req.body.name),
-      type: clean(req.body.type),
-      tier_label: clean(req.body.tier_label),
-      sector: clean(req.body.sector),
-      owner: clean(req.body.owner),
-      status: clean(req.body.status),
-      next_contact: clean(req.body.next_contact),
-      notes: clean(req.body.notes)
+      name: req.body.name,
+      type: req.body.type,
+      tier_label: req.body.tier_label,
+      sector: req.body.sector,
+      owner: req.body.owner,
+      status: req.body.status,
+      next_contact: req.body.next_contact,
+      notes: req.body.notes
     };
 
     if (!req.body.old) {
-      // Use the cleaned data object
       await mypool.execute(
         'INSERT INTO crm (`name`,`type`,`tier_label`,`sector`,`owner`,`status`,`next_contact`,`notes`) VALUES (?,?,?,?,?,?,?,?)',
-        [data.name, data.tier, data.tier_label, data.sector, data.owner, data.status, data.next_contact, data.notes]
+        [data.name, data.type, data.tier_label, data.sector, data.owner, data.status, data.next_contact, data.notes]
       );
       res.status(200).send('inserted');
     } else {
-      // Do the same for your UPDATE query
       await mypool.execute(
         'UPDATE crm SET `name`=?,`type`=?,`tier_label`=?,`sector`=?,`owner`=?,`status`=?,`next_contact`=?,`notes`=? WHERE `name`=?',
-        [data.name, data.tier, data.tier_label, data.sector, data.owner, data.status, data.next_contact, data.notes, req.body.oldname]
+        [data.name, data.type, data.tier_label, data.sector, data.owner, data.status, data.next_contact, data.notes, req.body.oldname]
       );
       res.status(200).send('updated');
     }
