@@ -27,7 +27,7 @@ const pool = mysql.createPool({
 const mypool = pool.promise()
 
 app.post('/crm', async (req, res, next) => {
-  // Define helper to turn falsy/undefined values into null
+  console.log('RAW REQUEST BODY:', JSON.stringify(req.body, null, 2));
   const clean = (val) => (val === undefined || val === '' ? null : val);
 
   try {
