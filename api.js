@@ -28,6 +28,7 @@ const mypool = pool.promise()
 
 app.post('/crm', async (req, res, next) => {
   try {
+    console.log('RAW REQUEST BODY:', JSON.stringify(req.body, null, 2));
     const data = {
       name: req.body.name,
       type: req.body.type,
