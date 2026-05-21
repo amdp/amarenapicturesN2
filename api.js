@@ -27,34 +27,41 @@ const pool = mysql.createPool({
 const mypool = pool.promise()
 
 app.post('/crm', async (req, res, next) => {
-  if (!req.body.old) {
-    try {
-      const [exists] = await mypool.execute(
-        'SELECT id FROM `crm` WHERE `name`=? LIMIT 1',
-        [req.body.name]
-      )
-      if (exists.length > 0) return res.status(200).send('exists')
+  // Define helper to turn falsy/undefined values into null
+  const clean = (val) => (val === undefined || val === '' ? null : val);
 
+  try {
+    // Sanitize everything here
+    const data = {
+      name: clean(req.body.name),
+      tier: clean(req.body.tier),
+      tier_label: clean(req.body.tier_label),
+      sector: clean(req.body.sector),
+      owner: clean(req.body.owner),
+      status: clean(req.body.status),
+      next_contact: clean(req.body.next_contact),
+      notes: clean(req.body.notes)
+    };
+
+    if (!req.body.old) {
+      // Use the cleaned data object
       await mypool.execute(
         'INSERT INTO crm (`name`,`tier`,`tier_label`,`sector`,`owner`,`status`,`next_contact`,`notes`) VALUES (?,?,?,?,?,?,?,?)',
-        [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.owner, req.body.status, req.body.next_contact, req.body.notes]
-      )
-      res.status(200).send('inserted')
-    } catch (err) {
-      next(err)
-    }
-  } else {
-    try {
+        [data.name, data.tier, data.tier_label, data.sector, data.owner, data.status, data.next_contact, data.notes]
+      );
+      res.status(200).send('inserted');
+    } else {
+      // Do the same for your UPDATE query
       await mypool.execute(
         'UPDATE crm SET `name`=?,`tier`=?,`tier_label`=?,`sector`=?,`owner`=?,`status`=?,`next_contact`=?,`notes`=? WHERE `name`=?',
-        [req.body.name, req.body.tier, req.body.tier_label, req.body.sector, req.body.owner, req.body.status, req.body.next_contact, req.body.notes, req.body.oldname]
-      )
-      res.status(200).send('updated')
-    } catch (err) {
-      next(err)
+        [data.name, data.tier, data.tier_label, data.sector, data.owner, data.status, data.next_contact, data.notes, req.body.oldname]
+      );
+      res.status(200).send('updated');
     }
+  } catch (err) {
+    next(err);
   }
-})
+});
 
 app.get('/crm', async (req, res, next) => {
   try {
