@@ -32,7 +32,6 @@ app.post('/crm', async (req, res, next) => {
     const data = {
       name: req.body.name,
       type: req.body.type,
-      tier_label: req.body.tier_label,
       sector: req.body.sector,
       owner: req.body.owner,
       status: req.body.status,
@@ -40,16 +39,16 @@ app.post('/crm', async (req, res, next) => {
       notes: req.body.notes
     };
 
-    if (!req.body.old) {
+    if (!req.body.oldname) {
       await mypool.execute(
-        'INSERT INTO crm (`name`,`type`,`tier_label`,`sector`,`owner`,`status`,`next_contact`,`notes`) VALUES (?,?,?,?,?,?,?,?)',
-        [data.name, data.type, data.tier_label, data.sector, data.owner, data.status, data.next_contact, data.notes]
+        'INSERT INTO crm (`name`,`type`,`sector`,`owner`,`status`,`next_contact`,`notes`) VALUES (?,?,?,?,?,?,?)',
+        [data.name, data.type, data.sector, data.owner, data.status, data.next_contact, data.notes]
       );
       res.status(200).send('inserted');
     } else {
       await mypool.execute(
-        'UPDATE crm SET `name`=?,`type`=?,`tier_label`=?,`sector`=?,`owner`=?,`status`=?,`next_contact`=?,`notes`=? WHERE `name`=?',
-        [data.name, data.type, data.tier_label, data.sector, data.owner, data.status, data.next_contact, data.notes, req.body.oldname]
+        'UPDATE crm SET `name`=?,`type`=?,`sector`=?,`owner`=?,`status`=?,`next_contact`=?,`notes`=? WHERE `name`=?',
+        [data.name, data.type, data.sector, data.owner, data.status, data.next_contact, data.notes, req.body.oldname]
       );
       res.status(200).send('updated');
     }
